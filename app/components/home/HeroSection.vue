@@ -29,6 +29,7 @@ const { text: typedText } = useTypewriter(typedLines, {
 
 <template>
   <section class="hero-section position-relative d-flex align-center" aria-labelledby="home-hero-title">
+    <div class="hero-bg-box" aria-hidden="true"></div>
 
     <v-row align="center" class="position-relative section-row">
       <!-- Left column: text content -->
@@ -100,21 +101,38 @@ const { text: typedText } = useTypewriter(typedLines, {
 <style scoped>
 .hero-section {
   min-height: calc(100dvh - 80px);
-  padding-block: 4rem 5.5rem;
+  padding: 2rem 1.25rem 2.5rem;
   isolation: isolate;
 }
 
-.hero-section::before {
+/* Rounded decorative box */
+.hero-bg-box {
+  position: absolute;
+  inset: 0.5rem;
+  border-radius: 2.25rem;
+  border: 1px solid var(--home-brand-soft);
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-bg-box::before {
   content: '';
   position: absolute;
   inset: 0;
   background-image: url('/HT_Pattern_1.svg');
-  background-repeat: repeat;
-  background-position: center;
-  background-size: auto;
-  opacity: 0.08;
-  pointer-events: none;
-  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.1;
+}
+
+.hero-bg-box::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 25% 45%, rgba(0, 168, 107, 0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 75% 60%, rgba(0, 168, 107, 0.04) 0%, transparent 65%);
 }
 
 .section-row {
@@ -214,15 +232,14 @@ const { text: typedText } = useTypewriter(typedLines, {
 @media (max-width: 959px) {
   .hero-section {
     min-height: auto;
-    padding-top: 3rem;
+    padding: 0.5rem 0.5rem 2rem;
   }
 
-  .hero-pattern {
-    inset: 0 auto auto 50%;
-    width: 72vw;
-    transform: translateX(-50%);
-    opacity: 0.55;
+  .hero-bg-box {
+    inset: 0.25rem;
+    border-radius: 1.5rem;
   }
+
 
   .scroll-indicator {
     display: none;
