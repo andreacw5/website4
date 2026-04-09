@@ -37,6 +37,8 @@
       "ogDescription": "I build web products with Vue, Nuxt, Node, and Java, with a strong focus on UX, accessibility, and product quality."
     },
     "hero": {
+      "greeting": "Nice to meet you,",
+      "name": "I'm Andrea Tombolato",
       "role": "Full-stack Developer",
       "intro": "I build reliable, accessible, detail-oriented digital experiences across product work, consulting, and community projects.",
       "typed": [
@@ -47,6 +49,9 @@
       "portfolioCta": "View portfolio",
       "contactsCta": "Get in touch",
       "downloadCv": "Download my CV",
+      "cvDownloadStarted": "CV download started…",
+      "cvDownloadDone": "CV downloaded successfully!",
+      "cvDownloadError": "An error occurred while downloading the CV.",
       "scrollLabel": "Scroll to the about section"
     },
     "about": {

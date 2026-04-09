@@ -37,6 +37,8 @@
       "ogDescription": "Sviluppo prodotti web con Vue, Nuxt, Node e Java, con attenzione a UX, accessibilità e qualità del dettaglio."
     },
     "hero": {
+      "greeting": "Piacere di conoscerti,",
+      "name": "Sono Andrea Tombolato",
       "role": "Full-stack Developer",
       "intro": "Costruisco esperienze digitali solide, accessibili e curate nei dettagli tra prodotto, consulenza e community.",
       "typed": [
@@ -47,6 +49,9 @@
       "portfolioCta": "Vai al portfolio",
       "contactsCta": "Contattami",
       "downloadCv": "Scarica il mio CV",
+      "cvDownloadStarted": "Download del CV avviato…",
+      "cvDownloadDone": "CV scaricato con successo!",
+      "cvDownloadError": "Errore durante il download del CV.",
       "scrollLabel": "Scorri verso la sezione about"
     },
     "about": {

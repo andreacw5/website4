@@ -1,23 +1,21 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 
-const { t, tm } = useI18n();
+const { t, tm, rt } = useI18n();
 const localePath = useLocalePath();
-
-const toStringArray = (value: unknown): string[] => {
-  if (Array.isArray(value)) {
-    return value.filter((item): item is string => typeof item === 'string');
-  }
-  if (value && typeof value === 'object') {
-    return Object.values(value).filter((item): item is string => typeof item === 'string');
-  }
-  return [];
-};
 
 const careerStartYear = 2016;
 const yearsOfExperience = new Date().getFullYear() - careerStartYear;
 
-const typedLines = computed(() => toStringArray(tm('home.hero.typed')));
+const typedLines = computed<string[]>(() => {
+  const raw = (tm as (key: string) => unknown)('home.hero.typed');
+  const arr: unknown[] = Array.isArray(raw)
+    ? raw
+    : raw && typeof raw === 'object'
+      ? Object.values(raw as Record<string, unknown>)
+      : [];
+  return arr.map(item => rt(item as Parameters<typeof rt>[0])).filter(s => s.length > 0);
+});
 
 const { text: typedText } = useTypewriter(typedLines, {
   typingSpeed: 64,
@@ -25,52 +23,86 @@ const { text: typedText } = useTypewriter(typedLines, {
   pauseMs: 1700,
   initialDelayMs: 400,
 });
+
+const snackbar = ref(false);
+const snackbarText = ref('');
+const snackbarColor = ref<'info' | 'success' | 'error'>('info');
+
+const downloadCv = async () => {
+  snackbarText.value = t('home.hero.cvDownloadStarted');
+  snackbarColor.value = 'info';
+  snackbar.value = true;
+
+  try {
+    const response = await fetch('/CV_2024.pdf');
+    if (!response.ok) throw new Error('Network response was not ok');
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'CV_2024.pdf';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    snackbarText.value = t('home.hero.cvDownloadDone');
+    snackbarColor.value = 'success';
+    snackbar.value = true;
+  } catch {
+    snackbarText.value = t('home.hero.cvDownloadError');
+    snackbarColor.value = 'error';
+    snackbar.value = true;
+  }
+};
 </script>
 
 <template>
   <section class="hero-section position-relative d-flex align-center" aria-labelledby="home-hero-title">
-    <div class="hero-bg-box" aria-hidden="true"></div>
 
     <v-row align="center" class="position-relative section-row">
       <!-- Left column: text content -->
-      <v-col cols="12" md="7">
-        <v-responsive max-width="720">
-          <p class="text-overline text-primary font-weight-bold mb-3 brand-mono">{{ t('app.brand') }}</p>
-          <h1 id="home-hero-title" class="text-h2 font-weight-bold mb-4">Andrea Tombolato</h1>
-          <p class="text-h5 text-primary font-weight-medium mb-5">{{ t('home.hero.role') }}</p>
+      <v-col cols="12" md="5" order="2" order-md="1">
+        <v-responsive max-width="600">
+          <p class="text-overline text-primary font-weight-bold mb-2 brand-mono">{{ t('home.hero.greeting') }}</p>
+          <h1 id="home-hero-title" class="text-h3 font-weight-bold mb-4">{{ t('home.hero.name') }}</h1>
+          <p class="text-h5 text-primary font-weight-medium mb-5 brand-mono">{{ t('home.hero.role') }}</p>
           <p class="text-body-1 text-medium-emphasis hero-intro mb-6">
             {{ t('home.hero.intro') }}
           </p>
 
           <div class="typewriter-line mb-8" aria-live="polite">
-            <span>{{ typedText }}</span>
-            <span class="typewriter-cursor" aria-hidden="true">|</span>
+            <span class="brand-mono">{{ typedText }}</span>
+            <span class="typewriter-cursor brand-mono" aria-hidden="true">|</span>
           </div>
 
           <div class="d-flex flex-wrap ga-3">
-            <v-btn :to="localePath('/portfolio')" color="primary" size="large" rounded="pill" elevation="0">
-              {{ t('home.hero.portfolioCta') }}
-            </v-btn>
-            <v-btn :to="localePath('/contatti')" color="primary" variant="outlined" size="large" rounded="pill">
-              {{ t('home.hero.contactsCta') }}
-            </v-btn>
             <v-btn
-              href="/CV_2024.pdf"
-              download
+              @click="downloadCv"
               color="primary"
-              variant="tonal"
               size="large"
               rounded="pill"
               prepend-icon="mdi-download"
             >
               {{ t('home.hero.downloadCv') }}
             </v-btn>
+            <v-btn
+              :to="localePath('/portfolio')"
+              color="primary"
+              size="large"
+              variant="tonal"
+              rounded="pill"
+              elevation="0"
+              append-icon="mdi-arrow-right"
+            >
+              {{ t('home.hero.portfolioCta') }}
+            </v-btn>
           </div>
         </v-responsive>
       </v-col>
 
       <!-- Right column: photo card -->
-      <v-col cols="12" md="5" class="d-flex justify-md-end">
+      <v-col cols="12" md="7" order="1" order-md="2" class="d-flex justify-md-end">
         <div class="hero-side-card">
           <div class="hero-photo-wrapper">
             <v-img
@@ -95,6 +127,16 @@ const { text: typedText } = useTypewriter(typedLines, {
     <a href="#about" class="scroll-indicator" :aria-label="t('home.hero.scrollLabel')">
       <v-icon size="30">mdi-chevron-double-down</v-icon>
     </a>
+
+    <v-snackbar
+      v-model="snackbar"
+      :color="snackbarColor"
+      :timeout="3000"
+      location="bottom end"
+      rounded="pill"
+    >
+      {{ snackbarText }}
+    </v-snackbar>
   </section>
 </template>
 
@@ -105,34 +147,41 @@ const { text: typedText } = useTypewriter(typedLines, {
   isolation: isolate;
 }
 
-/* Rounded decorative box */
-.hero-bg-box {
-  position: absolute;
-  inset: 0.5rem;
-  border-radius: 2.25rem;
-  border: 1px solid var(--home-brand-soft);
-  overflow: hidden;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.hero-bg-box::before {
+/* Full-bleed pattern background — fades out toward the bottom */
+.hero-section::before {
   content: '';
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 50%;
+  width: 100vw;
+  height: 100%;
+  transform: translateX(-50%);
   background-image: url('/HT_Pattern_1.svg');
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: 0.1;
+  opacity: 0.09;
+  z-index: -1;
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 55%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 55%, transparent 100%);
 }
 
-.hero-bg-box::after {
+/* Full-bleed ambient glow — fades out sooner */
+.hero-section::after {
   content: '';
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 50%;
+  width: 100vw;
+  height: 100%;
+  transform: translateX(-50%);
   background:
-    radial-gradient(ellipse 70% 55% at 25% 45%, rgba(0, 168, 107, 0.07) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 40% at 75% 60%, rgba(0, 168, 107, 0.04) 0%, transparent 65%);
+    radial-gradient(ellipse 70% 55% at 25% 45%, rgba(0, 168, 107, 0.10) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 75% 55%, rgba(0, 168, 107, 0.06) 0%, transparent 65%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 40%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 40%, transparent 100%);
+  z-index: -1;
+  pointer-events: none;
 }
 
 .section-row {
@@ -145,30 +194,29 @@ const { text: typedText } = useTypewriter(typedLines, {
 }
 
 .hero-intro {
-  max-width: 68ch;
+  max-width: 60ch;
 }
 
 .typewriter-line {
   min-height: 2rem;
   font-size: 1.1rem;
   font-weight: 500;
-  color: var(--home-text-strong);
+  color: rgb(var(--v-theme-on-surface));
 }
 
 .typewriter-cursor {
   display: inline-block;
   margin-left: 0.15rem;
-  color: var(--home-brand);
+  color: rgb(var(--v-theme-primary));
   animation: blink 1s steps(1) infinite;
 }
 
 /* Photo card */
 .hero-side-card {
-  width: min(100%, 400px);
+  width: min(100%, 500px);
   border-radius: 1.25rem;
   overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
-  border: 1px solid var(--home-brand-soft);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
 }
 
 .hero-photo-wrapper {
@@ -180,7 +228,7 @@ const { text: typedText } = useTypewriter(typedLines, {
   display: block;
   width: 100%;
   aspect-ratio: 3 / 4;
-  max-height: 520px;
+  max-height: 550px;
 }
 
 .experience-chip {
@@ -235,24 +283,20 @@ const { text: typedText } = useTypewriter(typedLines, {
     padding: 0.5rem 0.5rem 2rem;
   }
 
-  .hero-bg-box {
-    inset: 0.25rem;
-    border-radius: 1.5rem;
-  }
-
-
   .scroll-indicator {
     display: none;
   }
 
   .hero-side-card {
     width: 100%;
-    max-width: 360px;
-    margin-inline: auto;
+    max-width: 100%;
+    border-radius: 1rem;
   }
 
   .hero-photo {
-    max-height: 380px;
+    aspect-ratio: 16 / 7;
+    max-height: none;
+    object-position: center 20%;
   }
 }
 </style>
