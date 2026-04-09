@@ -19,7 +19,7 @@ technical:
   technologies:
     - icon: "/languages/lineicons--nuxt.svg"
       title: "Nuxt.js"
-    - icon: "simple-icons:vuetify"
+    - icon: "/languages/devicon-plain--vuetify.svg"
       title: "Vuetify"
     - icon: "/languages/bxl--nest-js.svg"
       title: "Nest.js"
@@ -27,7 +27,7 @@ technical:
       title: "Prisma ORM"
     - icon: "/languages/lineicons--typescript.svg"
       title: "Typescript"
-    - icon: "simple-icons:postgresql"
+    - icon: "/languages/simple-icons--postgresql.svg"
       title: "PostgreSQL"
 features:
   - title: "Gestione completa delle build"

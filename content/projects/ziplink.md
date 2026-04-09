@@ -2,7 +2,7 @@
 title: "ZipLink"
 description: "ZipLink è un sistema gestore di url con Rest API per la gestione di url accorciati, statistiche sui click e reindirizzamenti tramite codici personalizzati."
 startDate: "2022"
-current: true
+current: false
 github: "https://github.com/andreacw5/ziplink"
 preview: "https://file-harbor.com/api/v1/files/aa446189ee45f5b45daa112ad43861c6"
 client:
@@ -22,7 +22,7 @@ technical:
       title: "Prisma ORM"
     - icon: "/languages/lineicons--typescript.svg"
       title: "Typescript"
-    - icon: "simple-icons:postgresql"
+    - icon: "/languages/simple-icons--postgresql.svg"
       title: "PostgreSQL"
 features:
   - title: "Gestione di URL accorciati"

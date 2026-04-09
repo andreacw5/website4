@@ -22,7 +22,7 @@ technical:
       title: "Nuxt.js"
     - icon: "/languages/lineicons--nodejs.svg"
       title: "Node.js"
-    - icon: "simple-icons:vuetify"
+    - icon: "/languages/devicon-plain--vuetify.svg"
       title: "Vuetify"
     - icon: "/languages/simple-icons--nginx.svg"
       title: "NGINX"

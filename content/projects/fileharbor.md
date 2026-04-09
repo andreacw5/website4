@@ -22,7 +22,7 @@ technical:
       title: "Prisma ORM"
     - icon: "/languages/lineicons--typescript.svg"
       title: "Typescript"
-    - icon: "simple-icons:postgresql"
+    - icon: "/languages/simple-icons--postgresql.svg"
       title: "PostgreSQL"
 features:
   - title: "Gestione degli upload"

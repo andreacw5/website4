@@ -2,7 +2,7 @@
 title: "Respondo"
 description: "Respondo è applicazione progettata per monitorare risorse, endpoint e heartbeat in tempo reale. Attualmente è in sviluppo la parte di backend, che fornirà un'API REST per la gestione delle risorse e dei loro stati. La parte frontend è in fase di sviluppo."
 startDate: "2025"
-current: true
+current: false
 github: "https://github.com/atomwebdev/respondo-api"
 preview: "https://file-harbor.com/api/v1/files/8b93cf49-c117-49e2-86fe-ac670bd77295"
 client:
@@ -22,7 +22,7 @@ technical:
       title: "Prisma ORM"
     - icon: "/languages/lineicons--typescript.svg"
       title: "Typescript"
-    - icon: "simple-icons:postgresql"
+    - icon: "/languages/simple-icons--postgresql.svg"
       title: "PostgreSQL"
 features:
   - title: "Heartbeat e monitoraggio"

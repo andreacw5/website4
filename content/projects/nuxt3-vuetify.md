@@ -18,7 +18,7 @@ technical:
   technologies:
     - icon: "/languages/lineicons--nuxt.svg"
       title: "Nuxt.js"
-    - icon: "simple-icons:vuetify"
+    - icon: "/languages/devicon-plain--vuetify.svg"
       title: "Vuetify"
 features:
   - title: "Integrazione Nuxt 3 e Vuetify"

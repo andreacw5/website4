@@ -190,7 +190,10 @@
       "viewGithub": "View on GitHub",
       "viewWebsite": "Visit website",
       "closeImage": "Close image",
-      "noImages": "No images available."
+      "noImages": "No images available.",
+      "similar": "Similar projects",
+      "similarSubtitle": "More projects built with {stack}",
+      "allProjects": "All projects"
     }
   },
   "pages": {

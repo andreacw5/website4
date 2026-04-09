@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue';
 import { useI18n } from 'vue-i18n';
+import ProjectCard from "~/components/projects/ProjectCard.vue";
 
 const { t } = useI18n();
 const route = useRoute();
@@ -27,6 +28,22 @@ useSeoMeta({
   ogType: 'article',
   twitterCard: 'summary_large_image',
 });
+
+// Galleria collassabile
+const galleryOpen = ref(false);
+
+// Progetti simili (stesso main stack, esclude il corrente, max 3)
+const { data: similarProjects } = await useAsyncData(
+  `similar-${route.params.slug}`,
+  async () => {
+    const mainName = project.value?.technical?.main?.name;
+    if (!mainName) return [];
+    const all = await queryCollection('projects').all();
+    return all
+      .filter(p => p.path !== `/projects/${route.params.slug}` && p.technical?.main?.name === mainName)
+      .slice(0, 3);
+  },
+);
 
 // Lightbox galleria
 const lightboxOpen = ref(false);
@@ -106,11 +123,11 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown));
       <!-- Breadcrumb / Back -->
       <v-btn
         :to="localePath('/projects')"
-        variant="text"
+        variant="tonal"
         color="primary"
         prepend-icon="mdi-arrow-left"
-        size="small"
-        class="mb-8 pl-0"
+        size="default"
+        class="mb-8 font-weight-bold"
       >
         {{ t('projects.detail.back') }}
       </v-btn>
@@ -159,48 +176,59 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown));
 
           <!-- Galleria immagini -->
           <section v-if="images.length" class="mb-10" aria-labelledby="detail-gallery">
-            <h2 id="detail-gallery" class="section-eyebrow text-overline text-primary font-weight-bold mb-5">
-              {{ t('projects.detail.gallery') }}
-            </h2>
-            <v-row>
-              <v-col
-                v-for="(img, i) in images"
-                :key="i"
-                cols="6"
-                md="4"
-              >
-                <v-card
-                  class="gallery-card"
-                  rounded="lg"
-                  elevation="0"
-                  @click="openLightbox(i)"
-                >
-                  <v-img
-                    :src="img.image"
-                    :alt="img.title"
-                    cover
-                    class="gallery-img"
-                    lazy-src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E"
+            <button
+              class="gallery-toggle w-100"
+              :aria-expanded="galleryOpen"
+              aria-controls="gallery-content"
+              @click="galleryOpen = !galleryOpen"
+            >
+              <h2 id="detail-gallery" class="section-eyebrow text-overline text-primary font-weight-bold">
+                {{ t('projects.detail.gallery') }}
+                <span class="text-medium-emphasis text-caption font-weight-regular ml-2">({{ images.length }})</span>
+              </h2>
+              <v-icon
+                :icon="galleryOpen ? 'mdi-chevron-up' : 'mdi-chevron-down'"
+                color="primary"
+                size="20"
+              />
+            </button>
+
+            <v-expand-transition>
+              <div v-if="galleryOpen" id="gallery-content">
+                <v-row class="mt-4">
+                  <v-col
+                    v-for="(img, i) in images"
+                    :key="i"
+                    cols="6"
+                    md="4"
                   >
-                    <template #placeholder>
-                      <div class="d-flex align-center justify-center h-100">
-                        <v-progress-circular indeterminate color="primary" size="20" />
-                      </div>
-                    </template>
-                    <!-- Overlay al hover con titolo -->
-                    <v-overlay
-                      class="gallery-overlay align-end pa-2"
-                      contained
-                      scrim="rgba(0,0,0,0.55)"
-                      :model-value="false"
-                      open-on-hover
+                    <v-card
+                      class="gallery-card"
+                      rounded="lg"
+                      elevation="0"
+                      @click="openLightbox(i)"
                     >
-                      <span class="text-caption text-white font-weight-medium">{{ img.title }}</span>
-                    </v-overlay>
-                  </v-img>
-                </v-card>
-              </v-col>
-            </v-row>
+                      <v-img
+                        :src="img.image"
+                        :alt="img.title"
+                        cover
+                        class="gallery-img"
+                        lazy-src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E"
+                      >
+                        <template #placeholder>
+                          <div class="d-flex align-center justify-center h-100">
+                            <v-progress-circular indeterminate color="primary" size="20" />
+                          </div>
+                        </template>
+                      </v-img>
+                      <div v-if="img.title" class="gallery-caption px-3 py-2">
+                        <span class="text-caption text-medium-emphasis">{{ img.title }}</span>
+                      </div>
+                    </v-card>
+                  </v-col>
+                </v-row>
+              </div>
+            </v-expand-transition>
           </section>
 
         </v-col>
@@ -281,7 +309,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown));
               </div>
 
               <!-- Tutte le tech -->
-              <v-chip-group class="flex-wrap">
+              <div class="d-flex flex-wrap ga-2">
                 <v-chip
                   v-for="tech in project.technical.technologies"
                   :key="tech.title"
@@ -303,7 +331,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown));
                   </template>
                   {{ tech.title }}
                 </v-chip>
-              </v-chip-group>
+              </div>
             </v-card-text>
           </v-card>
 
@@ -380,6 +408,48 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown));
 
         </v-col>
       </v-row>
+
+      <!-- ─── Progetti simili ──────────────────────────────────── -->
+      <section v-if="similarProjects?.length" class="similar-section mt-12 pt-10">
+        <div class="d-flex align-center justify-space-between mb-6">
+          <div>
+            <p class="section-eyebrow text-overline text-primary font-weight-bold mb-1">
+              {{ t('projects.detail.similar') }}
+            </p>
+            <h2 class="text-h6 font-weight-semibold">
+              {{ t('projects.detail.similarSubtitle', { stack: project.technical?.main?.name }) }}
+            </h2>
+          </div>
+          <v-btn
+            :to="localePath('/projects')"
+            variant="text"
+            color="primary"
+            append-icon="mdi-arrow-right"
+            size="small"
+            class="d-none d-sm-flex"
+          >
+            {{ t('projects.detail.allProjects') }}
+          </v-btn>
+        </div>
+
+        <v-row>
+          <v-col
+            v-for="p in similarProjects"
+            :key="p.path"
+            cols="12"
+            sm="6"
+            md="4"
+          >
+            <ProjectCard
+              :title="p.title"
+              :preview="p.preview"
+              :slug="p.path"
+              :client="p.client"
+            />
+          </v-col>
+        </v-row>
+      </section>
+
     </v-container>
 
     <!-- ─── Lightbox fullscreen ──────────────────────────────────── -->
@@ -487,6 +557,23 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown));
 }
 
 /* ─── Gallery ───────────────────────────────────── */
+.gallery-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: rgba(var(--v-theme-on-surface), 0.04);
+  border: 1px solid rgba(var(--v-theme-on-surface), 0.08);
+  border-radius: 12px;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.gallery-toggle:hover {
+  background: rgba(var(--v-theme-on-surface), 0.07);
+}
+
 .gallery-card {
   cursor: pointer;
   overflow: hidden;
@@ -501,6 +588,11 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown));
 
 .gallery-img {
   aspect-ratio: 16 / 10;
+}
+
+.gallery-caption {
+  border-top: 1px solid rgba(var(--v-theme-on-surface), 0.07);
+  line-height: 1.4;
 }
 
 .gallery-overlay {
@@ -557,6 +649,11 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown));
   padding: 6px 14px;
   border-radius: 20px;
   white-space: nowrap;
+}
+
+/* ─── Similar projects ──────────────────────────── */
+.similar-section {
+  border-top: 1px solid rgba(var(--v-theme-on-surface), 0.08);
 }
 
 /* ─── Content renderer (markdown) ──────────────── */

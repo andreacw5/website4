@@ -2,7 +2,7 @@
 title: "Sito web per i gamer"
 description: "Ho progettato e sviluppato una piattaforma web per il monitoraggio in tempo reale degli utenti dei vari team di streamer del Network Element Gaming. L'applicazione, integrata con le API di Twitch, consente di visualizzare lo stato live di tutti gli streamer appartenenti al network, mostrando informazioni aggiornate sugli utenti online, sullo streaming attivo, e dettagli sul gioco attualmente in uso."
 startDate: "2019"
-current: true
+current: false
 website: "https://element-gaming.eu"
 preview: "https://file-harbor.com/api/v1/files/6b319d775a8a9be85142abfbd612054b"
 client:
@@ -22,7 +22,7 @@ technical:
       title: "Nuxt.js"
     - icon: "/languages/lineicons--nodejs.svg"
       title: "Node.js"
-    - icon: "simple-icons:vuetify"
+    - icon: "/languages/devicon-plain--vuetify.svg"
       title: "Vuetify"
     - icon: "/languages/simple-icons--nginx.svg"
       title: "NGINX"

@@ -44,7 +44,7 @@ defineProps<{
     <v-card-item class="py-3 px-4">
       <div class="d-flex align-center justify-space-between ga-3">
         <div class="card-info overflow-hidden">
-          <div class="text-body-2 font-weight-semibold project-title">{{ title }}</div>
+          <div class="text-body-1 font-weight-semibold project-title">{{ title }}</div>
           <div v-if="client?.name" class="text-caption text-medium-emphasis mt-1 project-company">
             {{ client.name }}
           </div>

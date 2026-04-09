@@ -2,7 +2,7 @@
 title: "Linktree website"
 description: "Un'applicazione simile a Linktree sviluppata in Nuxt.js è una piattaforma web che consente agli utenti di aggregare e presentare una serie di link utili in una singola pagina personalizzabile. Questo tipo di applicazione è progettato per essere leggero e performante, sfruttando le capacità di rendering lato server (SSR) e la generazione di siti statici di Nuxt.js."
 startDate: "2023"
-current: true
+current: false
 website: "https://links.element-gaming.eu"
 preview: "https://file-harbor.com/api/v1/files/33925b190be7f512bc95f9062dce6d4f"
 client:
@@ -22,7 +22,7 @@ technical:
       title: "Nuxt.js"
     - icon: "/languages/lineicons--nodejs.svg"
       title: "Node.js"
-    - icon: "simple-icons:vuetify"
+    - icon: "/languages/devicon-plain--vuetify.svg"
       title: "Vuetify"
     - icon: "/languages/simple-icons--nginx.svg"
       title: "NGINX"
