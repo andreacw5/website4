@@ -117,7 +117,8 @@ const downloadCv = async () => {
     </v-row>
 
     <a href="#about" class="scroll-indicator" :aria-label="t('home.hero.scrollLabel')">
-      <v-icon size="30">mdi-chevron-double-down</v-icon>
+      <span class="scroll-ring" aria-hidden="true" />
+      <v-icon size="22" class="scroll-arrow">mdi-arrow-down</v-icon>
     </a>
 
     <v-snackbar
@@ -227,14 +228,39 @@ const downloadCv = async () => {
 .scroll-indicator {
   position: absolute;
   left: 50%;
-  bottom: 1rem;
+  bottom: 1.5rem;
   transform: translateX(-50%);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--home-text-soft);
-  animation: pulseDown 1.8s ease-in-out infinite;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid rgba(var(--v-theme-primary), 0.55);
+  color: rgb(var(--v-theme-primary));
+  text-decoration: none;
+  animation: bounceDown 2s ease-in-out infinite;
   z-index: 1;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.scroll-indicator:hover {
+  background-color: rgba(var(--v-theme-primary), 0.1);
+  border-color: rgb(var(--v-theme-primary));
+}
+
+/* Pulsing ring */
+.scroll-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(var(--v-theme-primary), 0.3);
+  animation: ringPulse 2s ease-out infinite;
+  pointer-events: none;
+}
+
+.scroll-arrow {
+  animation: arrowBounce 2s ease-in-out infinite;
 }
 
 @keyframes blink {
@@ -248,15 +274,34 @@ const downloadCv = async () => {
   }
 }
 
-@keyframes pulseDown {
-  0%,
-  100% {
-    opacity: 0.35;
+@keyframes bounceDown {
+  0%, 100% {
     transform: translateX(-50%) translateY(0);
+    opacity: 0.75;
   }
   50% {
+    transform: translateX(-50%) translateY(5px);
     opacity: 1;
-    transform: translateX(-50%) translateY(6px);
+  }
+}
+
+@keyframes arrowBounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(3px); }
+}
+
+@keyframes ringPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  70% {
+    transform: scale(1.45);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.45);
+    opacity: 0;
   }
 }
 

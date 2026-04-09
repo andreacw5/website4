@@ -161,7 +161,7 @@ onBeforeUnmount(() => {
       >
         <div data-about-animate class="about-highlight h-100">
           <v-avatar size="40" rounded="lg" color="primary" variant="tonal" class="mb-4 flex-shrink-0 about-highlight-icon">
-            <v-icon size="20">{{ h.icon }}</v-icon>
+            <v-icon size="20" class="about-highlight-icon-inner">{{ h.icon }}</v-icon>
           </v-avatar>
           <div class="text-caption text-medium-emphasis text-uppercase jetbrain mb-1" style="letter-spacing: 0.1em;">
             {{ t(h.label) }}
@@ -282,6 +282,15 @@ onBeforeUnmount(() => {
 
 .about-highlight:hover .about-highlight-icon {
   box-shadow: 0 0 0 6px rgba(0, 168, 107, 0.13);
+}
+
+/* ─── Icon scale on hover ─────────────────────────────────── */
+.about-highlight-icon-inner {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.about-highlight:hover .about-highlight-icon-inner {
+  transform: scale(1.35);
 }
 
 .about-highlight-value {

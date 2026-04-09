@@ -119,10 +119,10 @@ onBeforeUnmount(() => {
                   rounded="lg"
                   color="primary"
                   variant="tonal"
-                  class="flex-shrink-0"
+                  class="flex-shrink-0 exp-avatar"
                   style="margin-top: 3px;"
                 >
-                  <v-icon size="20">{{ item.icon }}</v-icon>
+                  <v-icon size="20" class="exp-icon">{{ item.icon }}</v-icon>
                 </v-avatar>
 
                 <div class="flex-1-1 overflow-hidden">
@@ -214,5 +214,23 @@ onBeforeUnmount(() => {
 
 .company-link:hover::after {
   width: 100%;
+}
+
+/* ─── Avatar glow on hover ────────────────────────────────── */
+.exp-avatar {
+  transition: box-shadow 0.25s ease;
+}
+
+.experience-card:hover .exp-avatar {
+  box-shadow: 0 0 0 6px rgba(0, 168, 107, 0.14);
+}
+
+/* ─── Icon scale on hover ─────────────────────────────────── */
+.exp-icon {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.experience-card:hover .exp-icon {
+  transform: scale(1.35);
 }
 </style>
