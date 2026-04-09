@@ -18,6 +18,27 @@ const textStrong = computed(() => isDark.value ? '#d6ede5'                 : '#1
 const careerStartYear = 2016;
 const yearsOfExperience = new Date().getFullYear() - careerStartYear;
 
+// ── Photo stack interaction ───────────────────────────────────
+const photoSrcs = [
+  'https://file-harbor.com/api/v1/files/1f411c33ba295890895214af38afbee9',
+  'https://file-harbor.com/api/v1/files/2f34563f7b7905b32b9d992649a66853',
+  'https://file-harbor.com/api/v1/files/1592da16cae9a30b1b4be0f667300949',
+] as const;
+
+// cardOrder[slot] = image index — slot 0=back, 1=mid, 2=front
+const cardOrder = ref([0, 1, 2]);
+
+const getSlot = (imgIdx: number) => cardOrder.value.indexOf(imgIdx);
+
+const bringToFront = (imgIdx: number) => {
+  const slot = getSlot(imgIdx);
+  if (slot === 2) return; // already front
+  const next = [...cardOrder.value];
+  next.splice(slot, 1);
+  next.push(imgIdx);
+  cardOrder.value = next;
+};
+
 const highlights = [
   {
     key: 'experience',
@@ -86,31 +107,49 @@ onBeforeUnmount(() => {
     class="section-block about-section"
     aria-labelledby="about-title"
   >
-    <!-- ── Header ───────────────────────────────────────────── -->
-    <div data-about-animate>
-      <p class="text-overline text-primary font-weight-bold mb-3 jetbrain">
-        {{ t('home.about.eyebrow') }}
-      </p>
-      <h2 id="about-title" class="text-h4 font-weight-bold mb-8">
-        {{ t('home.about.title') }}
-      </h2>
-    </div>
+    <v-row align="center" class="about-main-row">
 
-    <!-- ── Paragraphs ───────────────────────────────────────── -->
-    <div class="about-copy mb-10">
-      <p data-about-animate class="text-body-1 text-medium-emphasis about-para about-para--accent mb-5">
-        {{ t('home.about.paragraphs.one') }}
-      </p>
-      <p data-about-animate class="text-body-1 text-medium-emphasis about-para mb-5">
-        {{ t('home.about.paragraphs.two') }}
-      </p>
-      <p data-about-animate class="text-body-1 text-medium-emphasis about-para mb-0">
-        {{ t('home.about.paragraphs.three') }}
-      </p>
-    </div>
+      <!-- ── Left: header + paragraphs ──────────────────────── -->
+      <v-col cols="12" md="7" order="1">
+        <div data-about-animate class="mb-7">
+          <p class="text-overline text-primary font-weight-bold mb-3 jetbrain">
+            {{ t('home.about.eyebrow') }}
+          </p>
+          <h2 id="about-title" class="text-h4 font-weight-bold">
+            {{ t('home.about.title') }}
+          </h2>
+        </div>
+
+        <p data-about-animate class="text-body-1 text-medium-emphasis about-para about-para--accent mb-5">
+          {{ t('home.about.paragraphs.one') }}
+        </p>
+        <p data-about-animate class="text-body-1 text-medium-emphasis about-para mb-5">
+          {{ t('home.about.paragraphs.two') }}
+        </p>
+        <p data-about-animate class="text-body-1 text-medium-emphasis about-para mb-0">
+          {{ t('home.about.paragraphs.three') }}
+        </p>
+      </v-col>
+
+      <!-- ── Right: photo stack ─────────────────────────────── -->
+      <v-col cols="12" md="5" order="2" class="d-flex justify-center justify-md-end">
+        <div data-about-animate class="photo-stack" aria-hidden="true">
+          <div
+            v-for="(src, i) in photoSrcs"
+            :key="i"
+            class="photo-card"
+            :class="`photo-card--slot-${getSlot(i)}`"
+            @click="bringToFront(i)"
+          >
+            <v-img :src="src" cover class="fill-height" />
+          </div>
+        </div>
+      </v-col>
+
+    </v-row>
 
     <!-- ── Divider ───────────────────────────────────────────── -->
-    <v-divider data-about-animate class="about-divider mb-8" />
+    <v-divider data-about-animate class="about-divider my-10" />
 
     <!-- ── Highlights ───────────────────────────────────────── -->
     <v-row dense>
@@ -124,11 +163,9 @@ onBeforeUnmount(() => {
           <v-avatar size="40" rounded="lg" color="primary" variant="tonal" class="mb-4 flex-shrink-0 about-highlight-icon">
             <v-icon size="20">{{ h.icon }}</v-icon>
           </v-avatar>
-
           <div class="text-caption text-medium-emphasis text-uppercase jetbrain mb-1" style="letter-spacing: 0.1em;">
             {{ t(h.label) }}
           </div>
-
           <p class="text-body-2 font-weight-medium about-highlight-value mb-0">
             {{ t(h.value, h.key === 'experience' ? { years: yearsOfExperience } : {}) }}
           </p>
@@ -143,18 +180,79 @@ onBeforeUnmount(() => {
   padding-block: 4rem;
 }
 
-/* ── Paragraphs ─────────────────────────────────────────────── */
-.about-copy {
-  max-width: 72ch;
+.about-main-row {
+  row-gap: 2.5rem;
 }
 
+/* ── Paragraphs ─────────────────────────────────────────────── */
 .about-para {
+  max-width: 62ch;
   line-height: 1.85;
 }
 
 .about-para--accent {
   padding-left: 1.1rem;
   border-left: 2px solid rgba(0, 168, 107, 1);
+}
+
+/* ── Photo stack ─────────────────────────────────────────────── */
+.photo-stack {
+  position: relative;
+  width: 260px;
+  height: 350px;
+  flex-shrink: 0;
+}
+
+.photo-card {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.30);
+  border: 3px solid rgba(255, 255, 255, 0.86);
+  transition: transform 0.42s cubic-bezier(0.34, 1.4, 0.64, 1),
+              z-index 0s,
+              box-shadow 0.3s ease;
+  will-change: transform;
+  cursor: pointer;
+}
+
+/* ── Slot positions ─────────────────────────────────────────── */
+.photo-card--slot-0 { transform: rotate(-11deg) translate(-26px, 10px); z-index: 1; }
+.photo-card--slot-1 { transform: rotate(-1deg)  translate(2px, 0);      z-index: 2; }
+.photo-card--slot-2 { transform: rotate(9deg)   translate(28px, 12px);  z-index: 3; cursor: default; }
+
+/* ── Hover: spread back cards to reveal them ────────────────── */
+.photo-stack:hover .photo-card--slot-0 {
+  transform: rotate(-17deg) translate(-62px, 6px);
+  box-shadow: 0 20px 56px rgba(0, 0, 0, 0.36);
+}
+.photo-stack:hover .photo-card--slot-1 {
+  transform: rotate(-1deg) translate(2px, -6px);
+}
+.photo-stack:hover .photo-card--slot-2 {
+  transform: rotate(15deg) translate(64px, 8px);
+  box-shadow: 0 20px 56px rgba(0, 0, 0, 0.36);
+}
+
+/* ── Click feedback ─────────────────────────────────────────── */
+.photo-card--slot-0:active,
+.photo-card--slot-1:active {
+  filter: brightness(1.08);
+}
+
+@media (max-width: 959px) {
+  .photo-stack {
+    width: 220px;
+    height: 295px;
+    margin-top: 1rem;
+  }
+
+  .photo-card--slot-0 { transform: rotate(-11deg) translate(-22px, 8px); }
+  .photo-card--slot-2 { transform: rotate(9deg)   translate(24px, 10px); }
+
+  .photo-stack:hover .photo-card--slot-0 { transform: rotate(-15deg) translate(-46px, 4px); }
+  .photo-stack:hover .photo-card--slot-2 { transform: rotate(13deg)  translate(48px, 6px); }
 }
 
 /* ── Divider ────────────────────────────────────────────────── */
