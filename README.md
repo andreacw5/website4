@@ -1,260 +1,171 @@
-# Nuxt Starter Template
+# HeyAtom – Personal Portfolio
 
-A modern, clean Nuxt 4 starter template with Vuetify 3, Pinia state management, i18n support, and TypeScript.
+Personal portfolio and website of **Andrea Tombolato**, built with Nuxt 4, Vuetify 3 and Nuxt Content.
+Live at [heyatom.dev](https://heyatom.dev).
 
-## Features
+---
 
-✨ **Modern Stack**
-- Nuxt 4 (compatibility date: 2026-04-07)
-- Vue 3 with Composition API
-- Vuetify 3 UI Framework
-- TypeScript
-- Pinia for state management
-- Vue Router
+## Stack
 
-🌍 **Internationalisation**
-- `@nuxtjs/i18n` with `prefix_except_default` strategy
-- Browser-language detection with cookie persistence
-- Locale files: `en` (English) and `it` (Italiano – default)
-- Flag assets included for each locale
+| Layer | Technology |
+|---|---|
+| Framework | Nuxt 4 (SSR) |
+| UI | Vuetify 3 |
+| Language | TypeScript |
+| State | Pinia |
+| Content | @nuxt/content v3 |
+| i18n | @nuxtjs/i18n (IT default, EN) |
+| Fonts | Inter + JetBrains Mono (@nuxtjs/google-fonts) |
+| Animations | GSAP 3 |
+| SEO | @nuxtjs/seo · @nuxtjs/robots |
+| Utilities | @vueuse/nuxt · better-sqlite3 |
+| Containerisation | Docker |
 
-🎨 **Pre-configured UI**
-- Responsive app bar with desktop & mobile navigation
-- Light / Dark theme toggle (persisted in `localStorage`, respects `prefers-color-scheme`)
-- Language switcher with flag avatars
-- User menu with profile, settings and logout dialogs
-- Snackbar notifications
-- Full CRUD data table with search, type filter and stats
+---
 
-🔍 **SEO & Bots**
-- `@nuxtjs/seo` for `useSeoMeta` / `useHead` helpers
-- `@nuxtjs/robots` – blocks non-SEO and AI bots; allows `*`
-- `@nuxtjs/google-fonts` – Inter 400/700, display swap, self-hosted download
+## Pages
 
-📦 **Ready to Customise**
-- Generic item management example (no seed data)
-- Extensible Pinia store architecture
-- Clean, commented code structure
+| Route | Description |
+|---|---|
+| `/` | Home – hero with typewriter effect, about section with photo stack, work experience, skills grid and section previews |
+| `/projects` | Portfolio – filterable grid of personal and professional projects (Vue/Nuxt, Node/Nest, Java, UI/UX) |
+| `/travels` | Travel diary – card gallery of trips, driven by Markdown content |
+| `/utilities` | Personal tools hub – links to Modding Backup, Arma 3 Altis Life and Star Citizen hangar pages |
+| `/utilities/star-citizen-hangar` | Star Citizen ship collection (JSON data via Nuxt Content) |
+| `/utilities/arma3-altis-life` | Arma 3 Altis Life reference page |
+| `/utilities/modding-backup` | Game-modding backup reference |
+
+---
+
+## Content collections
+
+Managed by **@nuxt/content** and configured in `content.config.ts`:
+
+| Collection | Source | Type |
+|---|---|---|
+| `projects` | `content/projects/**/*.md` | Markdown pages with tech metadata |
+| `travels` | `content/travels/**/*.md` | Markdown pages with cover & gallery |
+| `starships` | `content/utilities/star-citizen/**/*.json` | JSON data (Star Citizen ships) |
+| `pages` | `content/*.md` | Generic markdown pages |
+
+---
+
+## Pinia stores
+
+| Store | Description |
+|---|---|
+| `theme.ts` | Light / Dark theme with `localStorage` persistence and `prefers-color-scheme` detection |
+| `experience.ts` | Work and volunteer experience entries (Medas Solutions, Element Gaming, ProCiv Settimo Milanese) |
+| `skills.ts` | Technical skills list (Node.js, Grails, Nest.js, Vue.js, Nuxt.js, Java, TypeScript, Docker, Git) |
+
+---
+
+## Project structure
+
+```
+app/
+├── app.vue
+├── assets/
+│   ├── main.scss           # Global styles
+│   └── settings.scss       # Vuetify SCSS variables
+├── components/
+│   ├── home/               # HeroSection, AboutSection, ExperienceSection, SkillsSection, PreviewSection
+│   ├── layout/             # SiteHeader (app bar + mobile drawer)
+│   ├── projects/           # ProjectCard
+│   ├── star-citizen/       # ShipCard
+│   └── travels/            # TravelCard
+├── composables/
+│   └── useTypewriter.ts    # Typewriter animation composable
+├── layouts/
+│   └── default.vue         # Main layout: header + footer + social links
+├── pages/
+│   ├── index.vue           # Home
+│   ├── travels.vue         # Travel diary
+│   ├── projects/
+│   │   ├── index.vue       # Projects list with filters
+│   │   └── [slug].vue      # Project detail
+│   └── utilities/
+│       ├── index.vue       # Utilities hub
+│       ├── star-citizen-hangar.vue
+│       ├── arma3-altis-life.vue
+│       └── modding-backup.vue
+└── stores/
+    ├── theme.ts
+    ├── experience.ts
+    └── skills.ts
+content/
+├── projects/               # One .md file per project
+├── travels/                # One .md file per trip
+└── utilities/
+    └── star-citizen/       # One .json file per ship
+i18n/
+└── locales/
+    ├── it.json             # Italiano (default)
+    └── en.json             # English
+public/
+├── CV_2024.pdf
+├── flags/                  # SVG flag icons (gb, it, …)
+└── languages/              # SVG technology icons
+```
+
+---
+
+## i18n
+
+- Default locale: **Italiano** (`it`)
+- Secondary locale: **English** (`en`)
+- Strategy: `prefix_except_default` (Italian URLs have no prefix)
+- Browser-language detection with cookie persistence (`i18n_redirected`)
+
+---
+
+## Theme
+
+Custom green brand palette (`#00a86b`) applied to both light and dark Vuetify themes.
+Default theme at first visit: **dark**.
+User preference is persisted in `localStorage` and `prefers-color-scheme` is respected on first load.
 
 ---
 
 ## Quick Start
-
-### Installation
 
 ```bash
 # Install dependencies (pnpm recommended)
 pnpm install
 
 # Start development server
-pnpm dev
+pnpm dev        # http://localhost:3000
 ```
 
-The application will be available at `http://localhost:3000`.
-
-### Build for Production
+### Build
 
 ```bash
-pnpm build
-pnpm preview
+pnpm build      # SSR build
+pnpm preview    # Preview production build
+pnpm generate   # Static site generation
+pnpm start      # Run built SSR server
 ```
 
-### Generate Static Site
+---
+
+## Docker
 
 ```bash
-pnpm generate
+docker build -t heyatom-website .
+docker run -p 3000:3000 heyatom-website
 ```
 
 ---
 
-## Project Structure
+## Runtime config
 
-```
-app/
-├── app.vue                  # Root component with layout transitions
-├── assets/
-│   ├── main.scss            # Global styles
-│   └── settings.scss        # Vuetify SCSS variables
-├── layouts/
-│   └── default.vue          # Main layout: app bar, nav drawer, dialogs
-├── pages/
-│   └── index.vue            # Item management page (CRUD table)
-├── plugins/                 # Place auto-imported Nuxt plugins here
-└── stores/
-    ├── index.ts             # Item store (useItemStore)
-    └── theme.ts             # Theme store (useThemeStore)
-i18n/
-└── locales/
-    ├── en.json              # English translations
-    └── it.json              # Italian translations (default locale)
-public/
-├── flags/                   # SVG flag icons (de, es, fr, gb, it)
-└── socials/                 # SVG social icons
-```
-
----
-
-## Key Files
-
-### `app/stores/index.ts`
-Generic item store with full CRUD operations.
-
-```typescript
-export interface Item {
-  id: number;
-  name: string;
-  description: string;
-  enabled: boolean;
-  type: string;
-  priority?: number;
-}
-
-export const useItemStore = defineStore('items', {
-  state: () => ({ items: [] as Item[], nextId: 1 }),
-  actions: { addItem, removeItem, updateItem },
-});
-```
-
-### `app/stores/theme.ts`
-Manages light/dark theme with `localStorage` persistence and system-preference detection.
-
-```typescript
-export const useThemeStore = defineStore('theme', {
-  state: () => ({ isDark: false }),
-  getters: { currentTheme: (state) => state.isDark ? 'dark' : 'light' },
-  actions: { toggleTheme, setTheme, initTheme },
-});
-```
-
-### `app/layouts/default.vue`
-Main application layout including:
-- Responsive app bar with desktop navigation buttons and a mobile drawer
-- Light/Dark theme toggle
-- Language switcher (flag + locale code)
-- User menu with profile/settings links and logout confirmation dialog
-- Named slot `event-dialog` for page-level dialogs
-
-### `app/pages/index.vue`
-Home page with:
-- Stats row (total / enabled / disabled items)
-- Searchable, filterable `v-data-table`
-- Add / Edit / Delete dialogs with form validation
-- Inline enable/disable toggle
-- Snackbar feedback
-
----
-
-## Customisation
-
-### Adding New Pages
-
-Create a file in `app/pages/` (e.g., `events.vue`):
-
-```vue
-<script setup lang="ts">
-const { t } = useI18n();
-useHead(() => ({ title: t('nav.events') }));
-</script>
-
-<template>
-  <v-container class="py-8">
-    <!-- Your content here -->
-  </v-container>
-</template>
-```
-
-### Adding a New Store
-
-```typescript
-// app/stores/myStore.ts
-import { defineStore } from 'pinia';
-
-export interface MyModel { id: number; /* ... */ }
-
-export const useMyStore = defineStore('my', {
-  state: () => ({ items: [] as MyModel[] }),
-  actions: {
-    addItem(item: Omit<MyModel, 'id'>) { /* ... */ },
-  },
-});
-```
-
-### Updating Navigation
-
-Edit `navItems` in `app/layouts/default.vue`:
-
-```typescript
-const navItems = computed(() => [
-  { title: t('nav.home'),     icon: 'mdi-view-dashboard-outline', to: '/'         },
-  { title: t('nav.events'),   icon: 'mdi-calendar-clock-outline', to: '/events'   },
-  { title: t('nav.settings'), icon: 'mdi-cog-outline',            to: '/settings' },
-]);
-```
-
-### Adding Locales
-
-1. Add a new entry to the `i18n.locales` array in `nuxt.config.ts`.
-2. Create the matching file in `i18n/locales/` (e.g., `de.json`).
-3. Add the flag SVG to `public/flags/`.
-4. Register it in `getFlagPath` and `getLanguageName` inside `default.vue`.
-
----
-
-## Theme Customisation
-
-Colours are defined in `nuxt.config.ts` under `vuetify.vuetifyOptions.theme`.
-
-| Token | Light | Dark |
-|---|---|---|
-| `primary` | `#1976D2` | `#BB86FC` |
-| `secondary` | `#546E7A` | `#03DAC6` |
-| `accent` | `#0091EA` | `#FF6E40` |
-| `error` | `#D32F2F` | `#CF6679` |
-| `success` | `#388E3C` | `#4CAF50` |
-| `warning` | `#F57C00` | `#FFC107` |
-| `background` | `#FAFAFA` | `#1A1A1A` |
-| `surface` | `#FFFFFF` | `#252525` |
-
-The Vuetify SCSS override file is `app/assets/settings.scss`.
-
----
-
-## Available Scripts
-
-| Command | Description |
-|---|---|
-| `pnpm dev` | Start development server with Nuxt DevTools |
-| `pnpm build` | Build for production (SSR) |
-| `pnpm preview` | Preview production build locally |
-| `pnpm generate` | Generate static site |
-| `pnpm start` | Run built SSR server |
-
----
-
-## Runtime Config
-
-| Key | Default | Override |
+| Key | Default | Env override |
 |---|---|---|
 | `public.version` | from `package.json` | – |
 | `public.apiBaseUrl` | `http://localhost:8080` | `NUXT_PUBLIC_API_BASE_URL` |
 
 ---
 
-## Docker Support
-
-A `Dockerfile` and `docker-compose.yml` are included for containerised deployment.
-
-```bash
-# Build and run with Docker Compose
-docker-compose up --build
-
-# Or manually
-docker build -t nuxt-starter .
-docker run -p 3000:3000 nuxt-starter
-```
-
----
-
 ## License
 
-This template is open source and available under the [MIT License](LICENSE.md).
+[MIT](LICENSE.md)
