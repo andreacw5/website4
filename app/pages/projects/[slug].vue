@@ -89,19 +89,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown));
       >
         <div class="hero-overlay d-flex align-end">
           <v-container max-width="1280" class="px-4 px-md-6 pb-8">
-            <v-chip
-              :color="project.current ? 'success' : 'surface'"
-              size="small"
-              class="mb-3"
-              variant="flat"
-            >
-              <v-icon start size="12">{{ project.current ? 'mdi-circle' : 'mdi-check-circle-outline' }}</v-icon>
-              {{ project.current ? t('projects.card.inProgress') : t('projects.card.completed') }}
-            </v-chip>
             <h1 class="text-h3 font-weight-bold text-white hero-title">{{ project.title }}</h1>
-            <p v-if="project.startDate" class="text-body-2 text-white opacity-75 mt-1">
-              <v-icon size="14" class="mr-1">mdi-calendar-outline</v-icon>{{ project.startDate }}
-            </p>
           </v-container>
         </div>
       </v-img>
@@ -138,9 +126,12 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown));
 
           <!-- Panoramica / descrizione completa -->
           <section class="mb-10" aria-labelledby="detail-overview">
-            <h2 id="detail-overview" class="section-eyebrow text-overline text-primary font-weight-bold mb-3">
+            <h2 id="detail-overview" class="section-eyebrow text-overline text-primary font-weight-bold mb-1">
               {{ t('projects.detail.overview') }}
             </h2>
+            <p v-if="project.startDate" class="text-caption text-medium-emphasis mb-3">
+              {{ t('projects.detail.startDate', { date: project.startDate }) }}
+            </p>
             <div class="text-body-1 project-content">
               <ContentRenderer v-if="project.body" :value="project" />
               <p v-else class="text-medium-emphasis">{{ project.description }}</p>
@@ -292,13 +283,17 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown));
                   color="surface-variant"
                   variant="flat"
                 >
-                  <img
+                  <span
                     v-if="project.technical.main.icon?.startsWith('/')"
-                    :src="project.technical.main.icon"
-                    width="22"
-                    height="22"
-                    :alt="project.technical.main.name"
-                    style="object-fit: contain;"
+                    :style="{
+                      display: 'inline-block',
+                      width: '22px',
+                      height: '22px',
+                      backgroundColor: project.technical.main.color || 'white',
+                      WebkitMask: `url(${project.technical.main.icon}) no-repeat center / contain`,
+                      mask: `url(${project.technical.main.icon}) no-repeat center / contain`,
+                    }"
+                    :aria-label="project.technical.main.name"
                   />
                   <Icon v-else :icon="project.technical.main.icon" width="22" height="22" :color="project.technical.main.color" />
                 </v-avatar>
@@ -313,21 +308,26 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown));
                 <v-chip
                   v-for="tech in project.technical.technologies"
                   :key="tech.title"
-                  color="primary"
-                  variant="tonal"
+                  color="gray"
+                  variant="flat"
                   size="small"
                 >
                   <template #prepend>
-                    <img
+                    <span
                       v-if="tech.icon?.startsWith('/')"
-                      :src="tech.icon"
-                      width="13"
-                      height="13"
-                      :alt="tech.title"
                       class="mr-1"
-                      style="object-fit: contain; vertical-align: middle;"
+                      :style="{
+                        display: 'inline-block',
+                        width: '13px',
+                        height: '13px',
+                        backgroundColor: 'white',
+                        WebkitMask: `url(${tech.icon}) no-repeat center / contain`,
+                        mask: `url(${tech.icon}) no-repeat center / contain`,
+                        flexShrink: '0',
+                      }"
+                      :aria-label="tech.title"
                     />
-                    <Icon v-else :icon="tech.icon" width="13" height="13" class="mr-1" />
+                    <Icon v-else :icon="tech.icon" width="13" height="13" class="mr-1" color="white" />
                   </template>
                   {{ tech.title }}
                 </v-chip>
@@ -520,20 +520,20 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown));
 /* ─── Hero ─────────────────────────────────────── */
 .hero-img-wrapper {
   width: 100%;
-  max-height: 480px;
+  max-height: 300px;
   overflow: hidden;
   position: relative;
 }
 
 .hero-img {
   width: 100%;
-  height: 480px;
+  height: 300px;
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.1) 55%, transparent 100%);
+  background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.25) 100%);
 }
 
 .hero-title {
@@ -689,7 +689,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown));
 
 @media (max-width: 599px) {
   .hero-img {
-    height: 260px;
+    height: 200px;
   }
 }
 </style>

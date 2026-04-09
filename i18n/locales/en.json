@@ -22,7 +22,7 @@
   },
   "footer": {
     "copyright": "Andrea Tombolato – heyatom",
-    "note": "Full-stack developer, freelancer, and Civil Protection volunteer based in Veneto, Italy.",
+    "note": "Full-stack developer, freelancer, and Civil Protection volunteer.",
     "socials": {
       "github": "Andrea Tombolato GitHub profile",
       "linkedin": "Andrea Tombolato LinkedIn profile",
@@ -147,6 +147,23 @@
       }
     }
   },
+  "travels": {
+    "seo": {
+      "title": "Travels",
+      "description": "My travels: places, photos, and itineraries across nature, culture, and adventure.",
+      "ogTitle": "Andrea Tombolato · Travels",
+      "ogDescription": "Explore Andrea Tombolato's travels: from the Italian Alps to Route 66, Scotland to Lisbon."
+    },
+    "hero": {
+      "eyebrow": "Travels",
+      "title": "My travels",
+      "description": "Places, photos, and routes that feed curiosity, observation, and attention to detail."
+    },
+    "empty": {
+      "title": "No travels found",
+      "description": "No travels have been published yet."
+    }
+  },
   "projects": {
     "seo": {
       "title": "Projects",
@@ -191,9 +208,62 @@
       "viewWebsite": "Visit website",
       "closeImage": "Close image",
       "noImages": "No images available.",
+      "startDate": "Project started: {date}",
       "similar": "Similar projects",
       "similarSubtitle": "More projects built with {stack}",
       "allProjects": "All projects"
+    }
+  },
+  "utilities": {
+    "seo": {
+      "title": "Utilities",
+      "description": "Personal utilities: modding backups for GTA V, Fallout 4 and The Sims 4, Arma 3 skins for Altis Life, and my Star Citizen hangar.",
+      "ogTitle": "Andrea Tombolato · Utilities",
+      "ogDescription": "Modding backups, Arma 3 skins, and Star Citizen hangar — personal archives by Andrea Tombolato."
+    },
+    "hero": {
+      "eyebrow": "Utilities",
+      "title": "My personal archives",
+      "description": "A collection of personal references, modding backups and game resources I use or have built over the years."
+    },
+    "back": "Back to Utilities",
+    "wip": {
+      "label": "Content coming soon",
+      "description": "This section is being populated. Check back soon!"
+    },
+    "categories": {
+      "moddingBackup": {
+        "title": "Modding Backup",
+        "description": "Backup lists and references for the mods I use across different games.",
+        "eyebrow": "Games & Mods",
+        "sections": {
+          "gtaV": {
+            "title": "GTA V",
+            "description": "My mod list and configuration backup for Grand Theft Auto V.",
+            "icon": "mdi-city-variant-outline"
+          },
+          "fallout4": {
+            "title": "Fallout 4",
+            "description": "Load order, essential mods and configuration backup for Fallout 4.",
+            "icon": "mdi-radioactive"
+          },
+          "sims4": {
+            "title": "The Sims 4",
+            "description": "CC, mods and package backup list for The Sims 4.",
+            "icon": "mdi-home-heart"
+          }
+        }
+      },
+      "arma3": {
+        "title": "Arma 3 – Altis Life Skins",
+        "description": "Custom skins and textures I created for Arma 3 Altis Life servers.",
+        "eyebrow": "Military Sim"
+      },
+      "starCitizen": {
+        "title": "My Star Citizen Hangar",
+        "description": "A list of all the ships in my Star Citizen hangar, with specs and lore.",
+        "eyebrow": "Space Sim"
+      }
     }
   },
   "pages": {

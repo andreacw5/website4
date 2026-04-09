@@ -14,12 +14,12 @@ const langMenu = ref(false);
 
 onMounted(() => {
   themeStore.initTheme();
-  theme.global.name.value = themeStore.currentTheme;
+  theme.change(themeStore.currentTheme);
 });
 
 watch(
     () => themeStore.currentTheme,
-    (val) => { theme.global.name.value = val; },
+    (val) => { theme.change(val); },
     { immediate: true },
 );
 
@@ -28,7 +28,6 @@ const navItems = computed(() => [
   { title: t('nav.portfolio'), to: localePath('/projects') },
   { title: t('nav.travels'), to: localePath('/travels') },
   { title: t('nav.utilities'), to: localePath('/utilities') },
-  { title: t('nav.contacts'), to: localePath('/contact') },
 ]);
 
 const normalizePath = (path: string) => (path === '/' ? '/' : path.replace(/\/+$/, ''));
@@ -81,7 +80,7 @@ const toggleTheme = () => themeStore.toggleTheme();
           :key="item.to"
           :to="item.to"
           :active="isActive(item.to)"
-          active-color="primary"
+          color="primary"
           rounded="lg"
           class="nav-drawer-item"
           @click="drawer = false"
@@ -202,7 +201,7 @@ const toggleTheme = () => themeStore.toggleTheme();
                 v-for="lang in locales"
                 :key="lang.code"
                 :active="locale === lang.code"
-                active-color="primary"
+                color="primary"
                 rounded="lg"
                 @click="changeLanguage(lang.code)"
             >

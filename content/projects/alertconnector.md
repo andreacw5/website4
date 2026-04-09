@@ -1,7 +1,7 @@
 ---
 title: "AlertConnector"
 description: "AlertConnect è un servizio di aggregazione degli alert di emergenza emessi dal dipartimento di Protezione civile Nazionale Italiano, in un servizio REST accessibile a tutti. Il servizio aggrega gli alert e li rende disponibili in un formato standardizzato, per essere utilizzato da altri servizi o applicazioni."
-startDate: "2024"
+startDate: "2021"
 current: false
 github: "https://github.com/prociv-sm/management-api"
 preview: "https://file-harbor.com/api/v1/files/cc7e65a9-1467-46ce-98bd-2b8bc56ec114"

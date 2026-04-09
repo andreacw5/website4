@@ -4,9 +4,10 @@ import SiteHeader from "~/components/layout/SiteHeader.vue";
 const { t } = useI18n();
 
 const socialLinks = computed(() => [
-  { icon: 'mdi-github', href: 'https://github.com/andreatombolato', label: t('footer.socials.github') },
-  { icon: 'mdi-linkedin', href: 'https://www.linkedin.com', label: t('footer.socials.linkedin') },
-  { icon: 'mdi-web', href: 'https://heyatom.dev', label: t('footer.socials.website') },
+  { icon: 'mdi-github', href: 'https://github.com/andreacw5', label: t('footer.socials.github') },
+  { icon: 'mdi-linkedin', href: 'https://www.linkedin.com/in/atombolato/', label: t('footer.socials.linkedin') },
+  { icon: 'mdi-steam', href: 'https://steamcommunity.com/id/andreacw96', label: t('footer.socials.steam') },
+  { icon: 'mdi-instagram', href: 'https://www.instagram.com/andreacw96', label: t('footer.socials.instagram') },
 ]);
 
 const currentYear = new Date().getFullYear();

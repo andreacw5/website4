@@ -1,7 +1,7 @@
 ---
 title: "Stream Scanner"
 description: "Stream Scanner è un microservizio pensato per monitorare in tempo reale lo stato dei canali Twitch, raccogliendo dati su dirette, giochi e clip. Espone un'API REST protetta da API Key per consentire ad altri servizi di integrarsi e ricevere aggiornamenti sui canali monitorati. Supporta notifiche automatiche tramite Webhook Discord e analisi dei cambiamenti di stato (live, fine diretta, cambio gioco, nuove clip)."
-startDate: "2025"
+startDate: "2026"
 current: true
 preview: "https://file-harbor.com/api/v1/files/3065664c-c028-48f8-99f3-c5e707410a99"
 client:
