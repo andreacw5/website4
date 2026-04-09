@@ -111,14 +111,6 @@ const downloadCv = async () => {
               cover
               class="hero-photo"
             />
-            <v-chip
-              color="primary"
-              variant="tonal"
-              size="small"
-              class="experience-chip"
-            >
-              {{ yearsOfExperience }}+ {{ t('home.about.stats.experience') }}
-            </v-chip>
           </div>
         </div>
       </v-col>
@@ -229,15 +221,6 @@ const downloadCv = async () => {
   width: 100%;
   aspect-ratio: 3 / 4;
   max-height: 550px;
-}
-
-.experience-chip {
-  position: absolute;
-  bottom: 1rem;
-  left: 1rem;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Scroll indicator */

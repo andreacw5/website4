@@ -25,10 +25,10 @@ watch(
 
 const navItems = computed(() => [
   { title: t('nav.home'), to: localePath('/') },
-  { title: t('nav.portfolio'), to: localePath('/portfolio') },
-  { title: t('nav.travels'), to: localePath('/viaggi') },
+  { title: t('nav.portfolio'), to: localePath('/projects') },
+  { title: t('nav.travels'), to: localePath('/travels') },
   { title: t('nav.utilities'), to: localePath('/utilities') },
-  { title: t('nav.contacts'), to: localePath('/contatti') },
+  { title: t('nav.contacts'), to: localePath('/contact') },
 ]);
 
 const normalizePath = (path: string) => (path === '/' ? '/' : path.replace(/\/+$/, ''));
@@ -144,9 +144,14 @@ const toggleTheme = () => themeStore.toggleTheme();
           rounded="0"
           height="auto"
       >
-        <div class="d-flex flex-column align-start text-left">
-          <span class="logo-name">{{ t('app.name') }}</span>
-          <span class="logo-brand text-primary brand-mono">{{ t('app.brand') }}</span>
+        <div class="d-flex align-center ga-3">
+          <v-avatar size="36" color="primary" variant="tonal" rounded="lg" class="logo-avatar">
+            <img src="/HT_Favicon_BaseFlat_v01.svg" alt="HeyAtom logo" class="logo-avatar-img" />
+          </v-avatar>
+          <div class="d-flex flex-column align-start text-left">
+            <span class="logo-name">{{ t('app.name') }}</span>
+            <span class="logo-brand text-primary brand-mono">{{ t('app.brand') }}</span>
+          </div>
         </div>
       </v-btn>
 
@@ -192,7 +197,7 @@ const toggleTheme = () => themeStore.toggleTheme();
             </v-btn>
           </template>
 
-          <v-list density="compact" rounded="xl" elevation="4" class="pa-1 lang-menu" min-width="160">
+          <v-list density="compact" rounded="lg" elevation="4" class="pa-1 lang-menu" min-width="160">
             <v-list-item
                 v-for="lang in locales"
                 :key="lang.code"
@@ -216,13 +221,14 @@ const toggleTheme = () => themeStore.toggleTheme();
 
         <!-- Theme toggle -->
         <v-btn
-            :icon="themeStore.isDark ? 'mdi-weather-sunny' : 'mdi-weather-night'"
-            variant="outlined"
-            rounded="lg"
-            size="small"
-            :aria-label="themeStore.isDark ? t('theme.light') : t('theme.dark')"
-            @click="toggleTheme"
+          variant="outlined"
+          rounded="lg"
+          size="small"
+          class="lang-trigger px-2"
+          :aria-label="themeStore.isDark ? t('theme.light') : t('theme.dark')"
+          @click="toggleTheme"
         >
+          <v-icon size="16">{{ themeStore.isDark ? 'mdi-weather-sunny' : 'mdi-weather-night' }}</v-icon>
           <v-tooltip activator="parent" location="bottom">
             {{ themeStore.isDark ? t('theme.light') : t('theme.dark') }}
           </v-tooltip>
@@ -248,6 +254,50 @@ const toggleTheme = () => themeStore.toggleTheme();
 
 .logo-btn {
   min-width: auto;
+}
+
+.logo-avatar {
+  flex-shrink: 0;
+  transition: box-shadow 0.25s ease;
+}
+
+.logo-avatar :deep(.v-img) {
+  padding: 10px !important;
+}
+
+.logo-avatar-img {
+  width: 100%;
+  height: 100%;
+  padding: 7px;
+  object-fit: contain;
+  transform-origin: 70% 80%;
+  transition: transform 0.2s ease;
+}
+
+.logo-btn:hover .logo-avatar-img {
+  animation: wave-hand 0.7s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+}
+
+@keyframes wave-hand {
+  0%   { transform: rotate(0deg); }
+  20%  { transform: rotate(8deg); }
+  45%  { transform: rotate(-4deg); }
+  65%  { transform: rotate(6deg); }
+  85%  { transform: rotate(-2deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.logo-btn:hover .logo-avatar {
+  box-shadow: 0 0 0 5px rgba(0, 168, 107, 0.18);
+}
+
+.logo-btn.v-btn--active {
+  color: rgba(var(--v-theme-on-surface), 0.9) !important;
+}
+
+.logo-btn.v-btn--active :deep(.v-btn__overlay),
+.logo-btn :deep(.v-btn__overlay) {
+  opacity: 0 !important;
 }
 
 .logo-name {
@@ -326,5 +376,6 @@ const toggleTheme = () => themeStore.toggleTheme();
 
 @media (prefers-reduced-motion: reduce) {
   .nav-link { transition: none; }
+  .logo-btn:hover .logo-avatar-img { animation: none; }
 }
 </style>
