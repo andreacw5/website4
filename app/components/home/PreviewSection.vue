@@ -11,12 +11,12 @@ const previewCards = computed(() => [
   {
     key: 'portfolio',
     icon: 'mdi-briefcase-outline',
-    to: localePath('/portfolio'),
+    to: localePath('/projects'),
   },
   {
     key: 'travels',
     icon: 'mdi-map-marker-path',
-    to: localePath('/viaggi'),
+    to: localePath('/travels'),
   },
   {
     key: 'utilities',

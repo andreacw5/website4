@@ -10,18 +10,45 @@ export default defineContentConfig({
         description: z.string().optional(),
       }),
     }),
-    portfolio: defineCollection({
+    projects: defineCollection({
       type: 'page',
-      source: 'portfolio/**/*.md',
+      source: 'projects/**/*.md',
       schema: z.object({
         title: z.string(),
         description: z.string().optional(),
-        year: z.number().optional(),
-        status: z.string().optional(),
-        tech: z.array(z.string()).optional(),
+        startDate: z.string().optional(),
+        current: z.boolean().optional(),
         github: z.string().optional(),
-        demo: z.string().optional(),
-        image: z.string().optional(),
+        website: z.string().optional(),
+        preview: z.string().optional(),
+        client: z.object({
+          name: z.string(),
+          bio: z.string().optional(),
+          website: z.string().optional(),
+          logo: z.string().optional(),
+          instagram: z.string().optional(),
+          linkedin: z.string().optional(),
+        }).optional(),
+        technical: z.object({
+          main: z.object({
+            icon: z.string(),
+            name: z.string(),
+            color: z.string(),
+          }).optional(),
+          technologies: z.array(z.object({
+            icon: z.string(),
+            title: z.string(),
+          })).optional(),
+        }).optional(),
+        features: z.array(z.object({
+          title: z.string(),
+          subtitle: z.string(),
+          icon: z.string(),
+        })).optional(),
+        images: z.array(z.object({
+          image: z.string(),
+          title: z.string(),
+        })).optional(),
       }),
     }),
   },

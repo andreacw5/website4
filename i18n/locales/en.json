@@ -147,6 +147,52 @@
       }
     }
   },
+  "projects": {
+    "seo": {
+      "title": "Projects",
+      "description": "My projects: web apps, APIs, community platforms and personal experiments. Stack, case studies and GitHub links.",
+      "ogTitle": "Andrea Tombolato · Projects",
+      "ogDescription": "Explore Andrea Tombolato's projects: Vue/Nuxt, Node/Nest, Java, UI/UX and more."
+    },
+    "hero": {
+      "eyebrow": "Portfolio",
+      "title": "My projects",
+      "description": "A curated selection of work across product, consulting, and personal experimentation."
+    },
+    "filters": {
+      "all": "All",
+      "vueNuxt": "Vue / Nuxt",
+      "nodeNest": "Node / Nest",
+      "java": "Java",
+      "uiUx": "UI / UX",
+      "other": "Other"
+    },
+    "card": {
+      "inProgress": "In progress",
+      "completed": "Completed",
+      "details": "Details",
+      "noDescription": "No description available.",
+      "copyLink": "Copy link",
+      "linkCopied": "Link copied!"
+    },
+    "empty": {
+      "title": "No projects found",
+      "description": "No projects match the selected filter."
+    },
+    "detail": {
+      "back": "Back to projects",
+      "overview": "Overview",
+      "features": "Features",
+      "gallery": "Gallery",
+      "client": "Client",
+      "techStack": "Tech stack",
+      "links": "Links",
+      "viewGithub": "View on GitHub",
+      "viewWebsite": "Visit website",
+      "closeImage": "Close image",
+      "noImages": "No images available."
+    }
+  },
   "pages": {
     "comingSoon": "Section coming soon",
     "backHome": "Back to home",

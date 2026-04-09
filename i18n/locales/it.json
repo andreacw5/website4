@@ -147,6 +147,52 @@
       }
     }
   },
+  "projects": {
+    "seo": {
+      "title": "Progetti",
+      "description": "I miei progetti: web app, API, piattaforme community e sperimentazioni personali. Stack, case study e link a GitHub.",
+      "ogTitle": "Andrea Tombolato · Progetti",
+      "ogDescription": "Esplora i progetti realizzati da Andrea Tombolato: Vue/Nuxt, Node/Nest, Java, UI/UX e molto altro."
+    },
+    "hero": {
+      "eyebrow": "Portfolio",
+      "title": "I miei progetti",
+      "description": "Una selezione di lavori tra prodotto, consulenza e sperimentazione personale."
+    },
+    "filters": {
+      "all": "Tutti",
+      "vueNuxt": "Vue / Nuxt",
+      "nodeNest": "Node / Nest",
+      "java": "Java",
+      "uiUx": "UI / UX",
+      "other": "Altro"
+    },
+    "card": {
+      "inProgress": "In corso",
+      "completed": "Completato",
+      "details": "Dettagli",
+      "noDescription": "Nessuna descrizione disponibile.",
+      "copyLink": "Copia link",
+      "linkCopied": "Link copiato!"
+    },
+    "empty": {
+      "title": "Nessun progetto trovato",
+      "description": "Nessun progetto corrisponde al filtro selezionato."
+    },
+    "detail": {
+      "back": "Torna ai progetti",
+      "overview": "Panoramica",
+      "features": "Funzionalità",
+      "gallery": "Galleria",
+      "client": "Cliente / Committente",
+      "techStack": "Stack tecnico",
+      "links": "Link",
+      "viewGithub": "Vedi su GitHub",
+      "viewWebsite": "Vai al sito",
+      "closeImage": "Chiudi immagine",
+      "noImages": "Nessuna immagine disponibile."
+    }
+  },
   "pages": {
     "comingSoon": "Sezione in arrivo",
     "backHome": "Torna alla home",

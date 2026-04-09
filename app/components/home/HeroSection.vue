@@ -87,7 +87,7 @@ const downloadCv = async () => {
               {{ t('home.hero.downloadCv') }}
             </v-btn>
             <v-btn
-              :to="localePath('/portfolio')"
+              :to="localePath('/projects')"
               color="primary"
               size="large"
               variant="tonal"

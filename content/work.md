@@ -123,22 +123,44 @@ STEP 3 — PAGINA PORTFOLIO (/portfolio)
 - v-container con page hero (v-row + titolo animato)
 - Filtri: v-btn-toggle mandatory con variante "outlined":
   Tutti | Vue/Nuxt | Node/Nest | Java | UI/UX | Altro
-  Reactive: filtra array progetti senza toccare il router
+  Reactive: filtra i progetti in base a technical.main.name senza toccare il router
 - Grid: v-row con v-col (12 mobile, 6 tablet, 4 desktop) per ogni progetto
 - ProjectCard.vue (componente custom che wrappa v-card):
-  v-img per thumbnail (lazy, @nuxt/image)
-  v-card-title: nome progetto
-  v-card-subtitle: anno + status badge (v-chip color in base a status)
-  v-card-text: descrizione breve
-  v-chip-group per tech stack (color="primary" variant="tonal")
-  v-card-actions: v-btn icon mdi-github + mdi-open-in-new (se disponibili)
+  v-img per thumbnail da campo "preview" (lazy, @nuxt/image)
+  v-card-title: nome progetto (title)
+  v-card-subtitle: startDate + badge "In corso" se current=true (color="success"),
+    "Completato" se current=false (color="grey")
+  v-card-text: description breve (max 3 righe, text-clamp)
+  v-chip-group per tech stack da technical.technologies[]:
+    ogni chip mostra il titolo con icona (Iconify via technical.technologies[].icon)
+    color="primary" variant="tonal"
+  v-card-actions:
+    v-btn icon mdi-github se github è presente
+    v-btn icon mdi-open-in-new se website è presente
+    v-btn "Dettagli" → pagina /projects/{slug} (NuxtLink via path del documento)
 - Status badge colori:
-  "In produzione" → color="success"
-  "Open source"   → color="primary"
-  "Archivio"      → color="grey"
+  current=true  → color="success"  label="In corso"
+  current=false → color="grey"     label="Completato"
 - Dati da /content/portfolio/*.md con frontmatter:
-  title, description, tech[], year, status, github, demo, image
-- Crea 3 progetti demo fittizi
+  title         — nome del progetto
+  description   — descrizione estesa
+  startDate     — anno di inizio (string)
+  current       — boolean, progetto ancora attivo
+  github        — URL repository GitHub (opzionale)
+  website       — URL sito/demo live (opzionale)
+  preview       — URL immagine di anteprima
+  client        — oggetto { name, bio, website, logo, instagram, linkedin }
+  technical     — oggetto { main: { icon, name, color }, technologies: [{ icon, title }] }
+  features      — array [{ title, subtitle, icon }]
+  images        — array [{ image, title }] per la gallery di dettaglio
+- Pagina di dettaglio /projects/[slug].vue:
+  Hero con v-img fullwidth da preview
+  Descrizione completa
+  Sezione features con v-row di card (icon Iconify + title + subtitle)
+  Gallery immagini da images[] con lightbox (v-dialog fullscreen)
+  Sezione client con logo, nome, bio e link social
+  Stack tecnico: chip principale (technical.main) + lista technologies
+  Link a github e/o website in evidenza
 - Transizione lista con v-fade-transition o TransitionGroup staggered
 
 ============================
