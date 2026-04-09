@@ -1,564 +1,345 @@
 <script setup lang="ts">
-import { useItemStore } from '~/stores';
-import type { Item } from '~/stores';
+import { useI18n } from 'vue-i18n';
+import { useThemeStore } from '~/stores/theme';
 
-const { t } = useI18n();
-const itemStore = useItemStore();
 
-// ── Dialog state ───────────────────────────────────────────────────────
-const dialog      = ref(false);
-const editDialog  = ref(false);
-const deleteDialog = ref(false);
-const snackbar    = ref(false);
-const snackbarText  = ref('');
-const snackbarColor = ref<'success' | 'error' | 'info'>('success');
+const { t, tm } = useI18n();
+const localePath = useLocalePath();
+const themeStore = useThemeStore();
 
-// ── Form refs ──────────────────────────────────────────────────────────
-const formRef     = ref();
-const editFormRef = ref();
+const toStringArray = (value: unknown): string[] => {
+  if (Array.isArray(value)) {
+    return value.filter((item): item is string => typeof item === 'string');
+  }
 
-// ── Add form ───────────────────────────────────────────────────────────
-const itemName        = ref('');
-const itemDescription = ref('');
-const itemEnabled     = ref(true);
-const itemType        = ref('');
-const itemPriority    = ref(1);
+  if (value && typeof value === 'object') {
+    return Object.values(value).filter((item): item is string => typeof item === 'string');
+  }
 
-// ── Edit form ──────────────────────────────────────────────────────────
-const editingItem    = ref<Item | null>(null);
-const editName        = ref('');
-const editDescription = ref('');
-const editEnabled     = ref(true);
-const editType        = ref('');
-const editPriority    = ref(1);
+  return [];
+};
 
-// ── Delete ─────────────────────────────────────────────────────────────
-const itemToDelete = ref<number | null>(null);
+const careerStartYear = 2016;
+const yearsOfExperience = new Date().getFullYear() - careerStartYear;
 
-// ── Filters ────────────────────────────────────────────────────────────
-const search     = ref('');
-const filterType = ref<string | null>(null);
+const typedLines = computed(() => toStringArray(tm('home.hero.typed')));
 
-const typeOptions = ['Type A', 'Type B', 'Type C', 'Type D'];
 
-// ── Validation rules ───────────────────────────────────────────────────
-const required  = (v: string) => !!v || t('validation.required');
-const minLen2   = (v: string) => v?.length >= 2 || t('validation.minLength');
-const nameRules = [required, minLen2];
-const reqRules  = [required];
 
-// ── SEO ───────────────────────────────────────────────────────────────
-useHead(() => ({ title: t('configuration.title') }));
+
+const { text: typedText } = useTypewriter(typedLines, {
+  typingSpeed: 64,
+  deletingSpeed: 30,
+  pauseMs: 1700,
+  initialDelayMs: 400,
+});
+
+const heroPatternStyle = computed(() => {
+  const stroke = themeStore.isDark ? 'rgba(255,255,255,0.10)' : 'rgba(0,168,107,0.14)';
+  const fill = themeStore.isDark ? 'rgba(255,255,255,0.02)' : 'rgba(0,168,107,0.025)';
+  const svg = `
+    <svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="12" y="12" width="136" height="136" rx="24" stroke="${stroke}" />
+      <path d="M24 104C44 92 60 56 80 56C100 56 116 104 136 104" stroke="${stroke}" stroke-width="1.5" stroke-linecap="round" />
+      <circle cx="56" cy="56" r="8" fill="${fill}" stroke="${stroke}" />
+      <circle cx="112" cy="112" r="10" fill="${fill}" stroke="${stroke}" />
+    </svg>
+  `;
+
+  return {
+    backgroundImage: `url("data:image/svg+xml,${encodeURIComponent(svg)}")`,
+  };
+});
+
 useSeoMeta({
-  title: t('seo.title'),
-  description: t('seo.description'),
-  ogTitle: t('seo.ogTitle'),
-  ogDescription: t('seo.ogDescription'),
+  title: t('home.seo.title'),
+  description: t('home.seo.description'),
+  ogTitle: t('home.seo.ogTitle'),
+  ogDescription: t('home.seo.ogDescription'),
   ogType: 'website',
-  ogImage: t('seo.ogImage'),
   twitterCard: 'summary_large_image',
 });
 
-// ── Stats ──────────────────────────────────────────────────────────────
-const totalItems    = computed(() => itemStore.items.length);
-const enabledItems  = computed(() => itemStore.items.filter(i => i.enabled).length);
-const disabledItems = computed(() => itemStore.items.filter(i => !i.enabled).length);
 
-// ── Filtered items ─────────────────────────────────────────────────────
-const filteredItems = computed(() =>
-  itemStore.items.filter(item => {
-    const q = search.value.toLowerCase();
-    const matchesSearch = !q ||
-      item.name.toLowerCase().includes(q) ||
-      item.description.toLowerCase().includes(q);
-    const matchesType = !filterType.value || item.type === filterType.value;
-    return matchesSearch && matchesType;
-  })
-);
-
-// ── Helpers ────────────────────────────────────────────────────────────
-const showSnackbar = (text: string, color: 'success' | 'error' | 'info' = 'success') => {
-  snackbarText.value = text;
-  snackbarColor.value = color;
-  snackbar.value = true;
-};
-
-const typeColor = (type: string): string => ({
-  'Type A': 'primary',
-  'Type B': 'secondary',
-  'Type C': 'info',
-  'Type D': 'warning',
-} as Record<string, string>)[type] ?? 'default';
-
-const priorityColor = (p: number) =>
-  p <= 1 ? 'success' : p <= 2 ? 'info' : p <= 3 ? 'warning' : 'error';
-
-// ── Add ────────────────────────────────────────────────────────────────
-const addItem = async () => {
-  const { valid } = await formRef.value.validate();
-  if (!valid) return;
-  itemStore.addItem(itemName.value, itemDescription.value, itemEnabled.value, itemType.value, itemPriority.value);
-  dialog.value = false;
-  resetAddForm();
-  showSnackbar(t('configuration.itemAdded'));
-};
-
-const resetAddForm = () => {
-  itemName.value = '';
-  itemDescription.value = '';
-  itemEnabled.value = true;
-  itemType.value = '';
-  itemPriority.value = 1;
-  formRef.value?.reset();
-};
-
-// ── Edit ───────────────────────────────────────────────────────────────
-const openEdit = (item: Item) => {
-  editingItem.value    = item;
-  editName.value        = item.name;
-  editDescription.value = item.description;
-  editEnabled.value     = item.enabled;
-  editType.value        = item.type;
-  editPriority.value    = item.priority ?? 1;
-  editDialog.value = true;
-};
-
-const saveEdit = async () => {
-  const { valid } = await editFormRef.value.validate();
-  if (!valid || !editingItem.value) return;
-  itemStore.updateItem(editingItem.value.id, editName.value, editDescription.value, editEnabled.value, editType.value, editPriority.value);
-  editDialog.value = false;
-  showSnackbar(t('configuration.itemUpdated'));
-};
-
-// ── Toggle enabled inline ──────────────────────────────────────────────
-const toggleEnabled = (item: Item) => {
-  itemStore.updateItem(item.id, item.name, item.description, !item.enabled, item.type, item.priority);
-};
-
-// ── Delete ─────────────────────────────────────────────────────────────
-const deleteItem = (id: number) => {
-  itemToDelete.value = id;
-  deleteDialog.value = true;
-};
-
-const confirmDelete = () => {
-  if (itemToDelete.value !== null) {
-    itemStore.removeItem(itemToDelete.value);
-    deleteDialog.value = false;
-    itemToDelete.value = null;
-    showSnackbar(t('configuration.itemDeleted'), 'error');
-  }
-};
-
-const cancelDelete = () => {
-  deleteDialog.value = false;
-  itemToDelete.value = null;
-};
-
-// ── Table headers ──────────────────────────────────────────────────────
-const headers = computed(() => [
-  { title: t('configuration.table.id'),          key: 'id',          align: 'start'  as const, width: '72px'  },
-  { title: t('configuration.table.name'),        key: 'name',        align: 'start'  as const },
-  { title: t('configuration.table.description'), key: 'description', align: 'start'  as const },
-  { title: t('configuration.table.type'),        key: 'type',        align: 'start'  as const, width: '130px' },
-  { title: t('configuration.table.priority'),    key: 'priority',    align: 'center' as const, width: '110px' },
-  { title: t('configuration.table.enabled'),     key: 'enabled',     align: 'center' as const, width: '110px' },
-  { title: '',                                   key: 'actions',     align: 'center' as const, width: '100px', sortable: false },
-]);
 </script>
 
 <template>
-  <v-container class="py-8" max-width="1400">
+  <div class="home-page">
+    <v-container max-width="1280" class="px-4 px-md-6">
+      <section class="hero-section position-relative d-flex align-center" aria-labelledby="home-hero-title">
+        <div class="hero-pattern" :style="heroPatternStyle" aria-hidden="true" />
 
-    <!-- ── Page Header ──────────────────────────────────────────── -->
-    <div class="d-flex align-start justify-space-between mb-6 flex-wrap ga-3">
-      <div>
-        <div class="d-flex align-center ga-2 mb-1">
-          <v-icon color="primary" size="26">mdi-tune-variant</v-icon>
-          <h1 class="text-h5 font-weight-bold">{{ t('configuration.title') }}</h1>
-        </div>
-        <p class="text-body-2 text-medium-emphasis">{{ t('configuration.subtitle') }}</p>
-      </div>
+        <v-row align="center" class="position-relative section-row">
+          <v-col cols="12" md="7">
+            <v-responsive max-width="720">
+              <p class="text-overline text-primary font-weight-bold mb-3 brand-mono">{{ t('app.brand') }}</p>
+              <h1 id="home-hero-title" class="text-h2 font-weight-bold mb-4">Andrea Tombolato</h1>
+              <p class="text-h5 text-primary font-weight-medium mb-5">{{ t('home.hero.role') }}</p>
+              <p class="text-body-1 text-medium-emphasis hero-intro mb-6">
+                {{ t('home.hero.intro') }}
+              </p>
 
-      <v-btn color="primary" prepend-icon="mdi-plus" rounded="lg" @click="dialog = true">
-        {{ t('configuration.add') }}
-      </v-btn>
-    </div>
+              <div class="typewriter-line mb-8" aria-live="polite">
+                <span>{{ typedText }}</span>
+                <span class="typewriter-cursor" aria-hidden="true">|</span>
+              </div>
 
-    <!-- ── Stats Row ─────────────────────────────────────────────── -->
-    <v-row class="mb-6" dense>
-      <v-col cols="12" sm="4">
-        <v-card rounded="xl" variant="tonal" color="primary" class="stat-card">
-          <v-card-text class="d-flex align-center justify-space-between pa-5">
-            <div>
-              <div class="text-h4 font-weight-bold text-primary">{{ totalItems }}</div>
-              <div class="text-body-2 text-medium-emphasis mt-1">{{ t('configuration.stats.total') }}</div>
-            </div>
-            <v-avatar color="primary" variant="tonal" size="52" rounded="xl">
-              <v-icon size="26">mdi-format-list-bulleted</v-icon>
-            </v-avatar>
-          </v-card-text>
-        </v-card>
-      </v-col>
-
-      <v-col cols="12" sm="4">
-        <v-card rounded="xl" variant="tonal" color="success" class="stat-card">
-          <v-card-text class="d-flex align-center justify-space-between pa-5">
-            <div>
-              <div class="text-h4 font-weight-bold text-success">{{ enabledItems }}</div>
-              <div class="text-body-2 text-medium-emphasis mt-1">{{ t('configuration.stats.enabled') }}</div>
-            </div>
-            <v-avatar color="success" variant="tonal" size="52" rounded="xl">
-              <v-icon size="26">mdi-check-circle-outline</v-icon>
-            </v-avatar>
-          </v-card-text>
-        </v-card>
-      </v-col>
-
-      <v-col cols="12" sm="4">
-        <v-card rounded="xl" variant="tonal" color="error" class="stat-card">
-          <v-card-text class="d-flex align-center justify-space-between pa-5">
-            <div>
-              <div class="text-h4 font-weight-bold text-error">{{ disabledItems }}</div>
-              <div class="text-body-2 text-medium-emphasis mt-1">{{ t('configuration.stats.disabled') }}</div>
-            </div>
-            <v-avatar color="error" variant="tonal" size="52" rounded="xl">
-              <v-icon size="26">mdi-close-circle-outline</v-icon>
-            </v-avatar>
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
-
-    <!-- ── Table Card ─────────────────────────────────────────────── -->
-    <v-card rounded="xl" elevation="1">
-      <!-- Search & Filter toolbar -->
-      <v-card-text class="pb-2 pt-4">
-        <v-row align="center" dense class="ga-2">
-          <v-col cols="12" md="6">
-            <v-text-field
-              v-model="search"
-              :placeholder="t('configuration.search')"
-              prepend-inner-icon="mdi-magnify"
-              variant="outlined"
-              density="comfortable"
-              hide-details
-              clearable
-              rounded="lg"
-            />
+              <div class="d-flex flex-wrap ga-3">
+                <v-btn :to="localePath('/portfolio')" color="primary" size="large" rounded="pill" elevation="0">
+                  {{ t('home.hero.portfolioCta') }}
+                </v-btn>
+                <v-btn :to="localePath('/contatti')" color="primary" variant="outlined" size="large" rounded="pill">
+                  {{ t('home.hero.contactsCta') }}
+                </v-btn>
+              </div>
+            </v-responsive>
           </v-col>
 
-          <v-col cols="12" md="4">
-            <v-select
-              v-model="filterType"
-              :items="typeOptions"
-              :placeholder="t('configuration.filterType')"
-              variant="outlined"
-              density="comfortable"
-              hide-details
-              clearable
-              rounded="lg"
-            />
-          </v-col>
+          <v-col cols="12" md="5" class="d-flex justify-md-end">
+            <v-card class="hero-side-card pa-6 pa-md-8" rounded="xl" variant="text">
+              <div class="d-flex flex-column ga-4">
+                <v-chip color="primary" variant="tonal" size="small" class="align-self-start">
+                  {{ yearsOfExperience }}+ {{ t('home.about.stats.experience') }}
+                </v-chip>
 
-          <v-col cols="12" md="2" class="d-flex justify-md-end">
-            <v-chip color="primary" variant="tonal" size="small" label>
-              {{ filteredItems.length }} {{ t('configuration.items') }}
-            </v-chip>
+                <div>
+                  <div class="text-h6 font-weight-semibold mb-2">Node.js · Grails · Nest.js · Vue · Nuxt · Java</div>
+                  <p class="text-body-2 text-medium-emphasis">
+                    {{ t('home.skills.description') }}
+                  </p>
+                </div>
+
+                <v-divider />
+
+                <div class="hero-facts d-grid ga-3">
+                  <v-sheet rounded="xl" class="fact-card pa-4" color="surface">
+                    <div class="text-caption text-medium-emphasis mb-1">{{ t('home.heroFacts.medasLabel') }}</div>
+                    <div class="text-body-1 font-weight-medium">{{ t('home.heroFacts.medasValue') }}</div>
+                  </v-sheet>
+                  <v-sheet rounded="xl" class="fact-card pa-4" color="surface">
+                    <div class="text-caption text-medium-emphasis mb-1">{{ t('home.heroFacts.communityLabel') }}</div>
+                    <div class="text-body-1 font-weight-medium">{{ t('home.heroFacts.communityValue') }}</div>
+                  </v-sheet>
+                  <v-sheet rounded="xl" class="fact-card pa-4" color="surface">
+                    <div class="text-caption text-medium-emphasis mb-1">{{ t('home.heroFacts.civilProtectionLabel') }}</div>
+                    <div class="text-body-1 font-weight-medium">{{ t('home.heroFacts.civilProtectionValue') }}</div>
+                  </v-sheet>
+                </div>
+              </div>
+            </v-card>
           </v-col>
         </v-row>
-      </v-card-text>
 
-      <v-data-table
-        :headers="headers"
-        :items="filteredItems"
-        :items-per-page="10"
-        hover
-      >
-        <!-- Type -->
-        <template #item.type="{ item }">
-          <v-chip :color="typeColor(item.type)" size="small" variant="tonal" rounded="lg">
-            {{ item.type }}
-          </v-chip>
-        </template>
+        <a href="#about" class="scroll-indicator" :aria-label="t('home.hero.scrollLabel')">
+          <v-icon size="30">mdi-chevron-double-down</v-icon>
+        </a>
+      </section>
 
-        <!-- Priority -->
-        <template #item.priority="{ item }">
-          <v-chip :color="priorityColor(item.priority ?? 1)" size="small" variant="outlined" rounded="lg">
-            <v-icon start size="12">mdi-flag-outline</v-icon>
-            {{ item.priority ?? 1 }}
-          </v-chip>
-        </template>
+      <section id="about" class="section-block" aria-labelledby="about-title">
+        <v-row align="center" class="ga-6 ga-md-0">
+          <v-col cols="12" md="6">
+            <p class="text-overline text-primary font-weight-bold mb-3">{{ t('home.about.eyebrow') }}</p>
+            <h2 id="about-title" class="text-h4 font-weight-bold mb-5">{{ t('home.about.title') }}</h2>
 
-        <!-- Enabled switch -->
-        <template #item.enabled="{ item }">
-          <v-switch
-            :model-value="item.enabled"
-            color="success"
-            density="compact"
-            hide-details
-            inset
-            @change="toggleEnabled(item)"
-          />
-        </template>
+            <div class="d-flex flex-column ga-4 text-body-1 text-medium-emphasis about-copy">
+              <p>{{ t('home.about.paragraphs.one') }}</p>
+              <p>{{ t('home.about.paragraphs.two') }}</p>
+              <p>{{ t('home.about.paragraphs.three') }}</p>
+            </div>
+          </v-col>
 
-        <!-- Actions -->
-        <template #item.actions="{ item }">
-          <div class="d-flex ga-1 justify-center">
-            <v-btn
-              icon="mdi-pencil-outline"
-              size="small"
-              color="primary"
-              variant="text"
-              @click="openEdit(item)"
-            >
-              <v-tooltip activator="parent" location="top">{{ t('configuration.edit') }}</v-tooltip>
-            </v-btn>
-            <v-btn
-              icon="mdi-delete-outline"
-              size="small"
-              color="error"
-              variant="text"
-              @click="deleteItem(item.id)"
-            >
-              <v-tooltip activator="parent" location="top">{{ t('configuration.delete') }}</v-tooltip>
-            </v-btn>
-          </div>
-        </template>
+          <v-col cols="12" md="6">
+            <v-card rounded="xl" class="about-portrait-card pa-5 pa-md-7" elevation="0">
+              <div class="d-flex flex-column flex-md-row align-center ga-6">
+                <v-avatar size="148" rounded="xl" color="primary" variant="tonal" :aria-label="t('home.about.portraitLabel')">
+                  <span class="portrait-initials">AT</span>
+                </v-avatar>
 
-        <!-- Empty state -->
-        <template #no-data>
-          <div class="d-flex flex-column align-center py-14">
-            <v-icon size="72" color="grey-lighten-1" class="mb-4">mdi-text-search</v-icon>
-            <h3 class="text-h6 font-weight-medium text-medium-emphasis mb-1">
-              {{ t('configuration.noItems') }}
-            </h3>
-            <p class="text-body-2 text-disabled">{{ t('configuration.noItemsHint') }}</p>
-            <v-btn class="mt-5" color="primary" variant="tonal" prepend-icon="mdi-plus" rounded="lg" @click="dialog = true">
-              {{ t('configuration.add') }}
-            </v-btn>
-          </div>
-        </template>
-      </v-data-table>
-    </v-card>
+                <div class="flex-1-1 w-100">
+                  <div class="text-subtitle-1 font-weight-semibold mb-4">Andrea Tombolato</div>
 
-    <!-- ── Add Dialog ─────────────────────────────────────────────── -->
-    <v-dialog v-model="dialog" max-width="520" persistent>
-      <v-card rounded="xl">
-        <v-card-item class="pt-5 px-5 pb-0">
-          <template #prepend>
-            <v-avatar color="primary" variant="tonal" rounded="lg" size="44">
-              <v-icon>mdi-plus</v-icon>
-            </v-avatar>
-          </template>
-          <v-card-title class="text-h6">{{ t('configuration.addNewItem') }}</v-card-title>
-          <template #append>
-            <v-btn icon="mdi-close" variant="text" size="small" @click="dialog = false; resetAddForm()" />
-          </template>
-        </v-card-item>
+                  <div class="d-flex flex-column ga-3">
+                    <v-sheet rounded="xl" class="about-stat pa-4" color="surface">
+                      <div class="text-caption text-medium-emphasis">{{ t('home.about.stats.experience') }}</div>
+                      <div class="text-body-1 font-weight-medium">{{ t('home.about.highlights.experience', { years: yearsOfExperience }) }}</div>
+                    </v-sheet>
+                    <v-sheet rounded="xl" class="about-stat pa-4" color="surface">
+                      <div class="text-caption text-medium-emphasis">{{ t('home.about.stats.focus') }}</div>
+                      <div class="text-body-1 font-weight-medium">{{ t('home.about.highlights.focus') }}</div>
+                    </v-sheet>
+                    <v-sheet rounded="xl" class="about-stat pa-4" color="surface">
+                      <div class="text-caption text-medium-emphasis">{{ t('home.about.stats.community') }}</div>
+                      <div class="text-body-1 font-weight-medium">{{ t('home.about.highlights.community') }}</div>
+                    </v-sheet>
+                  </div>
+                </div>
+              </div>
+            </v-card>
+          </v-col>
+        </v-row>
+      </section>
 
-        <v-card-text class="pt-5 px-5">
-          <v-form ref="formRef" @submit.prevent="addItem">
-            <v-row dense>
-              <v-col cols="12" sm="7">
-                <v-text-field
-                  v-model="itemName"
-                  :label="t('configuration.form.itemName')"
-                  :rules="nameRules"
-                  variant="outlined"
-                  density="comfortable"
-                />
-              </v-col>
-              <v-col cols="12" sm="5">
-                <v-select
-                  v-model="itemType"
-                  :items="typeOptions"
-                  :label="t('configuration.form.type')"
-                  :rules="reqRules"
-                  variant="outlined"
-                  density="comfortable"
-                />
-              </v-col>
-              <v-col cols="12">
-                <v-text-field
-                  v-model="itemDescription"
-                  :label="t('configuration.form.description')"
-                  :rules="reqRules"
-                  variant="outlined"
-                  density="comfortable"
-                />
-              </v-col>
-              <v-col cols="12" sm="5">
-                <v-text-field
-                  v-model.number="itemPriority"
-                  :label="t('configuration.form.priority')"
-                  type="number"
-                  min="1"
-                  max="10"
-                  variant="outlined"
-                  density="comfortable"
-                />
-              </v-col>
-              <v-col cols="12" sm="7" class="d-flex align-center">
-                <v-switch
-                  v-model="itemEnabled"
-                  :label="t('configuration.form.enabled')"
-                  color="success"
-                  hide-details
-                  inset
-                />
-              </v-col>
-            </v-row>
-          </v-form>
-        </v-card-text>
+      <HomeExperienceSection />
 
-        <v-divider />
-        <v-card-actions class="pa-4">
-          <v-spacer />
-          <v-btn variant="text" @click="dialog = false; resetAddForm()">{{ t('dialog.cancel') }}</v-btn>
-          <v-btn color="primary" variant="elevated" rounded="lg" @click="addItem">
-            <v-icon start>mdi-plus</v-icon>
-            {{ t('configuration.add') }}
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+      <HomeSkillsSection />
 
-    <!-- ── Edit Dialog ────────────────────────────────────────────── -->
-    <v-dialog v-model="editDialog" max-width="520" persistent>
-      <v-card rounded="xl">
-        <v-card-item class="pt-5 px-5 pb-0">
-          <template #prepend>
-            <v-avatar color="secondary" variant="tonal" rounded="lg" size="44">
-              <v-icon>mdi-pencil-outline</v-icon>
-            </v-avatar>
-          </template>
-          <v-card-title class="text-h6">{{ t('configuration.editItem') }}</v-card-title>
-          <template #append>
-            <v-btn icon="mdi-close" variant="text" size="small" @click="editDialog = false" />
-          </template>
-        </v-card-item>
-
-        <v-card-text class="pt-5 px-5">
-          <v-form ref="editFormRef" @submit.prevent="saveEdit">
-            <v-row dense>
-              <v-col cols="12" sm="7">
-                <v-text-field
-                  v-model="editName"
-                  :label="t('configuration.form.itemName')"
-                  :rules="nameRules"
-                  variant="outlined"
-                  density="comfortable"
-                />
-              </v-col>
-              <v-col cols="12" sm="5">
-                <v-select
-                  v-model="editType"
-                  :items="typeOptions"
-                  :label="t('configuration.form.type')"
-                  :rules="reqRules"
-                  variant="outlined"
-                  density="comfortable"
-                />
-              </v-col>
-              <v-col cols="12">
-                <v-text-field
-                  v-model="editDescription"
-                  :label="t('configuration.form.description')"
-                  :rules="reqRules"
-                  variant="outlined"
-                  density="comfortable"
-                />
-              </v-col>
-              <v-col cols="12" sm="5">
-                <v-text-field
-                  v-model.number="editPriority"
-                  :label="t('configuration.form.priority')"
-                  type="number"
-                  min="1"
-                  max="10"
-                  variant="outlined"
-                  density="comfortable"
-                />
-              </v-col>
-              <v-col cols="12" sm="7" class="d-flex align-center">
-                <v-switch
-                  v-model="editEnabled"
-                  :label="t('configuration.form.enabled')"
-                  color="success"
-                  hide-details
-                  inset
-                />
-              </v-col>
-            </v-row>
-          </v-form>
-        </v-card-text>
-
-        <v-divider />
-        <v-card-actions class="pa-4">
-          <v-spacer />
-          <v-btn variant="text" @click="editDialog = false">{{ t('dialog.cancel') }}</v-btn>
-          <v-btn color="secondary" variant="elevated" rounded="lg" @click="saveEdit">
-            <v-icon start>mdi-check</v-icon>
-            {{ t('configuration.save') }}
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-
-    <!-- ── Delete Dialog ──────────────────────────────────────────── -->
-    <v-dialog v-model="deleteDialog" max-width="420">
-      <v-card rounded="xl">
-        <v-card-item class="pt-5 px-5">
-          <template #prepend>
-            <v-avatar color="error" variant="tonal" size="48" rounded="lg">
-              <v-icon>mdi-alert-circle-outline</v-icon>
-            </v-avatar>
-          </template>
-          <v-card-title>{{ t('configuration.confirmDelete') }}</v-card-title>
-        </v-card-item>
-
-        <v-card-text class="text-body-2 text-medium-emphasis pb-2 px-5">
-          {{ t('configuration.deleteMessage') }}
-          <p class="text-caption text-error mt-2">{{ t('configuration.deleteNote') }}</p>
-        </v-card-text>
-
-        <v-card-actions class="pa-4 pt-2">
-          <v-spacer />
-          <v-btn variant="text" @click="cancelDelete">{{ t('dialog.cancel') }}</v-btn>
-          <v-btn color="error" variant="elevated" rounded="lg" @click="confirmDelete">
-            <v-icon start>mdi-delete</v-icon>
-            {{ t('configuration.delete') }}
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-
-    <!-- ── Snackbar ───────────────────────────────────────────────── -->
-    <v-snackbar
-      v-model="snackbar"
-      :color="snackbarColor"
-      location="bottom end"
-      rounded="lg"
-      :timeout="3000"
-    >
-      <v-icon start size="18">
-        {{ snackbarColor === 'error' ? 'mdi-alert-circle-outline' : 'mdi-check-circle-outline' }}
-      </v-icon>
-      {{ snackbarText }}
-      <template #actions>
-        <v-btn icon="mdi-close" variant="text" size="small" @click="snackbar = false" />
-      </template>
-    </v-snackbar>
-  </v-container>
+      <HomePreviewSection />
+    </v-container>
+  </div>
 </template>
 
 <style scoped>
-.stat-card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+.home-page {
+  position: relative;
+  --home-card-top: rgba(255, 255, 255, 0.96);
+  --home-card-bottom: rgba(245, 248, 247, 0.88);
+  --home-text-strong: #15211b;
+  --home-text-soft: rgba(21, 33, 27, 0.72);
+  --home-brand: #00a86b;
+  --home-brand-soft: rgba(0, 168, 107, 0.12);
 }
-.stat-card:hover {
-  transform: translateY(-3px);
+
+:global(.v-theme--dark) .home-page {
+  --home-card-top: rgba(22, 27, 26, 0.96);
+  --home-card-bottom: rgba(15, 20, 19, 0.88);
+  --home-text-strong: #edf5f2;
+  --home-text-soft: rgba(237, 245, 242, 0.72);
+  --home-brand-soft: rgba(0, 168, 107, 0.18);
+}
+
+.section-row {
+  z-index: 1;
+}
+
+.hero-section {
+  min-height: calc(100dvh - 80px);
+  padding-block: 4rem 5.5rem;
+}
+
+.hero-pattern {
+  position: absolute;
+  inset: 8% -3% auto auto;
+  width: min(38vw, 420px);
+  aspect-ratio: 1;
+  opacity: 0.8;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  pointer-events: none;
+}
+
+.brand-mono {
+  font-family: 'JetBrains Mono', 'SFMono-Regular', ui-monospace, monospace;
+  letter-spacing: 0.12em;
+}
+
+.hero-intro,
+.about-copy {
+  max-width: 68ch;
+}
+
+.typewriter-line {
+  min-height: 2rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--home-text-strong);
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  margin-left: 0.15rem;
+  color: var(--home-brand);
+  animation: blink 1s steps(1) infinite;
+}
+
+.hero-side-card,
+.about-portrait-card,
+.fact-card,
+.about-stat {
+  background:
+    linear-gradient(180deg, var(--home-card-top), var(--home-card-bottom));
+  border: 1px solid var(--home-brand-soft);
+}
+
+.hero-side-card {
+  width: min(100%, 460px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+}
+
+.hero-facts {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.portrait-initials {
+  font-size: 2.75rem;
+  font-weight: 700;
+  color: var(--home-brand);
+}
+
+.section-block {
+  padding-block: 4rem;
+}
+
+
+
+.scroll-indicator {
+  position: absolute;
+  left: 50%;
+  bottom: 1rem;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--home-text-soft);
+  animation: pulseDown 1.8s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  50.01%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes pulseDown {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(6px);
+  }
+}
+
+@media (min-width: 960px) {
+  .hero-facts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 959px) {
+  .hero-section {
+    min-height: auto;
+    padding-top: 3rem;
+  }
+
+  .hero-pattern {
+    inset: 0 auto auto 50%;
+    width: 72vw;
+    transform: translateX(-50%);
+    opacity: 0.55;
+  }
+
+  .scroll-indicator {
+    display: none;
+  }
 }
 </style>

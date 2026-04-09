@@ -1,25 +1,32 @@
-// ===========================
-// Modern Glass Morphism Design
-// ===========================
+// Brand tokens (dark-first)
+$primary: #00a86b;
+$primary-dark: #007a4d;
+$primary-light: #33bf89;
+$bg-dark: #0d1412;
+$surface-dark: #121c19;
+$text-dark: #eaf5f1;
+$muted-dark: #c5d8d1;
 
-// SCSS Variables
-$primary:        #00a86b;
-$primary-dark:   #008556;
-$primary-light:  #00c878;
-$background:     #121212;
-$surface:        #1e1e1e;
-$text-primary:   #ffffff;
-$text-secondary: #b0b0b0;
-
-// CSS Custom Properties (runtime theming)
 :root {
-  --primary:        #{$primary};
-  --primary-dark:   #{$primary-dark};
-  --primary-light:  #{$primary-light};
-  --background:     #{$background};
-  --surface:        #{$surface};
-  --text-primary:   #{$text-primary};
-  --text-secondary: #{$text-secondary};
+  --brand-primary: #{$primary};
+  --brand-primary-dark: #{$primary-dark};
+  --brand-primary-light: #{$primary-light};
+  --brand-background: #{$bg-dark};
+  --brand-surface: #{$surface-dark};
+  --brand-on-surface: #{$text-dark};
+  --brand-on-surface-muted: #{$muted-dark};
+}
+
+:root {
+  color-scheme: dark;
+}
+
+:root:has(.v-theme--light) {
+  --brand-background: #f2f8f5;
+  --brand-surface: #ffffff;
+  --brand-on-surface: #16211c;
+  --brand-on-surface-muted: #2e433a;
+  color-scheme: light;
 }
 
 * {
@@ -33,52 +40,67 @@ html {
 }
 
 body {
-  background: var(--background);
-  color: var(--text-primary);
+  background: var(--brand-background);
+  color: var(--brand-on-surface);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   overflow-x: hidden;
+  text-rendering: optimizeLegibility;
 }
 
-// ===========================
-// Background Pattern
-// ===========================
-.background-pattern {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  opacity: 0.03;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 50px 50px;
-  pointer-events: none;
+.jetbrain {
+ font-family: 'JetBrains Mono', monospace;
 }
 
-// ===========================
-// Glass Card Effect
-// ===========================
-.glass-card {
-  background: rgba($surface, 0.6) !important;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  border-radius: 20px !important;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+a {
+  color: var(--brand-primary-light);
+  text-decoration: none;
+  transition: color 0.2s ease;
 
   &:hover {
-    background: rgba($surface, 0.8) !important;
-    border-color: rgba($primary, 0.4) !important;
-    transform: translateY(-4px);
-    box-shadow: 0 20px 40px rgba($primary, 0.15);
+    color: var(--brand-primary);
   }
 }
 
-// ===========================
-// Text Gradient
-// ===========================
+/* Focus ring coerente e leggibile su tastiera */
+:focus-visible {
+  outline: 2px solid rgba($primary, 0.72);
+  outline-offset: 2px;
+}
+
+.background-pattern {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.05;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+  pointer-events: none;
+}
+
+:root:has(.v-theme--light) .background-pattern {
+  opacity: 0.08;
+  background-image:
+    linear-gradient(rgba(0, 122, 77, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 122, 77, 0.08) 1px, transparent 1px);
+}
+
+.glass-card {
+  background: color-mix(in srgb, var(--brand-surface) 88%, transparent) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 168, 107, 0.18) !important;
+  border-radius: 1rem !important;
+  transition: border-color 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
+
+  &:hover {
+    border-color: rgba(0, 168, 107, 0.32) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
+  }
+}
+
 .text-gradient {
   background: linear-gradient(135deg, $primary 0%, $primary-light 100%);
   -webkit-background-clip: text;
@@ -86,129 +108,79 @@ body {
   background-clip: text;
 }
 
-// ===========================
-// Brand Glow Effect
-// ===========================
 .brand-glow {
-  box-shadow:
-    0 0 20px rgba($primary, 0.3),
-    0 0 40px rgba($primary, 0.2),
-    0 0 60px rgba($primary, 0.1);
-  transition: all 0.3s ease;
+  box-shadow: 0 0 0 1px rgba($primary, 0.25), 0 10px 28px rgba($primary, 0.18);
+  transition: box-shadow 0.24s ease, transform 0.24s ease;
 
   &:hover {
-    box-shadow:
-      0 0 30px rgba($primary, 0.5),
-      0 0 60px rgba($primary, 0.3),
-      0 0 90px rgba($primary, 0.2);
+    box-shadow: 0 0 0 1px rgba($primary, 0.42), 0 14px 34px rgba($primary, 0.26);
     transform: translateY(-2px);
   }
 }
 
-// ===========================
-// Custom Scrollbar
-// ===========================
 ::-webkit-scrollbar {
   width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--background);
+  background: var(--brand-background);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, $primary, $primary-light);
-  border-radius: 10px;
+  background: linear-gradient(180deg, $primary-dark, $primary);
+  border-radius: 999px;
 
   &:hover {
-    background: linear-gradient(180deg, $primary-light, $primary);
+    background: linear-gradient(180deg, $primary, $primary-light);
   }
 }
 
-// ===========================
-// Utility Classes
-// ===========================
 .round-border {
-  border-radius: 20px !important;
+  border-radius: 0.75rem !important;
 }
 
-// ===========================
-// Animated Gradient Background
-// ===========================
 .animated-gradient {
-  background: linear-gradient(
-    135deg,
-    rgba($primary, 0.1),
-    rgba($primary-light, 0.1),
-    rgba($primary, 0.05)
-  );
+  background: linear-gradient(135deg, rgba($primary, 0.08), rgba($primary-light, 0.06), rgba($primary-dark, 0.08));
   background-size: 200% 200%;
-  animation: gradient 15s ease infinite;
+  animation: gradient 12s ease infinite;
 }
 
-// ===========================
-// Fade In Animation
-// ===========================
 .fade-in {
-  animation: fadeIn 0.6s ease-in-out;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
-// ===========================
-// Links
-// ===========================
-a {
-  color: var(--primary-light);
-  text-decoration: none;
-  transition: color 0.3s ease;
-
-  &:hover {
-    color: var(--primary);
-  }
-}
-
-// ===========================
-// Hover Lift
-// ===========================
 .hover-lift {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.24s ease, box-shadow 0.24s ease;
 
   &:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transform: translateY(-6px);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
   }
 }
 
-// ===========================
-// Floating Animation
-// ===========================
 .floating {
   animation: float 6s ease-in-out infinite;
 }
 
-// ===========================
-// Navbar
-// ===========================
 .navbar-blur {
-  backdrop-filter: blur(40px);
-  -webkit-backdrop-filter: blur(40px);
-  background: rgba($background, 0.85) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  background: color-mix(in srgb, var(--brand-surface) 82%, transparent) !important;
+  border-bottom: 1px solid rgba(0, 168, 107, 0.14);
 }
 
-// ===========================
-// Keyframes
-// ===========================
 @keyframes gradient {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(12px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -216,13 +188,16 @@ a {
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-20px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-16px);
+  }
 }
 
-// ===========================
-// Responsive
-// ===========================
 @media (max-width: 960px) {
   .text-h1 {
     font-size: 2.5rem !important;
