@@ -1,6 +1,8 @@
 {
   "name": "website4",
-  "type": "module",
+  "version": "1.0.0",
+  "description": "Heyatom Dev Website - Built with Nuxt 4 and Vuetify",
+  "author": "Andrea Tombolato <hey@heyatom.dev> (https://heyatom.dev)",
   "private": true,
   "scripts": {
     "build": "nuxt build",
