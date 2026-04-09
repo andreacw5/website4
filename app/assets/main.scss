@@ -48,7 +48,8 @@ body {
 }
 
 .jetbrain {
- font-family: 'JetBrains Mono', monospace;
+  font-family: 'JetBrains Mono', 'SFMono-Regular', ui-monospace, monospace;
+  letter-spacing: 0.12em;
 }
 
 a {

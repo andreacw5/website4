@@ -102,17 +102,14 @@ onBeforeUnmount(() => {
 <template>
   <section
       id="experience"
-      ref="experienceSection"
       class="section-block experience-section"
       aria-labelledby="experience-title"
   >
-    <div class="mt-10 mt-md-14">
-      <div class="d-flex align-center ga-3 mb-6">
-        <v-icon color="primary">mdi-briefcase-clock-outline</v-icon>
-        <h3 class="text-h5 font-weight-bold">{{ t('home.timeline.title') }}</h3>
-      </div>
+    <p class="text-overline text-primary font-weight-bold mb-3 jetbrain">{{ t('home.timeline.eyebrow') }}</p>
+    <h2 id="experience-title" class="text-h4 font-weight-bold mb-3">{{ t('home.timeline.title') }}</h2>
+    <p class="text-body-1 text-medium-emphasis mb-8">{{ t('home.timeline.description') }}</p>
 
-      <div ref="gridRef">
+    <div ref="gridRef">
         <v-row dense>
           <v-col v-for="item in items" :key="item.key" cols="12" md="6">
             <v-card data-exp-card class="experience-card h-100 pa-4 pa-md-5" rounded="xl" elevation="0">
@@ -171,7 +168,6 @@ onBeforeUnmount(() => {
             </v-card>
           </v-col>
         </v-row>
-      </div>
     </div>
   </section>
 </template>
