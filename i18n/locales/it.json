@@ -1,91 +1,289 @@
 {
   "app": {
-    "name": "MyApp"
+    "name": "Andrea Tombolato",
+    "brand": "heyatom"
+  },
+  "site": {
+    "skipToContent": "Vai al contenuto principale",
+    "openMenu": "Apri il menu di navigazione",
+    "closeMenu": "Chiudi il menu di navigazione",
+    "changeLanguage": "Cambia lingua"
   },
   "nav": {
     "home": "Home",
-    "events": "Eventi",
-    "settings": "Impostazioni"
-  },
-  "user": {
-    "role": "Utente • Admin",
-    "administrator": "Amministratore",
-    "profile": "Profilo",
-    "settings": "Impostazioni",
-    "logout": "Esci",
-    "language": "Lingua"
-  },
-  "dialog": {
-    "confirmLogout": "Conferma Uscita",
-    "logoutMessage": "Sei sicuro di voler uscire dall'applicazione?",
-    "logoutNote": "Dovrai effettuare nuovamente l'accesso per utilizzare il sistema.",
-    "cancel": "Annulla",
-    "confirm": "Esci",
-    "addEvent": "Aggiungi Evento"
-  },
-  "configuration": {
-    "title": "Configurazione",
-    "subtitle": "Gestisci e monitora la configurazione dei tuoi elementi.",
-    "addNewItem": "Aggiungi Nuovo Elemento",
-    "editItem": "Modifica Elemento",
-    "add": "Aggiungi",
-    "edit": "Modifica",
-    "save": "Salva",
-    "delete": "Elimina",
-    "confirmDelete": "Conferma Eliminazione",
-    "deleteMessage": "Sei sicuro di voler eliminare questo elemento?",
-    "deleteNote": "Questa azione non può essere annullata.",
-    "itemAdded": "Elemento aggiunto con successo.",
-    "itemUpdated": "Elemento aggiornato con successo.",
-    "itemDeleted": "Elemento eliminato.",
-    "search": "Cerca per nome o descrizione…",
-    "filterType": "Filtra per tipo",
-    "items": "elementi",
-    "noItems": "Nessun elemento trovato",
-    "noItemsHint": "Prova a modificare la ricerca oppure aggiungi un nuovo elemento.",
-    "stats": {
-      "total": "Totale Elementi",
-      "enabled": "Abilitati",
-      "disabled": "Disabilitati"
-    },
-    "table": {
-      "id": "ID",
-      "name": "Nome",
-      "description": "Descrizione",
-      "type": "Tipo",
-      "priority": "Priorità",
-      "enabled": "Abilitato",
-      "actions": ""
-    },
-    "form": {
-      "itemName": "Nome Elemento",
-      "description": "Descrizione",
-      "priority": "Priorità",
-      "type": "Tipo",
-      "enabled": "Abilitato"
-    },
-    "status": {
-      "enabled": "Abilitato",
-      "disabled": "Disabilitato"
-    }
-  },
-  "validation": {
-    "required": "Questo campo è obbligatorio.",
-    "minLength": "Deve contenere almeno 2 caratteri."
-  },
-  "seo": {
-    "title": "Configurazione",
-    "description": "Gestisci la configurazione dei tuoi elementi con un'interfaccia facile da usare.",
-    "ogTitle": "Configurazione",
-    "ogDescription": "Gestisci la configurazione dei tuoi elementi con un'interfaccia facile da usare.",
-    "ogImage": "https://example.com/images/configuration-cover.webp"
-  },
-  "languages": {
-    "en": "English",
-    "it": "Italiano"
+    "portfolio": "Portfolio",
+    "travels": "Viaggi",
+    "utilities": "Utilities",
+    "contacts": "Contatti"
   },
   "theme": {
-    "light": "Passa a Modalità Chiara",
-    "dark": "Passa a Modalità Scura"
+    "light": "Passa al tema chiaro",
+    "dark": "Passa al tema scuro"
+  },
+  "footer": {
+    "copyright": "Andrea Tombolato – heyatom",
+    "note": "Full-stack developer, freelance e volontario Protezione Civile.",
+    "socials": {
+      "github": "Profilo GitHub di Andrea Tombolato",
+      "linkedin": "Profilo LinkedIn di Andrea Tombolato",
+      "website": "Sito heyatom.dev"
+    }
+  },
+  "home": {
+    "seo": {
+      "title": "Home",
+      "description": "Portfolio personale di Andrea Tombolato: sviluppo full-stack, esperienze dal 2016, progetti freelance, viaggi e utilities.",
+      "ogTitle": "Andrea Tombolato · Full-stack Developer",
+      "ogDescription": "Sviluppo prodotti web con Vue, Nuxt, Node e Java, con attenzione a UX, accessibilità e qualità del dettaglio."
+    },
+    "hero": {
+      "greeting": "Piacere di conoscerti,",
+      "name": "Sono Andrea Tombolato",
+      "role": "Full-stack Developer",
+      "intro": "Costruisco esperienze digitali solide, accessibili e curate nei dettagli tra prodotto, consulenza e community.",
+      "typed": [
+        "Building web products since 2016",
+        "Vue.js · Nuxt.js · Node.js · Nest.js",
+        "Freelancer · Montagna · Gaming"
+      ],
+      "portfolioCta": "Vai al portfolio",
+      "contactsCta": "Contattami",
+      "downloadCv": "Scarica il mio CV",
+      "cvDownloadStarted": "Download del CV avviato…",
+      "cvDownloadDone": "CV scaricato con successo!",
+      "cvDownloadError": "Errore durante il download del CV.",
+      "scrollLabel": "Scorri verso la sezione about"
+    },
+    "about": {
+      "eyebrow": "Chi sono",
+      "title": "Tecnologia, volontariato e passione per il prodotto",
+      "paragraphs": {
+        "one": "Sono Andrea Tombolato, full-stack developer dal 2016. In Medas Solutions lavoro su progetti in ambito sanitario con stack Java e Node.js, progettando soluzioni affidabili dove performance, qualità del codice e continuità operativa contano davvero.",
+        "two": "Accanto al lavoro principale porto avanti piccoli progetti freelance con il brand heyatom, collaboro con Element Gaming come membro del consiglio direttivo e supporto la Protezione Civile come responsabile della comunicazione pubblica.",
+        "three": "Fuori dallo schermo trovo equilibrio tra escursioni in montagna, viaggi e cultura gaming. Queste esperienze influenzano anche il mio approccio al design: pulito, accessibile, concreto e sempre orientato alle persone."
+      },
+      "portraitLabel": "Ritratto stilizzato di Andrea Tombolato",
+      "stats": {
+        "experience": "Anni di esperienza",
+        "focus": "Prodotto, UX e delivery",
+        "community": "Tech, non-profit e comunicazione"
+      },
+      "highlights": {
+        "experience": "{years}+ anni tra Java, Node.js, Vue e Nuxt",
+        "focus": "Clean architecture, accessibilità e interfacce orientate all'uso reale",
+        "community": "Tra non-profit, volontariato e progetti che generano impatto locale"
+      }
+    },
+    "heroFacts": {
+      "medasLabel": "2016 → oggi",
+      "medasValue": "Medas Solutions",
+      "communityLabel": "Community",
+      "communityValue": "Element Gaming",
+      "civilProtectionLabel": "Volontariato",
+      "civilProtectionValue": "Protezione Civile"
+    },
+    "timeline": {
+      "eyebrow": "Esperienze",
+      "title": "Percorso professionale e community",
+      "description": "Dal 2016 ad oggi: sviluppo full-stack in ambito sanitario, progetti community no-profit e volontariato sul territorio.",
+      "present": "In corso",
+      "types": {
+        "community": "Community",
+        "volunteer": "Volontariato"
+      },
+      "duration": {
+        "year": "anno",
+        "years": "anni",
+        "month": "mese",
+        "months": "mesi",
+        "lessThanMonth": "< 1 mese"
+      },
+      "items": {
+        "medas": {
+          "company": "Medas Solutions",
+          "role": "Full-stack Developer",
+          "description": "Sviluppo di applicazioni web in Java e Vue.js per migliorare l'accesso dei pazienti ai referti medici e\nalla documentazione clinica tramite dossier online."
+        },
+        "elementBoard": {
+          "company": "Element Gaming",
+          "role": "Membro del Consiglio Direttivo",
+          "description": "Gestione strategica della community gaming no-profit: coordinamento del team, decisioni organizzative e sviluppo delle iniziative."
+        },
+        "elementDev": {
+          "company": "Element Gaming",
+          "role": "Full Stack Developer & Project Manager",
+          "description": "Sviluppo di applicazioni web interattive e dinamiche utilizzando Nuxt.js e Node.js per migliorare\nl’esperienza della community e facilitare l’accesso ai contenuti e alle funzionalità della piattaforma."
+        },
+        "pcsm": {
+          "company": "Protezione Civile di Settimo M.se",
+          "role": "Responsabile Comunicazione",
+          "description": "Volontario attivo: gestione della comunicazione pubblica e coordinamento informativo sul territorio."
+        }
+      }
+    },
+    "skills": {
+      "eyebrow": "Competenze",
+      "title": "Tecnologie e aree di lavoro",
+      "description": "Lavoro con tecnologie web basate su Javascript o Java, come Node.js, Grails, Nest.js, Vue.js e Nuxt.js. Sempre alla ricerca di nuove tecnologie da imparare, al fine di migliorare le mie competenze. Inoltre, mi occupo della UX e UI, mettendo l'accento sul design e la qualità del prodotto, con particolare attenzione ai dettagli e alla semplicità d'uso."
+    },
+    "preview": {
+      "eyebrow": "Esplora",
+      "title": "I progetti, i viaggi e tanto altro",
+      "description": "Dai progetti di sviluppo alle esperienze di viaggio, passando per utilities e risorse: un mix di contenuti che riflettono le mie passioni e competenze, con un approccio pratico e orientato all'uso reale.",
+      "cta": "Scopri di più",
+      "cards": {
+        "portfolio": {
+          "title": "Portfolio",
+          "description": "Una selezione di progetti, stack e casi studio tra prodotto, consulenza e sperimentazione personale."
+        },
+        "travels": {
+          "title": "Viaggi",
+          "description": "Luoghi, fotografie e itinerari che alimentano curiosità, osservazione e senso del dettaglio."
+        },
+        "utilities": {
+          "title": "Utilities",
+          "description": "Raccolte e mini-tool utili, tra archivi personali, reference veloci e risorse pronte all'uso."
+        }
+      }
+    }
+  },
+  "travels": {
+    "seo": {
+      "title": "Viaggi",
+      "description": "I miei viaggi: luoghi, fotografie e itinerari tra natura, cultura e avventura.",
+      "ogTitle": "Andrea Tombolato · Viaggi",
+      "ogDescription": "Esplora i viaggi di Andrea Tombolato: dalle Prealpi alla Route 66, dalla Scozia a Lisbona."
+    },
+    "hero": {
+      "eyebrow": "Viaggi",
+      "title": "I miei viaggi",
+      "description": "Luoghi, fotografie e itinerari che alimentano curiosità, osservazione e senso del dettaglio."
+    },
+    "empty": {
+      "title": "Nessun viaggio trovato",
+      "description": "Non ci sono ancora viaggi pubblicati."
+    }
+  },
+  "projects": {
+    "seo": {
+      "title": "Progetti",
+      "description": "I miei progetti: web app, API, piattaforme community e sperimentazioni personali. Stack, case study e link a GitHub.",
+      "ogTitle": "Andrea Tombolato · Progetti",
+      "ogDescription": "Esplora i progetti realizzati da Andrea Tombolato: Vue/Nuxt, Node/Nest, Java, UI/UX e molto altro."
+    },
+    "hero": {
+      "eyebrow": "Portfolio",
+      "title": "I miei progetti",
+      "description": "Una selezione di lavori tra prodotto, consulenza e sperimentazione personale."
+    },
+    "filters": {
+      "all": "Tutti",
+      "vueNuxt": "Vue / Nuxt",
+      "nodeNest": "Node / Nest",
+      "java": "Java",
+      "uiUx": "UI / UX",
+      "other": "Altro"
+    },
+    "card": {
+      "inProgress": "In corso",
+      "completed": "Completato",
+      "details": "Dettagli",
+      "noDescription": "Nessuna descrizione disponibile.",
+      "copyLink": "Copia link",
+      "linkCopied": "Link copiato!"
+    },
+    "empty": {
+      "title": "Nessun progetto trovato",
+      "description": "Nessun progetto corrisponde al filtro selezionato."
+    },
+    "detail": {
+      "back": "Torna ai progetti",
+      "overview": "Panoramica",
+      "features": "Funzionalità",
+      "gallery": "Galleria",
+      "client": "Cliente / Committente",
+      "techStack": "Stack tecnico",
+      "links": "Link",
+      "viewGithub": "Vedi su GitHub",
+      "viewWebsite": "Vai al sito",
+      "closeImage": "Chiudi immagine",
+      "noImages": "Nessuna immagine disponibile.",
+      "startDate": "Inizio del progetto: {date}",
+      "similar": "Progetti simili",
+      "similarSubtitle": "Altri progetti con {stack}",
+      "allProjects": "Tutti i progetti"
+    }
+  },
+  "utilities": {
+    "seo": {
+      "title": "Utilities",
+      "description": "Utilities personali: backup mod per GTA V, Fallout 4 e The Sims 4, skin Arma 3 per Altis Life e il mio hangar di Star Citizen.",
+      "ogTitle": "Andrea Tombolato · Utilities",
+      "ogDescription": "Backup mod, skin Arma 3 e hangar Star Citizen — archivi personali di Andrea Tombolato."
+    },
+    "hero": {
+      "eyebrow": "Utilities",
+      "title": "I miei archivi personali",
+      "description": "Una raccolta di riferimenti personali, backup mod e risorse gaming che uso o che ho costruito negli anni."
+    },
+    "back": "Torna alle Utilities",
+    "wip": {
+      "label": "Contenuto in arrivo",
+      "description": "Questa sezione è in fase di completamento. Torna a trovarci presto!"
+    },
+    "categories": {
+      "moddingBackup": {
+        "title": "Modding Backup",
+        "description": "Liste di backup e riferimenti per le mod che uso nei vari giochi.",
+        "eyebrow": "Games & Mod",
+        "sections": {
+          "gtaV": {
+            "title": "GTA V",
+            "description": "Lista mod e backup della configurazione per Grand Theft Auto V.",
+            "icon": "mdi-city-variant-outline"
+          },
+          "fallout4": {
+            "title": "Fallout 4",
+            "description": "Ordine di caricamento, mod essenziali e backup della configurazione per Fallout 4.",
+            "icon": "mdi-radioactive"
+          },
+          "sims4": {
+            "title": "The Sims 4",
+            "description": "Lista backup di CC, mod e package per The Sims 4.",
+            "icon": "mdi-home-heart"
+          }
+        }
+      },
+      "arma3": {
+        "title": "Arma 3 – Skin per Altis Life",
+        "description": "Skin e texture personalizzate che ho creato per i server Arma 3 Altis Life.",
+        "eyebrow": "Military Sim"
+      },
+      "starCitizen": {
+        "title": "Il mio Hangar di Star Citizen",
+        "description": "La lista di tutte le navi nel mio hangar di Star Citizen, con specifiche e lore.",
+        "eyebrow": "Space Sim"
+      }
+    }
+  },
+  "pages": {
+    "comingSoon": "Sezione in arrivo",
+    "backHome": "Torna alla home",
+    "portfolio": {
+      "title": "Portfolio",
+      "description": "Sto preparando i case study e la griglia progetti dello Step 3."
+    },
+    "travels": {
+      "title": "Viaggi",
+      "description": "Qui arriveranno mappa, gallery e paesi visitati nello Step 4."
+    },
+    "utilities": {
+      "title": "Utilities",
+      "description": "La sezione utilities ospiterà archivi, mod backup e strumenti pratici nello Step 5."
+    },
+    "contacts": {
+      "title": "Contatti",
+      "description": "Nello Step 6 arriveranno form contatti, disponibilità freelance e link social completi."
+    }
   }
 }

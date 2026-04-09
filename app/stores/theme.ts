@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 
 export const useThemeStore = defineStore('theme', {
   state: () => ({
-    isDark: false,
+    isDark: true,
   }),
 
   actions: {
@@ -26,8 +26,8 @@ export const useThemeStore = defineStore('theme', {
         if (savedTheme) {
           this.isDark = savedTheme === 'dark';
         } else {
-          // Controlla la preferenza del sistema
-          this.isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          // Dark-first di brand: in assenza di preferenza persistita partiamo sempre da dark.
+          this.isDark = true;
         }
       }
     },

@@ -1,11 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
-import {readFileSync} from "fs";
-import {resolve} from "path";
+import { readFileSync } from 'fs';
+import { resolve } from 'path';
 
-const packageJson = JSON.parse(
-    readFileSync(resolve(__dirname, './package.json'), 'utf-8')
-)
+const packageJson = JSON.parse(readFileSync(resolve(__dirname, './package.json'), 'utf-8'));
 
 export default defineNuxtConfig({
   ssr: true,
@@ -21,24 +19,25 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      titleTemplate: '%s - My Nuxt App',
-      meta: [
-        { name: 'robots', content: 'index, follow' }
-      ],
-      link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-      ],
-    }
+      titleTemplate: '%s - Andrea Tombolato',
+      meta: [{ name: 'robots', content: 'index, follow' }],
+      link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    },
   },
 
   modules: [
     'vuetify-nuxt-module',
     '@pinia/nuxt',
+    '@nuxt/content',
     '@nuxtjs/i18n',
     '@nuxtjs/google-fonts',
     '@nuxtjs/seo',
     '@nuxtjs/robots',
   ],
+
+  ogImage: {
+    enabled: false,
+  },
 
   i18n: {
     strategy: 'prefix_except_default',
@@ -55,8 +54,8 @@ export default defineNuxtConfig({
     },
     compilation: {
       strictMessage: false,
-      escapeHtml: false
-    }
+      escapeHtml: false,
+    },
   },
 
   robots: {
@@ -66,7 +65,7 @@ export default defineNuxtConfig({
       {
         userAgent: '*',
         allow: '/',
-      }
+      },
     ],
   },
 
@@ -74,6 +73,7 @@ export default defineNuxtConfig({
     subsets: ['latin'],
     families: {
       Inter: [400, 700],
+      'JetBrains Mono': [400, 600],
     },
     display: 'swap',
     prefetch: false,
@@ -88,63 +88,89 @@ export default defineNuxtConfig({
       styles: { configFile: '/assets/settings.scss' },
     },
     vuetifyOptions: {
-      // Configurazione di Vuetify
+      defaults: {
+        VBtn: {
+          rounded: 'lg',
+          elevation: 0,
+          class: 'text-none font-weight-medium',
+        },
+        VCard: {
+          rounded: 'lg',
+          elevation: 0,
+        },
+        VTextField: {
+          variant: 'outlined',
+          density: 'comfortable',
+          color: 'primary',
+        },
+        VTextarea: {
+          variant: 'outlined',
+          density: 'comfortable',
+          color: 'primary',
+        },
+        VSelect: {
+          variant: 'outlined',
+          density: 'comfortable',
+          color: 'primary',
+        },
+        VChip: {
+          size: 'small',
+        },
+      },
       theme: {
-        defaultTheme: 'light',
+        defaultTheme: 'dark',
         themes: {
           light: {
             dark: false,
             colors: {
-              primary: '#1976D2',
-              'primary-darken-1': '#1565C0',
-              'primary-lighten-1': '#42A5F5',
-              secondary: '#546E7A',
-              accent: '#0091EA',
+              primary: '#00a86b',
+              'primary-darken-1': '#007a4d',
+              'primary-lighten-1': '#33bf89',
+              secondary: '#007a4d',
+              accent: '#33bf89',
               error: '#D32F2F',
               info: '#0288D1',
               success: '#388E3C',
               warning: '#F57C00',
-              background: '#FAFAFA',
+              background: '#F2F8F5',
               surface: '#FFFFFF',
-              'surface-variant': '#F5F5F5',
-              'on-surface': '#212121',
-              'on-surface-variant': '#424242',
+              'surface-variant': '#E5F1EB',
+              'on-surface': '#16211C',
+              'on-surface-variant': '#2E433A',
               'on-primary': '#FFFFFF',
               'on-secondary': '#FFFFFF',
-              'on-background': '#212121',
-            }
+              'on-background': '#16211C',
+            },
           },
           dark: {
             dark: true,
             colors: {
-              primary: '#BB86FC',
-              'primary-darken-1': '#9965F4',
-              'primary-lighten-1': '#D5AAFF',
-              secondary: '#03DAC6',
-              accent: '#FF6E40',
+              primary: '#00a86b',
+              'primary-darken-1': '#007a4d',
+              'primary-lighten-1': '#33bf89',
+              secondary: '#007a4d',
+              accent: '#33bf89',
               error: '#CF6679',
-              info: '#03DAC6',
-              success: '#4CAF50',
-              warning: '#FFC107',
-              background: '#1A1A1A',
-              surface: '#252525',
-              'surface-variant': '#2F2F2F',
-              'surface-bright': '#3A3A3A',
-              'on-surface': '#E1E1E1',
-              'on-surface-variant': '#C4C4C4',
-              'on-primary': '#000000',
-              'on-secondary': '#000000',
-              'on-background': '#E1E1E1',
-            }
-          }
-        }
-      }
-    }
+              info: '#4FC3F7',
+              success: '#66BB6A',
+              warning: '#FFD54F',
+              background: '#0D1412',
+              surface: '#121C19',
+              'surface-variant': '#1D2B27',
+              'surface-bright': '#243630',
+              'on-surface': '#EAF5F1',
+              'on-surface-variant': '#C5D8D1',
+              'on-primary': '#FFFFFF',
+              'on-secondary': '#FFFFFF',
+              'on-background': '#EAF5F1',
+            },
+          },
+        },
+      },
+    },
   },
 
-  css: [
-    '~/assets/main.scss',
-  ],
+  css: ['~/assets/main.scss'],
 
   nitro: {
     compressPublicAssets: true,
@@ -153,4 +179,4 @@ export default defineNuxtConfig({
   build: {
     transpile: ['vuetify'],
   },
-})
+});

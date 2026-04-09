@@ -1,0 +1,58 @@
+---
+title: "FileHarbor"
+description: "Microservizio multi-tenant per la gestione degli upload di immagini con conversione WebP automatica, ridimensionamento on-demand e ottimizzazione schedulata."
+startDate: "2024"
+current: true
+github: "https://github.com/andreacw5/fileharbor"
+preview: "https://file-harbor.com/api/v1/files/9eb12aade81517f5a5e63909d6ef1ae6"
+client:
+  name: "Open Source"
+  bio: "Progetto open source"
+  website: "https://github.com/andreacw5/fileharbor"
+  logo: "https://file-harbor.com/api/v1/files/3fcd8577e8c1a378f655a3d5e0956d28"
+technical:
+  main:
+    icon: "/languages/bxl--nest-js.svg"
+    name: "Nest.js"
+    color: "#e0234e"
+  technologies:
+    - icon: "/languages/bxl--nest-js.svg"
+      title: "NestJS 10"
+    - icon: "/languages/simple-icons--prisma.svg"
+      title: "Prisma ORM"
+    - icon: "/languages/lineicons--typescript.svg"
+      title: "TypeScript"
+    - icon: "/languages/simple-icons--postgresql.svg"
+      title: "PostgreSQL"
+    - icon: "/languages/lineicons--nodejs.svg"
+      title: "Node.js"
+    - icon: "/languages/devicon-plain--swagger.svg"
+      title: "Swagger/OpenAPI"
+features:
+  - title: "Architettura Multi-tenant"
+    subtitle: "Isolamento completo tra client con autenticazione tramite API key dedicata per ogni tenant."
+    icon: "mdi:sitemap"
+  - title: "Gestione Immagini"
+    subtitle: "Upload, archiviazione e distribuzione di immagini con conversione automatica in formato WebP."
+    icon: "mdi:cloud-upload"
+  - title: "Sistema Avatar"
+    subtitle: "Un singolo avatar per utente con sostituzione automatica ad ogni nuovo upload."
+    icon: "mdi:account-circle"
+  - title: "Supporto Album"
+    subtitle: "Organizza le immagini in album pubblici o privati con accesso controllato tramite token."
+    icon: "mdi:folder-multiple-image"
+  - title: "Ottimizzazione Automatica"
+    subtitle: "Job schedulati per la compressione delle immagini e la rimozione automatica dei dati EXIF."
+    icon: "mdi:image-auto-adjust"
+  - title: "Ridimensionamento On-Demand"
+    subtitle: "Genera dimensioni e formati personalizzati al volo senza pre-generare varianti."
+    icon: "mdi:resize"
+  - title: "Accesso Sicuro"
+    subtitle: "Autenticazione JWT e API key con rate limiting integrato per proteggere gli endpoint."
+    icon: "mdi:shield-lock"
+  - title: "Documentazione API"
+    subtitle: "Documentazione Swagger/OpenAPI auto-generata, sempre aggiornata e consultabile via browser."
+    icon: "mdi:file-document"
+---
+
+Microservizio open source per la gestione degli upload di immagini costruito con NestJS 10 e Prisma ORM su PostgreSQL. Supporta un'architettura multi-tenant con isolamento completo tra client, autenticazione tramite JWT e API key, conversione automatica in WebP, ridimensionamento on-demand tramite la libreria Sharp e job schedulati per l'ottimizzazione e la rimozione dei dati EXIF. Gli album possono essere pubblici o privati con accesso token-based, e l'intera API è documentata tramite Swagger/OpenAPI.
