@@ -1,0 +1,91 @@
+{
+  "app": {
+    "name": "MyApp"
+  },
+  "nav": {
+    "home": "Home",
+    "events": "Events",
+    "settings": "Settings"
+  },
+  "user": {
+    "role": "User • Admin",
+    "administrator": "Administrator",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Logout",
+    "language": "Language"
+  },
+  "dialog": {
+    "confirmLogout": "Confirm Logout",
+    "logoutMessage": "Are you sure you want to logout from the application?",
+    "logoutNote": "You will need to login again to use the system.",
+    "cancel": "Cancel",
+    "confirm": "Logout",
+    "addEvent": "Add Event"
+  },
+  "configuration": {
+    "title": "Configuration",
+    "subtitle": "Manage and monitor your items configuration.",
+    "addNewItem": "Add New Item",
+    "editItem": "Edit Item",
+    "add": "Add",
+    "edit": "Edit",
+    "save": "Save",
+    "delete": "Delete",
+    "confirmDelete": "Confirm Delete",
+    "deleteMessage": "Are you sure you want to delete this item?",
+    "deleteNote": "This action cannot be undone.",
+    "itemAdded": "Item added successfully.",
+    "itemUpdated": "Item updated successfully.",
+    "itemDeleted": "Item deleted.",
+    "search": "Search by name or description…",
+    "filterType": "Filter by type",
+    "items": "items",
+    "noItems": "No items found",
+    "noItemsHint": "Try adjusting your search or add a new item.",
+    "stats": {
+      "total": "Total Items",
+      "enabled": "Enabled",
+      "disabled": "Disabled"
+    },
+    "table": {
+      "id": "ID",
+      "name": "Name",
+      "description": "Description",
+      "type": "Type",
+      "priority": "Priority",
+      "enabled": "Enabled",
+      "actions": ""
+    },
+    "form": {
+      "itemName": "Item Name",
+      "description": "Description",
+      "priority": "Priority",
+      "type": "Type",
+      "enabled": "Enabled"
+    },
+    "status": {
+      "enabled": "Enabled",
+      "disabled": "Disabled"
+    }
+  },
+  "validation": {
+    "required": "This field is required.",
+    "minLength": "Must be at least 2 characters."
+  },
+  "seo": {
+    "title": "Configuration",
+    "description": "Manage your items configuration with an easy-to-use interface.",
+    "ogTitle": "Configuration",
+    "ogDescription": "Manage your items configuration with an easy-to-use interface.",
+    "ogImage": "https://example.com/images/configuration-cover.webp"
+  },
+  "languages": {
+    "en": "English",
+    "it": "Italiano"
+  },
+  "theme": {
+    "light": "Switch to Light Mode",
+    "dark": "Switch to Dark Mode"
+  }
+}

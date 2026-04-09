@@ -1,0 +1,91 @@
+{
+  "app": {
+    "name": "MyApp"
+  },
+  "nav": {
+    "home": "Home",
+    "events": "Eventi",
+    "settings": "Impostazioni"
+  },
+  "user": {
+    "role": "Utente • Admin",
+    "administrator": "Amministratore",
+    "profile": "Profilo",
+    "settings": "Impostazioni",
+    "logout": "Esci",
+    "language": "Lingua"
+  },
+  "dialog": {
+    "confirmLogout": "Conferma Uscita",
+    "logoutMessage": "Sei sicuro di voler uscire dall'applicazione?",
+    "logoutNote": "Dovrai effettuare nuovamente l'accesso per utilizzare il sistema.",
+    "cancel": "Annulla",
+    "confirm": "Esci",
+    "addEvent": "Aggiungi Evento"
+  },
+  "configuration": {
+    "title": "Configurazione",
+    "subtitle": "Gestisci e monitora la configurazione dei tuoi elementi.",
+    "addNewItem": "Aggiungi Nuovo Elemento",
+    "editItem": "Modifica Elemento",
+    "add": "Aggiungi",
+    "edit": "Modifica",
+    "save": "Salva",
+    "delete": "Elimina",
+    "confirmDelete": "Conferma Eliminazione",
+    "deleteMessage": "Sei sicuro di voler eliminare questo elemento?",
+    "deleteNote": "Questa azione non può essere annullata.",
+    "itemAdded": "Elemento aggiunto con successo.",
+    "itemUpdated": "Elemento aggiornato con successo.",
+    "itemDeleted": "Elemento eliminato.",
+    "search": "Cerca per nome o descrizione…",
+    "filterType": "Filtra per tipo",
+    "items": "elementi",
+    "noItems": "Nessun elemento trovato",
+    "noItemsHint": "Prova a modificare la ricerca oppure aggiungi un nuovo elemento.",
+    "stats": {
+      "total": "Totale Elementi",
+      "enabled": "Abilitati",
+      "disabled": "Disabilitati"
+    },
+    "table": {
+      "id": "ID",
+      "name": "Nome",
+      "description": "Descrizione",
+      "type": "Tipo",
+      "priority": "Priorità",
+      "enabled": "Abilitato",
+      "actions": ""
+    },
+    "form": {
+      "itemName": "Nome Elemento",
+      "description": "Descrizione",
+      "priority": "Priorità",
+      "type": "Tipo",
+      "enabled": "Abilitato"
+    },
+    "status": {
+      "enabled": "Abilitato",
+      "disabled": "Disabilitato"
+    }
+  },
+  "validation": {
+    "required": "Questo campo è obbligatorio.",
+    "minLength": "Deve contenere almeno 2 caratteri."
+  },
+  "seo": {
+    "title": "Configurazione",
+    "description": "Gestisci la configurazione dei tuoi elementi con un'interfaccia facile da usare.",
+    "ogTitle": "Configurazione",
+    "ogDescription": "Gestisci la configurazione dei tuoi elementi con un'interfaccia facile da usare.",
+    "ogImage": "https://example.com/images/configuration-cover.webp"
+  },
+  "languages": {
+    "en": "English",
+    "it": "Italiano"
+  },
+  "theme": {
+    "light": "Passa a Modalità Chiara",
+    "dark": "Passa a Modalità Scura"
+  }
+}

@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  plm-demo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: plm-demo
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - HOST=0.0.0.0
+      - PORT=3000
+    restart: unless-stopped
+    networks:
+      - plm-network
+
+networks:
+  plm-network:
+    driver: bridge
+
