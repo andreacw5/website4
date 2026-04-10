@@ -4,7 +4,7 @@ description: "Template moderno e pulito per Nuxt 4 con Vuetify 3, Pinia, i18n e 
 startDate: "2023"
 current: true
 github: "https://github.com/andreacw5/nuxt-template"
-preview: "https://file-harbor.com/api/v1/files/1d1516da142bc712ae31b3a8504c9e75"
+preview: "https://fileharbor.heyatom.dev/v2/images/0ba29d26-9fd2-4df9-94e6-bb8ff28e225e"
 client:
   name: "Open Source"
   bio: "Progetto open source"

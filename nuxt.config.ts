@@ -7,7 +7,7 @@ const packageJson = JSON.parse(readFileSync(resolve(__dirname, './package.json')
 
 export default defineNuxtConfig({
   ssr: true,
-  compatibilityDate: '2026-04-07',
+  compatibilityDate: '2026-04-10',
   devtools: { enabled: true },
 
   runtimeConfig: {

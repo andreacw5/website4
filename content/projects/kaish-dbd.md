@@ -4,7 +4,7 @@ description: "Sito web personale dello streamer Kaish79, con creazione, salvatag
 startDate: "2025"
 current: true
 website: "https://kaish-dbd.it"
-preview: "https://file-harbor.com/api/v1/files/e1c2a47b-6282-4a3b-9d76-ce3dc04fe8b5"
+preview: "https://fileharbor.heyatom.dev/v2/images/293f4c8b-7fa8-472f-92b3-027f5011cc99"
 client:
   name: "Kaish79 (Private Client)"
   bio: "Kaish personal website and tool for DBD fans"
@@ -43,7 +43,7 @@ features:
     subtitle: "Visualizzazioni, ordinamento per popolarità e gestione delle featured"
     icon: "line-md:speedometer"
 images:
-  - image: "https://file-harbor.com/api/v1/files/e1c2a47b-6282-4a3b-9d76-ce3dc04fe8b5"
+  - image: "https://fileharbor.heyatom.dev/v2/images/293f4c8b-7fa8-472f-92b3-027f5011cc99"
     title: "Homepage"
 ---
 

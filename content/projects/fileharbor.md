@@ -4,7 +4,7 @@ description: "Microservizio multi-tenant per la gestione degli upload di immagin
 startDate: "2024"
 current: true
 github: "https://github.com/andreacw5/fileharbor"
-preview: "https://file-harbor.com/api/v1/files/9eb12aade81517f5a5e63909d6ef1ae6"
+preview: "https://fileharbor.heyatom.dev/v2/images/f2c695d8-7d1a-4131-b1b5-0cc2376d38d9"
 client:
   name: "Open Source"
   bio: "Progetto open source"
