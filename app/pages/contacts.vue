@@ -114,18 +114,13 @@ const submitForm = async () => {
     <v-container max-width="1280" class="px-4 px-md-6 py-8 py-md-12">
 
       <!-- ═══ HERO ══════════════════════════════════════════ -->
-      <section class="contacts-hero mb-12" aria-labelledby="contacts-hero-title">
-        <p class="text-overline text-primary font-weight-bold mb-3 brand-mono d-flex align-center ga-1">
-          <v-icon size="16" color="primary">mdi-email-outline</v-icon>
-          {{ t('contacts.hero.eyebrow') }}
-        </p>
-        <h1 id="contacts-hero-title" class="text-h3 font-weight-bold mb-4">
-          {{ t('contacts.hero.title') }}
-        </h1>
-        <p class="text-body-1 text-medium-emphasis hero-subtitle">
-          {{ t('contacts.hero.subtitle') }}
-        </p>
-      </section>
+      <LayoutPageTitle
+        :eyebrow="t('contacts.hero.eyebrow')"
+        :title="t('contacts.hero.title')"
+        :description="t('contacts.hero.subtitle')"
+        title-id="contacts-hero-title"
+        :mb="8"
+      />
 
       <!-- ═══ MAIN GRID ══════════════════════════════════════ -->
       <v-row :gutter="8" align="stretch">
@@ -375,11 +370,6 @@ const submitForm = async () => {
   letter-spacing: 0.08em;
 }
 
-/* ── Hero ──────────────────────────────────────────────── */
-.hero-subtitle {
-  line-height: 1.8;
-  font-size: 1.05rem;
-}
 
 /* ── Contact card (form) ───────────────────────────────── */
 .contact-card {

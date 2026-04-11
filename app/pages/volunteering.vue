@@ -26,20 +26,13 @@ const reflectionPoints = [
     <v-container max-width="1280" class="px-4 px-md-6 py-8 py-md-12">
 
       <!-- ═══ SEZIONE 1: HERO ════════════════════════════════════ -->
-      <section class="vol-hero mb-16" aria-labelledby="vol-hero-title">
-        <p class="text-overline text-primary font-weight-bold mb-3 brand-mono d-flex align-center ga-2">
-          <v-icon size="16" color="primary">mdi-shield-account</v-icon>
-          {{ t('volunteering.hero.eyebrow') }}
-        </p>
-
-        <h1 id="vol-hero-title" class="text-h3 font-weight-bold mb-5 vol-hero-title">
-          {{ t('volunteering.hero.title') }}
-        </h1>
-
-        <p class="text-body-1 text-medium-emphasis vol-hero-subtitle mb-6">
-          {{ t('volunteering.hero.subtitle') }}
-        </p>
-      </section>
+      <LayoutPageTitle
+        :eyebrow="t('volunteering.hero.eyebrow')"
+        :title="t('volunteering.hero.title')"
+        :description="t('volunteering.hero.subtitle')"
+        title-id="vol-hero-title"
+        :mb="8"
+      />
 
       <!-- ═══ SEZIONE 2: TIMELINE ════════════════════════════════ -->
       <section class="mb-20">

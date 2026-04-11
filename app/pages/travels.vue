@@ -111,17 +111,13 @@ const onPhotoOpen = (photo: TravelPhoto) => {
     <v-container max-width="1280" class="px-4 px-md-6 py-8 py-md-12">
 
       <!-- ─── Hero ─────────────────────────────────────────────── -->
-      <section class="travels-hero mb-10" aria-labelledby="travels-title">
-        <p class="text-overline text-primary font-weight-bold mb-2 brand-mono">
-          {{ t('travels.hero.eyebrow') }}
-        </p>
-        <h1 id="travels-title" class="text-h3 font-weight-bold mb-4">
-          {{ t('travels.hero.title') }}
-        </h1>
-        <p class="text-body-1 text-medium-emphasis mt-4 mb-0">
-          {{ t('travels.hero.description') }}
-        </p>
-      </section>
+      <LayoutPageTitle
+        :eyebrow="t('travels.hero.eyebrow')"
+        :title="t('travels.hero.title')"
+        :description="t('travels.hero.description')"
+        title-id="travels-title"
+        :mb="16"
+      />
 
       <section class="mb-10" aria-label="Statistiche viaggio">
         <v-skeleton-loader

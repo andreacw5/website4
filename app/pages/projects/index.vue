@@ -135,17 +135,13 @@ watch(activeFilter, () => nextTick(animateGrid));
     <v-container max-width="1280" class="px-4 px-md-6 py-8 py-md-12">
 
       <!-- ─── Hero ─────────────────────────────────────────────── -->
-      <section class="projects-hero mb-10" aria-labelledby="projects-title">
-        <p class="text-overline text-primary font-weight-bold mb-2 brand-mono">
-          {{ t('projects.hero.eyebrow') }}
-        </p>
-        <h1 id="projects-title" class="text-h3 font-weight-bold mb-4">
-          {{ t('projects.hero.title') }}
-        </h1>
-        <p class="text-body-1 text-medium-emphasis projects-hero-desc">
-          {{ t('projects.hero.description') }}
-        </p>
-      </section>
+      <LayoutPageTitle
+        :eyebrow="t('projects.hero.eyebrow')"
+        :title="t('projects.hero.title')"
+        :description="t('projects.hero.description')"
+        title-id="projects-title"
+        :mb="8"
+      />
 
       <!-- ─── Filtri ────────────────────────────────────────────── -->
       <section class="mb-8 filters-section" aria-label="Filtri progetti">
@@ -233,11 +229,6 @@ watch(activeFilter, () => nextTick(animateGrid));
 <style scoped>
 .projects-page {
   min-height: calc(100dvh - 80px);
-}
-
-.brand-mono {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  letter-spacing: 0.1em;
 }
 
 /* ── Filtri ─────────────────────────────────────────────────── */
