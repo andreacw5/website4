@@ -4,6 +4,21 @@ import { useI18n } from 'vue-i18n';
 const { t, tm, rt } = useI18n();
 const localePath = useLocalePath();
 
+const LCP_IMAGE_URL = 'https://fileharbor.heyatom.dev/v2/images/fba07e88-1415-4463-8ad5-0b5eace18a54';
+
+// Inject a <link rel="preload"> so the LCP image is discoverable in the
+// initial HTML document and starts fetching as early as possible.
+useHead({
+  link: [
+    {
+      rel: 'preload',
+      as: 'image',
+      href: LCP_IMAGE_URL,
+      fetchpriority: 'high',
+    },
+  ],
+});
+
 const careerStartYear = 2016;
 const yearsOfExperience = new Date().getFullYear() - careerStartYear;
 
@@ -106,9 +121,11 @@ const downloadCv = async () => {
         <div class="hero-side-card">
           <div class="hero-photo-wrapper">
             <v-img
-              src="https://fileharbor.heyatom.dev/v2/images/fba07e88-1415-4463-8ad5-0b5eace18a54"
+              :src="LCP_IMAGE_URL"
               :alt="t('home.about.portraitLabel')"
               cover
+              eager
+              :img-props="{ fetchpriority: 'high' }"
               class="hero-photo"
             />
           </div>

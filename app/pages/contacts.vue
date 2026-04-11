@@ -5,14 +5,14 @@ import { useI18n } from 'vue-i18n';
 const { t } = useI18n();
 const config = useRuntimeConfig();
 
-useSeoMeta({
+useSeo(() => ({
   title: t('contacts.seo.title'),
   description: t('contacts.seo.description'),
   ogTitle: t('contacts.seo.ogTitle'),
   ogDescription: t('contacts.seo.ogDescription'),
-  ogType: 'website',
-  twitterCard: 'summary_large_image',
-});
+  pageType: 'website',
+  breadcrumb: [{ name: t('nav.contacts'), url: '/contacts' }],
+}));
 
 // ── Form state ─────────────────────────────────────────────
 const form = ref<any>(null);

@@ -3,14 +3,13 @@ import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 
-useSeoMeta({
+useSeo(() => ({
   title: t('home.seo.title'),
   description: t('home.seo.description'),
   ogTitle: t('home.seo.ogTitle'),
   ogDescription: t('home.seo.ogDescription'),
-  ogType: 'website',
-  twitterCard: 'summary_large_image',
-});
+  pageType: 'website',
+}));
 </script>
 
 <template>

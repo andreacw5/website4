@@ -11,14 +11,14 @@ import type { Country, TravelCategory, TravelPhoto } from '~/types/travels';
 const { t } = useI18n();
 const { smAndDown, mdAndDown } = useDisplay();
 
-useSeoMeta({
+useSeo(() => ({
   title: t('travels.seo.title'),
   description: t('travels.seo.description'),
   ogTitle: t('travels.seo.ogTitle'),
   ogDescription: t('travels.seo.ogDescription'),
-  ogType: 'website',
-  twitterCard: 'summary_large_image',
-});
+  pageType: 'website',
+  breadcrumb: [{ name: t('nav.travels'), url: '/travels' }],
+}));
 
 const normalizeCategory = (category?: string): TravelCategory => {
   const normalized = category?.trim().toLowerCase();

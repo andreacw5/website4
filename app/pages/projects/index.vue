@@ -12,14 +12,14 @@ const loc = (field: LocaleString): string => {
 };
 
 // SEO
-useSeoMeta({
+useSeo(() => ({
   title: t('projects.seo.title'),
   description: t('projects.seo.description'),
   ogTitle: t('projects.seo.ogTitle'),
   ogDescription: t('projects.seo.ogDescription'),
-  ogType: 'website',
-  twitterCard: 'summary_large_image',
-});
+  pageType: 'website',
+  breadcrumb: [{ name: t('nav.portfolio'), url: '/projects' }],
+}));
 
 // Recupera tutti i progetti dalla collection Nuxt Content
 const { data: allProjects } = await useAsyncData('projects-list', () =>

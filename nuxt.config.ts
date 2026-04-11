@@ -14,6 +14,8 @@ export default defineNuxtConfig({
     public: {
       version: packageJson.version,
       apiBaseUrl: process.env.NUXT_PUBLIC_API_BASE_URL || 'http://localhost:8080',
+      basinUrl: process.env.NUXT_PUBLIC_BASIN_URL || 'https://usebasin.com/f/placeholder',
+      freelanceAvailable: process.env.NUXT_PUBLIC_FREELANCE_AVAILABLE || 'true',
     },
   },
 

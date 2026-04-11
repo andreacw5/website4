@@ -4,14 +4,14 @@ import { useI18n } from 'vue-i18n';
 const { t } = useI18n();
 const localePath = useLocalePath();
 
-useSeoMeta({
+useSeo(() => ({
   title: t('utilities.seo.title'),
   description: t('utilities.seo.description'),
   ogTitle: t('utilities.seo.ogTitle'),
   ogDescription: t('utilities.seo.ogDescription'),
-  ogType: 'website',
-  twitterCard: 'summary_large_image',
-});
+  pageType: 'website',
+  breadcrumb: [{ name: t('nav.utilities'), url: '/utilities' }],
+}));
 
 interface UtilityCategory {
   key: string;

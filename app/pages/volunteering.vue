@@ -4,14 +4,14 @@ import { useI18n } from 'vue-i18n';
 const { t } = useI18n();
 const localePath = useLocalePath();
 
-useSeoMeta({
+useSeo(() => ({
   title: t('volunteering.seo.title'),
   description: t('volunteering.seo.description'),
   ogTitle: t('volunteering.seo.ogTitle'),
   ogDescription: t('volunteering.seo.ogDescription'),
-  ogType: 'website',
-  twitterCard: 'summary_large_image',
-});
+  pageType: 'website',
+  breadcrumb: [{ name: t('nav.volunteering'), url: '/volunteering' }],
+}));
 
 const reflectionPoints = [
   'volunteering.reflection.p1',
