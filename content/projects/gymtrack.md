@@ -5,11 +5,11 @@ description:
   en: "Web application for a personal trainer's remote client management, with a Node.js backend and HTML/CSS/JS frontend. Features client profiles, session scheduling, custom exercise plans, progress tracking and integrated chat."
 startDate: "2018"
 current: false
-preview: "https://file-harbor.com/api/v1/files/dd294ba4654b994e9f921882215726ae"
+preview: "https://fileharbor.heyatom.dev/v2/images/147bbcaa-cdb3-4a21-8996-76eb6fcb004e"
 client:
   name: "Private Client"
   bio: "Personal Trainer"
-  logo: "https://file-harbor.com/api/v1/files/3fcd8577e8c1a378f655a3d5e0956d28"
+  logo: "https://fileharbor.heyatom.dev/v2/images/826652cd-8642-42a5-be39-af16717e83bc"
 technical:
   main:
     icon: "/languages/lineicons--nodejs.svg"

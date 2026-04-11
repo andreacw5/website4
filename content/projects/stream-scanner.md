@@ -5,11 +5,13 @@ description:
   en: "NestJS microservice for real-time Twitch channel monitoring. Detects live events, game changes and new clips, dispatches Discord Webhook notifications with custom embeds, and persists data to PostgreSQL via Prisma. REST API secured with API key auth and documented via Swagger."
 startDate: "2026"
 current: true
-preview: "https://file-harbor.com/api/v1/files/3065664c-c028-48f8-99f3-c5e707410a99"
+preview: "https://fileharbor.heyatom.dev/v2/images/58845231-8147-4594-9fb3-52c76f38f9e9"
 client:
-  name: "Private client"
-  bio: "Companion service for content tracking"
-  logo: "https://file-harbor.com/api/v1/files/3fcd8577e8c1a378f655a3d5e0956d28"
+  name: "Kaish79 (Private Project)"
+  bio: "A Twitch streamer and content creator focused on Dead by Daylight"
+  logo: "https://fileharbor.heyatom.dev/v2/images/8e242fb9-4926-459f-b601-8a748de6327b"
+  website: "https://kaish-dbd.it"
+  instagram: "https://www.instagram.com/kaish_1979"
 technical:
   main:
     icon: "/languages/bxl--nest-js.svg"

@@ -11,11 +11,11 @@ featured: true
 website: "https://kaish-dbd.it"
 preview: "https://fileharbor.heyatom.dev/v2/images/293f4c8b-7fa8-472f-92b3-027f5011cc99"
 client:
-  name: "Kaish79 (Private Client)"
-  bio: "Kaish personal website and tool for DBD fans"
-  logo: "https://static-cdn.jtvnw.net/jtv_user_pictures/80cb02d5-ffa5-400a-af19-ff652b2c1d6b-profile_image-150x150.png"
+  name: "Kaish79 (Private Project)"
+  bio: "A Twitch streamer and content creator focused on Dead by Daylight"
+  logo: "https://fileharbor.heyatom.dev/v2/images/8e242fb9-4926-459f-b601-8a748de6327b"
   website: "https://kaish-dbd.it"
-  instagram: "https://www.instagram.com/kaish_1979/"
+  instagram: "https://www.instagram.com/kaish_1979"
 technical:
   main:
     icon: "/languages/lineicons--nuxt.svg"

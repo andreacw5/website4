@@ -9,7 +9,7 @@ startDate: "2019"
 current: false
 github: "https://github.com/prociv-sm/website"
 website: "https://procivsettimomi.it"
-preview: "https://file-harbor.com/api/v1/files/7c461f4d8a1a2f286d5d7af35f98bc9d"
+preview: "https://fileharbor.heyatom.dev/v2/images/3e7de746-fc49-4d59-83e2-12ef0fdedabe"
 client:
   name: "Protezione Civile di Settimo Milanese"
   bio: "Associazione di Protezione Civile"
@@ -60,15 +60,15 @@ features:
       en: "Mobile-optimized Nuxt.js site with simple navigation and fast access to critical information."
     icon: "mdi-cellphone"
 images:
-  - image: "https://file-harbor.com/api/v1/files/7c461f4d8a1a2f286d5d7af35f98bc9d"
+  - image: "https://fileharbor.heyatom.dev/v2/images/3e7de746-fc49-4d59-83e2-12ef0fdedabe"
     title: "Homepage"
-  - image: "https://file-harbor.com/api/v1/files/a4dbd2135b6b264b8db13f0e57c50ee0"
+  - image: "https://fileharbor.heyatom.dev/v2/images/144010e3-811d-4673-9c95-12ed830b424f"
     title: "Le attività del gruppo"
-  - image: "https://file-harbor.com/api/v1/files/3a252f4a7b30fb8ca0e614fd1927590b"
+  - image: "https://fileharbor.heyatom.dev/v2/images/46fbfa7e-49c8-4078-b2bb-b61e94e11a7e"
     title: "La sede e i contatti"
-  - image: "https://file-harbor.com/api/v1/files/3c32584e42ddac97888b52b217102c7d"
+  - image: "https://fileharbor.heyatom.dev/v2/images/36c10583-fce9-447b-9017-4d869d946079"
     title: "I Volontari"
-  - image: "https://file-harbor.com/api/v1/files/a9f4d55e3c8365691b6fb18ae738351b"
+  - image: "https://fileharbor.heyatom.dev/v2/images/81f5a5ef-6320-4fe1-a3f1-641a061c7563"
     title: "I mezzi del gruppo"
 ---
 

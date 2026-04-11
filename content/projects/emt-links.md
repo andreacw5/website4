@@ -6,12 +6,12 @@ description:
 startDate: "2023"
 current: false
 website: "https://links.element-gaming.eu"
-preview: "https://file-harbor.com/api/v1/files/33925b190be7f512bc95f9062dce6d4f"
+preview: "https://fileharbor.heyatom.dev/v2/images/7acfe6a7-6da0-4782-9b40-1a5952496855"
 client:
   name: "Element Gaming ASD"
   bio: "Associazione operante nel campo e-sport"
   website: "https://element-gaming.eu"
-  logo: "https://file-harbor.com/api/v1/files/53cb109ede17055fcf4280649b9906e5"
+  logo: "https://fileharbor.heyatom.dev/v2/images/a2b69251-0704-48b6-bdd9-a7125d54bee5"
   instagram: "https://www.instagram.com/elementgaming.eu"
   linkedin: "https://www.linkedin.com/company/elementgaming"
 technical:
@@ -53,7 +53,7 @@ features:
       en: "Custom logo, color palette and typography aligned with the brand's visual identity."
     icon: "mdi-palette"
 images:
-  - image: "https://file-harbor.com/api/v1/files/33925b190be7f512bc95f9062dce6d4f"
+  - image: "https://fileharbor.heyatom.dev/v2/images/7acfe6a7-6da0-4782-9b40-1a5952496855"
     title: "Homepage"
 ---
 

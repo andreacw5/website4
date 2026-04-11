@@ -6,12 +6,12 @@ description:
 startDate: "2022"
 current: false
 github: "https://github.com/andreacw5/ziplink"
-preview: "https://file-harbor.com/api/v1/files/aa446189ee45f5b45daa112ad43861c6"
+preview: "https://fileharbor.heyatom.dev/v2/images/cc05c219-257a-4e69-bed7-a88391358019"
 client:
   name: "Open Source"
   bio: "Progetto open source"
   website: "https://github.com/andreacw5/ziplink"
-  logo: "https://file-harbor.com/api/v1/files/3fcd8577e8c1a378f655a3d5e0956d28"
+  logo: "https://fileharbor.heyatom.dev/v2/images/826652cd-8642-42a5-be39-af16717e83bc"
 technical:
   main:
     icon: "/languages/bxl--nest-js.svg"

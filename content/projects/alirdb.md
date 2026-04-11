@@ -6,11 +6,11 @@ description:
 startDate: "2017"
 current: false
 github: "https://github.com/andreacw5/ALIRDB"
-preview: "https://file-harbor.com/api/v1/files/e0f298cb75d18b5a6ee5b273d22f101a"
+preview: "https://fileharbor.heyatom.dev/v2/images/6dc7d8e3-1298-4510-8650-f23dfb36e534"
 client:
   name: "ALIR Community"
   bio: "Community di Arma 3"
-  logo: "https://file-harbor.com/api/v1/files/b770e4eef73c37303ffe66d40db35a05"
+  logo: "https://fileharbor.heyatom.dev/v2/images/3e0278bc-b127-4d7b-adc7-1c8644138189"
   instagram: "https://www.instagram.com/alircommunity"
 technical:
   main:

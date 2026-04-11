@@ -11,7 +11,7 @@ client:
   name: "Open Source"
   bio: "Progetto open source"
   website: "https://github.com/andreacw5/nuxt-template"
-  logo: "https://file-harbor.com/api/v1/files/3fcd8577e8c1a378f655a3d5e0956d28"
+  logo: "https://fileharbor.heyatom.dev/v2/images/826652cd-8642-42a5-be39-af16717e83bc"
 technical:
   main:
     icon: "/languages/lineicons--nuxt.svg"

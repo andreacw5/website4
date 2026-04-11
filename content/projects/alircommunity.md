@@ -7,11 +7,11 @@ description:
   en: "Website and forum for the ALIR Arma 3 community, built with HTML, CSS, JavaScript and PHP. A discussion and support hub for the association's dedicated Altis Life server, with user and content management."
 startDate: "2016"
 current: false
-preview: "https://file-harbor.com/api/v1/files/f265f76e62f263a4a76b57652ea5ed40"
+preview: "https://fileharbor.heyatom.dev/v2/images/b13e0902-19ae-4e51-8166-8247ac89153d"
 client:
   name: "ALIR Community"
   bio: "Community di Arma 3"
-  logo: "https://file-harbor.com/api/v1/files/b770e4eef73c37303ffe66d40db35a05"
+  logo: "https://fileharbor.heyatom.dev/v2/images/3e0278bc-b127-4d7b-adc7-1c8644138189"
   instagram: "https://www.instagram.com/alircommunity"
 technical:
   main:

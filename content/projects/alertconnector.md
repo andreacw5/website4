@@ -6,12 +6,12 @@ description:
 startDate: "2021"
 current: false
 github: "https://github.com/prociv-sm/management-api"
-preview: "https://file-harbor.com/api/v1/files/cc7e65a9-1467-46ce-98bd-2b8bc56ec114"
+preview: "https://fileharbor.heyatom.dev/v2/images/8c6df23e-88d1-4272-9165-2d3b481f93b7"
 client:
   name: "Open Source"
   bio: "Progetto open source"
   website: "https://github.com/prociv-sm/management-api"
-  logo: "https://file-harbor.com/api/v1/files/3fcd8577e8c1a378f655a3d5e0956d28"
+  logo: "https://fileharbor.heyatom.dev/v2/images/826652cd-8642-42a5-be39-af16717e83bc"
 technical:
   main:
     icon: "/languages/bxl--nest-js.svg"
