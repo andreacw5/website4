@@ -11,10 +11,13 @@ export interface ExperienceItem {
 }
 
 const iconMap: Record<string, string> = {
-  medas: 'mdi-hospital-building',
-  elementBoard: 'mdi-controller-classic',
-  elementDev: 'mdi-controller-classic',
   pcsm: 'mdi-shield-outline',
+};
+
+const svgIconMap: Record<string, string> = {
+  medas: '/company/medas.svg',
+  elementBoard: '/company/element.svg',
+  elementDev: '/company/element.svg',
 };
 
 export const useExperienceStore = defineStore('experience', {
@@ -29,5 +32,6 @@ export const useExperienceStore = defineStore('experience', {
 
   getters: {
     getIcon: () => (key: string): string => iconMap[key] ?? 'mdi-briefcase-outline',
+    getSvgIcon: () => (key: string): string | null => svgIconMap[key] ?? null,
   },
 });

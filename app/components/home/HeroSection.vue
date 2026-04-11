@@ -76,7 +76,7 @@ const downloadCv = async () => {
             <span class="typewriter-cursor brand-mono" aria-hidden="true">|</span>
           </div>
 
-          <div class="d-flex flex-wrap ga-3">
+          <div class="hero-actions d-flex flex-wrap ga-3">
             <v-btn
               @click="downloadCv"
               color="primary"
@@ -305,10 +305,63 @@ const downloadCv = async () => {
   }
 }
 
+/* ── Button hover animations ─────────────────────────────── */
+.hero-actions :deep(.v-btn) {
+  will-change: transform, box-shadow;
+  transition:
+    transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.28s ease;
+}
+
+.hero-actions :deep(.v-btn:hover) {
+  transform: translateY(-4px);
+}
+
+/* Filled primary button → green glow on hover */
+.hero-actions :deep(.v-btn--variant-elevated:hover),
+.hero-actions :deep(.v-btn--variant-flat:hover) {
+  box-shadow: 0 10px 28px rgba(0, 168, 107, 0.35);
+}
+
+/* Tonal button → softer glow */
+.hero-actions :deep(.v-btn--variant-tonal:hover) {
+  box-shadow: 0 8px 22px rgba(0, 168, 107, 0.20);
+}
+
+/* Download icon drops on hover */
+.hero-actions :deep(.v-btn:first-child:hover .v-btn__prepend) {
+  animation: iconDrop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Arrow slides right on hover */
+.hero-actions :deep(.v-btn:last-child:hover .v-btn__append) {
+  animation: arrowRight 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes iconDrop {
+  0%   { transform: translateY(0);   }
+  45%  { transform: translateY(4px); }
+  100% { transform: translateY(0);   }
+}
+
+@keyframes arrowRight {
+  0%   { transform: translateX(0);   }
+  45%  { transform: translateX(6px); }
+  100% { transform: translateX(0);   }
+}
+
 @media (max-width: 959px) {
   .hero-section {
     min-height: auto;
     padding: 0.5rem 0.5rem 2rem;
+  }
+
+  .typewriter-line {
+    min-height: unset;
+    height: 3.5rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
   }
 
   .scroll-indicator {
