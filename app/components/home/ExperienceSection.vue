@@ -50,6 +50,7 @@ const items = computed(() =>
     key: item.key,
     type: item.type,
     icon: store.getIcon(item.key),
+    svgIcon: store.getSvgIcon(item.key),
     isOngoing: !item.to,
     website: item.website,
     role: t(`home.timeline.items.${item.key}.role`),
@@ -122,7 +123,14 @@ onBeforeUnmount(() => {
                   class="flex-shrink-0 exp-avatar"
                   style="margin-top: 3px;"
                 >
-                  <v-icon size="20" class="exp-icon">{{ item.icon }}</v-icon>
+                  <span
+                    v-if="item.svgIcon"
+                    class="exp-svg-icon"
+                    :style="`-webkit-mask-image: url('${item.svgIcon}'); mask-image: url('${item.svgIcon}')`"
+                    :aria-label="item.company"
+                    role="img"
+                  />
+                  <v-icon v-else size="20" class="exp-icon">{{ item.icon }}</v-icon>
                 </v-avatar>
 
                 <div class="flex-1-1 overflow-hidden">
@@ -174,13 +182,32 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .experience-card {
+  position: relative;
+  overflow: hidden;
   background: linear-gradient(
     180deg,
-    var(--home-card-top, rgba(255, 255, 255, 0.96)),
-    var(--home-card-bottom, rgba(245, 248, 247, 0.88))
+    var(--home-card-top, rgba(255, 255, 255, 1.0)),
+    var(--home-card-bottom, rgba(250, 253, 252, 0.97))
   );
   border: 1px solid var(--home-brand-soft, rgba(0, 168, 107, 0.12));
   transition: border-color 0.24s ease, box-shadow 0.24s ease;
+}
+
+.experience-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/HT_Pattern_1.svg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.32s ease;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.experience-card:hover::after {
+  opacity: 0.07;
 }
 
 .experience-card:hover {
@@ -231,6 +258,25 @@ onBeforeUnmount(() => {
 }
 
 .experience-card:hover .exp-icon {
+  transform: scale(1.35);
+}
+
+/* ─── SVG icon ────────────────────────────────────────────── */
+.exp-svg-icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  background-color: rgba(0, 168, 107, 1);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.experience-card:hover .exp-svg-icon {
   transform: scale(1.35);
 }
 </style>
