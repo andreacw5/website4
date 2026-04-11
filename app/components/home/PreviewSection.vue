@@ -85,7 +85,7 @@ onBeforeUnmount(() => {
           <v-card class="preview-card h-100" rounded="xl" elevation="0">
             <v-card-text class="pa-6 d-flex flex-column h-100">
               <v-avatar size="52" rounded="xl" color="primary" variant="tonal" class="mb-6 preview-avatar">
-                <v-icon size="24">{{ card.icon }}</v-icon>
+                <v-icon size="24" class="preview-icon">{{ card.icon }}</v-icon>
               </v-avatar>
 
               <div class="text-h6 font-weight-semibold mb-3">
@@ -115,6 +115,8 @@ onBeforeUnmount(() => {
 }
 
 .preview-card {
+  position: relative;
+  overflow: hidden;
   background: linear-gradient(
     180deg,
     var(--home-card-top, rgba(255, 255, 255, 0.96)),
@@ -122,6 +124,23 @@ onBeforeUnmount(() => {
   );
   border: 1px solid var(--home-brand-soft, rgba(0, 168, 107, 0.12));
   transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
+}
+
+.preview-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/HT_Pattern_1.svg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.32s ease;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.preview-card:hover::after {
+  opacity: 0.07;
 }
 
 .preview-card:hover {
@@ -136,6 +155,14 @@ onBeforeUnmount(() => {
 
 .preview-card:hover .preview-avatar {
   box-shadow: 0 0 0 6px rgba(0, 168, 107, 0.14);
+}
+
+.preview-icon {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.preview-card:hover .preview-icon {
+  transform: scale(1.35);
 }
 </style>
 

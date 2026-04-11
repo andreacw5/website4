@@ -14,7 +14,8 @@
     "portfolio": "Portfolio",
     "travels": "Travels",
     "utilities": "Utilities",
-    "contacts": "Contacts"
+    "contacts": "Contacts",
+    "volunteering": "Volunteering"
   },
   "theme": {
     "light": "Switch to light theme",
@@ -26,7 +27,9 @@
     "socials": {
       "github": "Andrea Tombolato GitHub profile",
       "linkedin": "Andrea Tombolato LinkedIn profile",
-      "website": "heyatom.dev website"
+      "website": "heyatom.dev website",
+      "steam": "Andrea Tombolato Steam profile",
+      "instagram": "Andrea Tombolato Instagram profile"
     }
   },
   "home": {
@@ -113,11 +116,6 @@
           "company": "Element Gaming",
           "role": "Full Stack Developer & Project Manager",
           "description": "Development and management of technical community projects, from the website to internal tools."
-        },
-        "pcsm": {
-          "company": "Civil Protection",
-          "role": "Communication Lead",
-          "description": "Active volunteer: managing public communication and information coordination in the local area."
         }
       }
     },
@@ -125,6 +123,25 @@
       "eyebrow": "Skills",
       "title": "Technologies and work areas",
       "description": "I work with web technologies based on JavaScript or Java, such as Node.js, Grails, Nest.js, Vue.js and Nuxt.js. Always looking for new technologies to learn, to continuously improve my skills. I also take care of UX and UI, with an emphasis on design and product quality, paying close attention to detail and ease of use."
+    },
+    "volunteering": {
+      "eyebrow": "Volunteer since 2015",
+      "title": "Civil Protection",
+      "p1": "Since 2015 I have been a volunteer in the Civil Protection group of Settimo Milanese. In 2021 I became squad leader, managing the group's evening shifts. In 2022 I was elected as a board member, choosing to step back from operational duties to handle external communications, an area the group needed to revive.",
+      "p2": "I relaunched the group's Facebook and Instagram pages, designed and developed the official website procivsettimomi.it.",
+      "p3": "In February 2026 I concluded my journey in Settimo Milanese. I am currently in the process of joining the Milan Municipal Civil Protection Group.",
+      "cta_primary": "Learn more",
+      "cta_secondary": "Visit the website",
+      "stat_years": "years of volunteering",
+      "stat_roles": "roles held",
+      "stat_salary": "salary. Ever.",
+      "badge": "Milan Municipal Group · joining 2026"
+    },
+    "cta": {
+      "eyebrow": "Contacts",
+      "title": "Have a project in mind?",
+      "subtitle": "I'm always open to new collaborations, freelance consulting, and interesting opportunities. Drop me a message and let's talk.",
+      "button": "Get in touch"
     },
     "preview": {
       "eyebrow": "Explore",
@@ -159,6 +176,20 @@
       "title": "My travels",
       "description": "Places, photos, and routes that feed curiosity, observation, and attention to detail."
     },
+    "stats": {
+      "countries": "Countries visited",
+      "continents": "Continents",
+      "photos": "Photos",
+      "since": "First trip"
+    },
+    "filters": {
+      "all": "All",
+      "natura": "Nature",
+      "citta": "City",
+      "montagna": "Mountain",
+      "mare": "Sea",
+      "empty": "No photos for this category."
+    },
     "empty": {
       "title": "No travels found",
       "description": "No travels have been published yet."
@@ -187,6 +218,7 @@
     "card": {
       "inProgress": "In progress",
       "completed": "Completed",
+      "featured": "Featured",
       "details": "Details",
       "noDescription": "No description available.",
       "copyLink": "Copy link",
@@ -266,6 +298,83 @@
       }
     }
   },
+  "volunteering": {
+    "seo": {
+      "title": "Volunteering",
+      "description": "Since 2015 in Civil Protection: website, social media and alert bots for the Settimo Milanese group. Now joining the Milan Municipal Group.",
+      "ogTitle": "Volunteering · Andrea Tombolato",
+      "ogDescription": "Since 2015 in Civil Protection: tech projects for the local community."
+    },
+    "hero": {
+      "eyebrow": "Civil Protection · 2015 – present",
+      "title": "Years serving the community",
+      "subtitle": "I applied the same skills I use for my clients to solve real problems in emergency contexts.",
+      "badge": "Milan Municipal Group · joining 2026"
+    },
+    "timeline": {
+      "eyebrow": "Journey",
+      "title": "Roles over the years",
+      "chips": {
+        "operational": "Operational",
+        "management": "Management",
+        "communication": "Communication"
+      },
+      "items": {
+        "volunteer": {
+          "title": "Joined as a volunteer",
+          "description": "Began my journey in the Civil Protection group of Settimo Milanese. Operational training, duty shifts, and participation in exercises."
+        },
+        "squadLeader": {
+          "title": "Squad leader",
+          "description": "Managed the group's evening shift schedule and coordinated on-duty teams."
+        },
+        "councillor": {
+          "title": "Elected board member",
+          "description": "Elected to the group's board of directors. Voluntarily stepped back from operational duties to focus on governance and communications."
+        },
+        "communications": {
+          "title": "Communications lead",
+          "description": "Relaunched Facebook and Instagram pages, designed and built the official website, and created an automated alert bot system for real-time volunteer notifications."
+        },
+        "milan": {
+          "title": "Milan Municipal Group",
+          "description": "Concluded my journey in Settimo Milanese in February 2026. Currently in the process of joining the Milan Municipal Civil Protection Group."
+        }
+      }
+    },
+    "projects": {
+      "eyebrow": "What I built",
+      "title": "Projects delivered",
+      "items": {
+        "website": {
+          "description": "Designed and built from scratch the official website for the Settimo Milanese Civil Protection group. Goal: an institutional and informative online presence for local citizens."
+        },
+        "social": {
+          "description": "Inactive pages brought back to life after years of silence. Content strategy for institutional and operational communication: never alarmist, always informative."
+        },
+        "bot": {
+          "description": "Automated notification system for volunteers. 24/7 monitoring of weather and operational alerts on the territory. Zero manual word-of-mouth, immediate response."
+        }
+      }
+    },
+    "reflection": {
+      "eyebrow": "What I learned",
+      "title": "What Civil Protection taught me",
+      "p1": "Communicating clearly under pressure. Having the right information is not enough — you need to deliver it at the right moment, in the right format, to the right person. That holds in an emergency just as much as in a product meeting.",
+      "p2": "Coordinating across different institutions — the Municipality, the Prefecture, the Region — each with its own procedures, pace and language. I learned that adapting how you communicate is not a courtesy: it is the only way to actually make things happen.",
+      "p3": "Building tools that have to work when it really matters. A bot that fails to send a notification at 3am is not a bug to fix in the next sprint — it is a volunteer who leaves late. That kind of responsibility changes the way you write code.",
+      "p4": "The difference between showing up and leaving something behind. When I joined, the group had no website, the social pages were dormant and volunteers were contacted by phone. When I left, there were tools that kept running without me. That is the only measure that counts."
+    },
+    "today": {
+      "eyebrow": "Today",
+      "title": "The next chapter",
+      "text": "In February 2026 I concluded my journey in Settimo Milanese after eleven years. I am currently in the process of joining the Milan Municipal Civil Protection Group: a larger reality, with more complex scenarios and the same motivation as always."
+    },
+    "cta": {
+      "primary": "Let's talk about a project",
+      "secondary": "Visit the website"
+    }
+  },
   "pages": {
     "comingSoon": "Section coming soon",
     "backHome": "Back to home",
@@ -284,6 +393,61 @@
     "contacts": {
       "title": "Contacts",
       "description": "Step 6 will add the contact form, freelance availability, and complete social links."
+    }
+  },
+  "contacts": {
+    "seo": {
+      "title": "Contacts",
+      "description": "Contact Andrea Tombolato for freelance projects, collaborations, or just to say hi.",
+      "ogTitle": "Contacts · Andrea Tombolato",
+      "ogDescription": "Have a project in mind? Write to me, I'm always happy to chat."
+    },
+    "hero": {
+      "eyebrow": "Contacts",
+      "title": "Let's talk",
+      "subtitle": "Have a project in mind, want to collaborate, or just get in touch? Fill out the form or find me on social media."
+    },
+    "form": {
+      "eyebrow": "Message",
+      "title": "Send a message",
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "messagePlaceholder": "Tell me about your project or just say hi…",
+      "submit": "Send message",
+      "submitTooltipDisabled": "Fill in all fields to send",
+      "required": "This field is required",
+      "emailInvalid": "Please enter a valid email address",
+      "minMessage": "The message must be at least 10 characters long",
+      "successMessage": "Message sent successfully! I'll get back to you as soon as possible.",
+      "errorMessage": "An error occurred while sending. Please try again later.",
+      "successDialog": {
+        "title": "Message sent!",
+        "subtitle": "Thanks for reaching out. I've received your message and will get back to you as soon as possible.",
+        "close": "Got it, thanks!"
+      }
+    },
+    "socials": {
+      "eyebrow": "Social",
+      "title": "Find me online"
+    },
+    "availability": {
+      "eyebrow": "Availability",
+      "statusAvailable": "Available",
+      "statusBusy": "Busy",
+      "available": "I'm available for new freelance projects",
+      "unavailable": "Currently unavailable, but feel free to reach out anyway",
+      "availableTitle": "Open to new projects",
+      "availableSubtitle": "I'm available for freelance work, consulting, and new collaborations.",
+      "availableHint": "Drop me a message using the form",
+      "unavailableTitle": "Currently pretty busy",
+      "unavailableSubtitle": "I have active projects keeping me occupied, but that doesn't mean we can't talk. The right timing can always be found.",
+      "unavailableHint": "Reach out anyway — I might have a slot opening soon"
+    },
+    "map": {
+      "eyebrow": "Where I am",
+      "title": "Milan, Italy",
+      "label": "Interactive map of Milan, Italy"
     }
   }
 }

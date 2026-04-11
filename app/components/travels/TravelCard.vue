@@ -81,6 +81,23 @@ const formatDate = (dateStr?: string) => {
   transition: box-shadow 0.22s ease, border-color 0.22s ease;
 }
 
+.travel-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/HT_Pattern_1.svg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.32s ease;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.travel-card:hover::after {
+  opacity: 0.05;
+}
+
 .travel-card:hover {
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
   border-color: rgba(var(--v-theme-primary), 0.15);

@@ -169,3 +169,6 @@ docker run -p 3000:3000 heyatom-website
 ## License
 
 [MIT](LICENSE.md)
+
+### Flags 
+https://www.svgrepo.com/collection/decathlon-payment-vectors/2

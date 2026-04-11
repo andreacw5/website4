@@ -4,12 +4,17 @@ import { useI18n } from 'vue-i18n';
 const { t } = useI18n();
 const localePath = useLocalePath();
 
-useSeoMeta({
-  title: `${t('utilities.categories.arma3.title')} · ${t('utilities.seo.title')}`,
+useSeo(() => ({
+  title: t('utilities.categories.arma3.title'),
   description: t('utilities.categories.arma3.description'),
-  ogType: 'website',
-  twitterCard: 'summary_large_image',
-});
+  ogTitle: `${t('utilities.categories.arma3.title')} · ${t('utilities.seo.title')}`,
+  pageType: 'website',
+  canonical: '/utilities/arma3-altis-life',
+  breadcrumb: [
+    { name: t('nav.utilities'), url: '/utilities' },
+    { name: t('utilities.categories.arma3.title'), url: '/utilities/arma3-altis-life' },
+  ],
+}));
 
 // GSAP entrance
 const contentRef = ref<HTMLElement | null>(null);

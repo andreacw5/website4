@@ -82,11 +82,30 @@ const skillsStore = useSkillsStore();
 }
 
 .skill-card {
+  position: relative;
+  overflow: hidden;
   background: linear-gradient(180deg, var(--home-card-top, rgba(255,255,255,0.96)), var(--home-card-bottom, rgba(245,248,247,0.88)));
   border: 1px solid var(--home-brand-soft, rgba(0,168,107,0.12));
   transition: transform 0.25s cubic-bezier(0.22, 0.61, 0.36, 1),
               box-shadow 0.25s ease,
               border-color 0.25s ease;
+}
+
+.skill-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/HT_Pattern_1.svg');
+  background-size: 180%;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.32s ease;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.skill-link:hover .skill-card::after {
+  opacity: 0.07;
 }
 
 .skill-link:hover .skill-card {

@@ -7,22 +7,16 @@ const { t } = useI18n();
 const theme = useTheme();
 
 const isDark = computed(() => theme.current.value.dark);
-
-// Card gradient colours — resolved at runtime, immune to CSS specificity issues
-const cardTop    = computed(() => isDark.value ? 'rgba(32, 42, 39, 1)'    : 'rgba(248, 252, 250, 1)');
-const cardBottom = computed(() => isDark.value ? 'rgba(22, 30, 28, 1)'    : 'rgba(237, 247, 242, 1)');
-const brandSoft  = computed(() => isDark.value ? 'rgba(0,168,107,0.20)'   : 'rgba(0,168,107,0.14)');
-const brandHover = computed(() => isDark.value ? 'rgba(0,168,107,0.32)'   : 'rgba(0,168,107,0.26)');
-const textStrong = computed(() => isDark.value ? '#d6ede5'                 : '#15211b');
+const brandSoft = computed(() => isDark.value ? 'rgba(0,168,107,0.30)' : 'rgba(0,168,107,0.14)');
 
 const careerStartYear = 2016;
 const yearsOfExperience = new Date().getFullYear() - careerStartYear;
 
 // ── Photo stack interaction ───────────────────────────────────
 const photoSrcs = [
-  'https://file-harbor.com/api/v1/files/1f411c33ba295890895214af38afbee9',
-  'https://file-harbor.com/api/v1/files/2f34563f7b7905b32b9d992649a66853',
-  'https://file-harbor.com/api/v1/files/1592da16cae9a30b1b4be0f667300949',
+  'https://fileharbor.heyatom.dev/v2/images/b6e3fce0-4b4a-49c5-a636-c8d5d5954335',
+  'https://fileharbor.heyatom.dev/v2/images/f4a215ed-406d-4532-8f4f-67cc3fa132f6',
+  'https://fileharbor.heyatom.dev/v2/images/07dc987f-631e-49c2-87dd-c7602fc58243',
 ] as const;
 
 // cardOrder[slot] = image index — slot 0=back, 1=mid, 2=front
@@ -159,16 +153,20 @@ onBeforeUnmount(() => {
         cols="12"
         md="4"
       >
-        <div data-about-animate class="about-highlight h-100">
-          <v-avatar size="40" rounded="lg" color="primary" variant="tonal" class="mb-4 flex-shrink-0 about-highlight-icon">
-            <v-icon size="20" class="about-highlight-icon-inner">{{ h.icon }}</v-icon>
-          </v-avatar>
-          <div class="text-caption text-medium-emphasis text-uppercase jetbrain mb-1" style="letter-spacing: 0.1em;">
-            {{ t(h.label) }}
-          </div>
-          <p class="text-body-2 font-weight-medium about-highlight-value mb-0">
-            {{ t(h.value, h.key === 'experience' ? { years: yearsOfExperience } : {}) }}
-          </p>
+        <div data-about-animate class="h-100">
+          <v-card class="about-card h-100" rounded="xl" elevation="0">
+            <v-card-text class="pa-6 d-flex flex-column h-100">
+              <v-avatar size="52" rounded="xl" color="primary" variant="tonal" class="mb-6 about-card-avatar">
+                <v-icon size="24" class="about-card-icon-inner">{{ h.icon }}</v-icon>
+              </v-avatar>
+              <div class="text-subtitle-1 font-weight-semibold mb-3 jetbrain">
+                {{ t(h.label) }}
+              </div>
+              <p class="text-body-2 text-caption text-medium-emphasis mb-0 flex-grow-1">
+                {{ t(h.value, h.key === 'experience' ? { years: yearsOfExperience } : {}) }}
+              </p>
+            </v-card-text>
+          </v-card>
         </div>
       </v-col>
     </v-row>
@@ -260,41 +258,55 @@ onBeforeUnmount(() => {
   border-color: v-bind(brandSoft) !important;
 }
 
-/* ── Highlights ─────────────────────────────────────────────── */
-.about-highlight {
-  display: flex;
-  flex-direction: column;
-  padding: 1.5rem 1.25rem;
-  border-radius: 1rem;
-  background: linear-gradient(160deg, v-bind(cardTop), v-bind(cardBottom));
-  border: 1px solid v-bind(brandSoft);
-  transition: border-color 0.24s ease, box-shadow 0.24s ease;
+/* ── Highlights / Cards ─────────────────────────────────────── */
+.about-card {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    var(--home-card-top, rgba(255, 255, 255, 0.96)),
+    var(--home-card-bottom, rgba(245, 248, 247, 0.88))
+  );
+  border: 1px solid var(--home-brand-soft, rgba(0, 168, 107, 0.12));
+  transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
 }
 
-.about-highlight:hover {
-  border-color: v-bind(brandHover);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.09);
+.about-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/HT_Pattern_1.svg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.32s ease;
+  pointer-events: none;
+  border-radius: inherit;
 }
 
-.about-highlight-icon {
+.about-card:hover::after {
+  opacity: 0.07;
+}
+
+.about-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0, 168, 107, 0.22);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.12);
+}
+
+.about-card-avatar {
   transition: box-shadow 0.25s ease;
 }
 
-.about-highlight:hover .about-highlight-icon {
-  box-shadow: 0 0 0 6px rgba(0, 168, 107, 0.13);
+.about-card:hover .about-card-avatar {
+  box-shadow: 0 0 0 6px rgba(0, 168, 107, 0.14);
 }
 
-/* ─── Icon scale on hover ─────────────────────────────────── */
-.about-highlight-icon-inner {
+.about-card-icon-inner {
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.about-highlight:hover .about-highlight-icon-inner {
+.about-card:hover .about-card-icon-inner {
   transform: scale(1.35);
-}
-
-.about-highlight-value {
-  color: v-bind(textStrong);
-  line-height: 1.55;
 }
 </style>

@@ -4,12 +4,17 @@ import { useI18n } from 'vue-i18n';
 const { t } = useI18n();
 const localePath = useLocalePath();
 
-useSeoMeta({
-  title: `${t('utilities.categories.moddingBackup.title')} · ${t('utilities.seo.title')}`,
+useSeo(() => ({
+  title: t('utilities.categories.moddingBackup.title'),
   description: t('utilities.categories.moddingBackup.description'),
-  ogType: 'website',
-  twitterCard: 'summary_large_image',
-});
+  ogTitle: `${t('utilities.categories.moddingBackup.title')} · ${t('utilities.seo.title')}`,
+  pageType: 'website',
+  canonical: '/utilities/modding-backup',
+  breadcrumb: [
+    { name: t('nav.utilities'), url: '/utilities' },
+    { name: t('utilities.categories.moddingBackup.title'), url: '/utilities/modding-backup' },
+  ],
+}));
 
 const moddingTab = ref<'gtaV' | 'fallout4' | 'sims4'>('gtaV');
 

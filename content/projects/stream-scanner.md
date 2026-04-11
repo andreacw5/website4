@@ -1,13 +1,17 @@
 ---
 title: "Stream Scanner"
-description: "Stream Scanner è un microservizio pensato per monitorare in tempo reale lo stato dei canali Twitch, raccogliendo dati su dirette, giochi e clip. Espone un'API REST protetta da API Key per consentire ad altri servizi di integrarsi e ricevere aggiornamenti sui canali monitorati. Supporta notifiche automatiche tramite Webhook Discord e analisi dei cambiamenti di stato (live, fine diretta, cambio gioco, nuove clip)."
+description:
+  it: "Microservizio NestJS per il monitoraggio in tempo reale dei canali Twitch. Rileva eventi live, cambio gioco e nuove clip, invia notifiche Discord via Webhook con embed personalizzati e persiste i dati su PostgreSQL via Prisma. REST API protetta da API Key e documentata con Swagger."
+  en: "NestJS microservice for real-time Twitch channel monitoring. Detects live events, game changes and new clips, dispatches Discord Webhook notifications with custom embeds, and persists data to PostgreSQL via Prisma. REST API secured with API key auth and documented via Swagger."
 startDate: "2026"
 current: true
-preview: "https://file-harbor.com/api/v1/files/3065664c-c028-48f8-99f3-c5e707410a99"
+preview: "https://fileharbor.heyatom.dev/v2/images/58845231-8147-4594-9fb3-52c76f38f9e9"
 client:
-  name: "Private client"
-  bio: "Companion service for content tracking"
-  logo: "https://file-harbor.com/api/v1/files/3fcd8577e8c1a378f655a3d5e0956d28"
+  name: "Kaish79 (Private Project)"
+  bio: "A Twitch streamer and content creator focused on Dead by Daylight"
+  logo: "https://fileharbor.heyatom.dev/v2/images/8e242fb9-4926-459f-b601-8a748de6327b"
+  website: "https://kaish-dbd.it"
+  instagram: "https://www.instagram.com/kaish_1979"
 technical:
   main:
     icon: "/languages/bxl--nest-js.svg"
@@ -27,19 +31,34 @@ technical:
     - icon: "/languages/devicon-plain--swagger.svg"
       title: "Swagger"
 features:
-  - title: "Monitoraggio live"
-    subtitle: "Controllo automatico dello stato online/offline dei canali Twitch"
-    icon: "line-md:cloud-up"
-  - title: "Notifiche Discord"
-    subtitle: "Webhook con embed personalizzati per eventi come dirette, giochi e clip"
-    icon: "line-md:bell"
-  - title: "Gestione clip e VOD"
-    subtitle: "Controllo periodico e salvataggio automatico di nuove clip e VOD"
-    icon: "line-md:pause-to-play-filled-transition"
-  - title: "API sicura"
-    subtitle: "REST API protetta con autenticazione tramite API Key personale"
-    icon: "line-md:security"
+  - title:
+      it: "Monitoraggio live"
+      en: "Live Monitoring"
+    subtitle:
+      it: "Polling automatico dello stato online/offline dei canali Twitch con rilevamento eventi in tempo reale."
+      en: "Automatic polling of Twitch channel online/offline status with real-time event detection."
+    icon: "mdi-cloud-upload"
+  - title:
+      it: "Notifiche Discord"
+      en: "Discord Notifications"
+    subtitle:
+      it: "Webhook con embed personalizzati per eventi di live, cambio gioco e pubblicazione di nuove clip."
+      en: "Webhook notifications with custom embeds for live, game change and new clip events."
+    icon: "mdi-bell"
+  - title:
+      it: "Gestione clip e VOD"
+      en: "Clip & VOD Management"
+    subtitle:
+      it: "Polling periodico e salvataggio automatico di nuove clip e VOD su database."
+      en: "Periodic polling and automatic saving of new clips and VODs to the database."
+    icon: "mdi-play-box-multiple"
+  - title:
+      it: "API sicura"
+      en: "Secure API"
+    subtitle:
+      it: "REST API protetta con autenticazione tramite API Key personale e documentata via Swagger."
+      en: "REST API secured with personal API key authentication and documented via Swagger."
+    icon: "mdi-shield-lock"
 ---
 
-Microservizio per il monitoraggio in tempo reale dei canali Twitch, con notifiche Discord e REST API protetta da API Key.
 

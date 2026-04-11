@@ -1,5 +1,22 @@
 import { defineCollection, defineContentConfig, z } from '@nuxt/content';
 
+// Campo localizzato: stringa semplice oppure oggetto { it, en }
+const localeField = z.union([
+  z.string(),
+  z.object({
+    it: z.string().optional(),
+    en: z.string().optional(),
+  }),
+]).optional();
+
+const localeFieldRequired = z.union([
+  z.string(),
+  z.object({
+    it: z.string().optional(),
+    en: z.string().optional(),
+  }),
+]);
+
 export default defineContentConfig({
   collections: {
     pages: defineCollection({
@@ -7,23 +24,35 @@ export default defineContentConfig({
       source: '*.md',
       schema: z.object({
         title: z.string().optional(),
-        description: z.string().optional(),
+        description: localeField,
       }),
     }),
     travels: defineCollection({
       type: 'page',
-      source: 'travels/**/*.md',
+      source: 'travels/countries/**/*.md',
       schema: z.object({
-        title: z.string(),
-        short: z.string().optional(),
-        cover: z.string().optional(),
-        category: z.string().optional(),
-        created_at: z.string().optional(),
-        gallery: z.array(z.object({
-          image: z.string(),
-          alt: z.string().optional(),
-          cols: z.number().optional(),
-        })).optional(),
+        name: z.string(),
+        flag: z.string(),
+        year: z.number(),
+        continent: z.string(),
+        visited: z.boolean(),
+        highlight: z.boolean(),
+      }),
+    }),
+    travelsPhotos: defineCollection({
+      type: 'page',
+      source: 'travels/photos/**/*.md',
+      schema: z.object({
+        id: z.string(),
+        location: z.string(),
+        country: z.string().optional(),
+        countrySlug: z.string(),
+        year: z.number(),
+        category: z.string(),
+        aspect: z.string().optional(),
+        src: z.string(),
+        alt: z.string(),
+        featured: z.boolean().optional(),
       }),
     }),
     starships: defineCollection({
@@ -54,14 +83,29 @@ export default defineContentConfig({
         image: z.string().nullable().optional(),
       }),
     }),
+    volunteeringProjects: defineCollection({
+      type: 'page',
+      source: 'volunteering/**/*.md',
+      schema: z.object({
+        title: z.string(),
+        slug: z.string(),
+        tag: z.string(),
+        link: z.string().optional(),
+        facebook: z.string().optional(),
+        instagram: z.string().optional(),
+        github: z.string().optional(),
+        order: z.number().optional(),
+      }),
+    }),
     projects: defineCollection({
       type: 'page',
       source: 'projects/**/*.md',
       schema: z.object({
-        title: z.string(),
-        description: z.string().optional(),
+        title: localeFieldRequired,
+        description: localeField,
         startDate: z.string().optional(),
         current: z.boolean().optional(),
+        featured: z.boolean().optional(),
         github: z.string().optional(),
         website: z.string().optional(),
         preview: z.string().optional(),
@@ -85,8 +129,8 @@ export default defineContentConfig({
           })).optional(),
         }).optional(),
         features: z.array(z.object({
-          title: z.string(),
-          subtitle: z.string(),
+          title: localeFieldRequired,
+          subtitle: localeFieldRequired,
           icon: z.string(),
         })).optional(),
         images: z.array(z.object({
@@ -97,4 +141,3 @@ export default defineContentConfig({
     }),
   },
 });
-

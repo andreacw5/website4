@@ -4,14 +4,14 @@ import { useI18n } from 'vue-i18n';
 const { t } = useI18n();
 const localePath = useLocalePath();
 
-useSeoMeta({
+useSeo(() => ({
   title: t('utilities.seo.title'),
   description: t('utilities.seo.description'),
   ogTitle: t('utilities.seo.ogTitle'),
   ogDescription: t('utilities.seo.ogDescription'),
-  ogType: 'website',
-  twitterCard: 'summary_large_image',
-});
+  pageType: 'website',
+  breadcrumb: [{ name: t('nav.utilities'), url: '/utilities' }],
+}));
 
 interface UtilityCategory {
   key: string;
@@ -72,17 +72,12 @@ onMounted(async () => {
     <v-container max-width="1280" class="px-4 px-md-6 py-8 py-md-12">
 
       <!-- ─── Hero ─────────────────────────────────────────────── -->
-      <section class="utilities-hero mb-10" aria-labelledby="utilities-title">
-        <p class="text-overline text-primary font-weight-bold mb-2 brand-mono">
-          {{ t('utilities.hero.eyebrow') }}
-        </p>
-        <h1 id="utilities-title" class="text-h3 font-weight-bold mb-4">
-          {{ t('utilities.hero.title') }}
-        </h1>
-        <p class="text-body-1 text-medium-emphasis utilities-hero-desc">
-          {{ t('utilities.hero.description') }}
-        </p>
-      </section>
+      <LayoutPageTitle
+        :eyebrow="t('utilities.hero.eyebrow')"
+        :title="t('utilities.hero.title')"
+        :description="t('utilities.hero.description')"
+        title-id="utilities-title"
+      />
 
       <!-- ─── Category cards ───────────────────────────────────── -->
       <section ref="gridRef" aria-label="Utility categories">
@@ -141,10 +136,6 @@ onMounted(async () => {
 .brand-mono {
   font-family: 'JetBrains Mono', ui-monospace, monospace;
   letter-spacing: 0.1em;
-}
-
-.utilities-hero-desc {
-  max-width: 640px;
 }
 
 /* ── Category card ─────────────────────────────────────── */

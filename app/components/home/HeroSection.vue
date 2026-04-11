@@ -4,6 +4,21 @@ import { useI18n } from 'vue-i18n';
 const { t, tm, rt } = useI18n();
 const localePath = useLocalePath();
 
+const LCP_IMAGE_URL = 'https://fileharbor.heyatom.dev/v2/images/fba07e88-1415-4463-8ad5-0b5eace18a54';
+
+// Inject a <link rel="preload"> so the LCP image is discoverable in the
+// initial HTML document and starts fetching as early as possible.
+useHead({
+  link: [
+    {
+      rel: 'preload',
+      as: 'image',
+      href: LCP_IMAGE_URL,
+      fetchpriority: 'high',
+    },
+  ],
+});
+
 const careerStartYear = 2016;
 const yearsOfExperience = new Date().getFullYear() - careerStartYear;
 
@@ -76,7 +91,7 @@ const downloadCv = async () => {
             <span class="typewriter-cursor brand-mono" aria-hidden="true">|</span>
           </div>
 
-          <div class="d-flex flex-wrap ga-3">
+          <div class="hero-actions d-flex flex-wrap ga-3">
             <v-btn
               @click="downloadCv"
               color="primary"
@@ -106,9 +121,11 @@ const downloadCv = async () => {
         <div class="hero-side-card">
           <div class="hero-photo-wrapper">
             <v-img
-              src="https://file-harbor.com/api/v1/files/59eede5fb0b097a63e0eb276add71e83"
+              :src="LCP_IMAGE_URL"
               :alt="t('home.about.portraitLabel')"
               cover
+              eager
+              :img-props="{ fetchpriority: 'high' }"
               class="hero-photo"
             />
           </div>
@@ -305,10 +322,63 @@ const downloadCv = async () => {
   }
 }
 
+/* ── Button hover animations ─────────────────────────────── */
+.hero-actions :deep(.v-btn) {
+  will-change: transform, box-shadow;
+  transition:
+    transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.28s ease;
+}
+
+.hero-actions :deep(.v-btn:hover) {
+  transform: translateY(-4px);
+}
+
+/* Filled primary button → green glow on hover */
+.hero-actions :deep(.v-btn--variant-elevated:hover),
+.hero-actions :deep(.v-btn--variant-flat:hover) {
+  box-shadow: 0 10px 28px rgba(0, 168, 107, 0.35);
+}
+
+/* Tonal button → softer glow */
+.hero-actions :deep(.v-btn--variant-tonal:hover) {
+  box-shadow: 0 8px 22px rgba(0, 168, 107, 0.20);
+}
+
+/* Download icon drops on hover */
+.hero-actions :deep(.v-btn:first-child:hover .v-btn__prepend) {
+  animation: iconDrop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Arrow slides right on hover */
+.hero-actions :deep(.v-btn:last-child:hover .v-btn__append) {
+  animation: arrowRight 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes iconDrop {
+  0%   { transform: translateY(0);   }
+  45%  { transform: translateY(4px); }
+  100% { transform: translateY(0);   }
+}
+
+@keyframes arrowRight {
+  0%   { transform: translateX(0);   }
+  45%  { transform: translateX(6px); }
+  100% { transform: translateX(0);   }
+}
+
 @media (max-width: 959px) {
   .hero-section {
     min-height: auto;
     padding: 0.5rem 0.5rem 2rem;
+  }
+
+  .typewriter-line {
+    min-height: unset;
+    height: 3.5rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
   }
 
   .scroll-indicator {

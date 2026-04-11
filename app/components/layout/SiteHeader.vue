@@ -102,7 +102,6 @@ const toggleTheme = () => themeStore.toggleTheme();
             :variant="locale === lang.code ? 'tonal' : 'outlined'"
             :color="locale === lang.code ? 'primary' : undefined"
             size="small"
-            rounded="lg"
             class="flex-1-1 text-none"
             @click="changeLanguage(lang.code)"
         >
@@ -183,15 +182,13 @@ const toggleTheme = () => themeStore.toggleTheme();
             <v-btn
                 v-bind="props"
                 variant="outlined"
-                rounded="lg"
                 size="small"
                 class="lang-trigger text-none px-2"
                 :aria-label="t('site.changeLanguage')"
             >
-              <v-avatar size="16" class="mr-1">
+              <v-avatar size="16" class="mr-1" tile style="background: transparent">
                 <v-img :src="getFlagPath(locale)" :alt="getLangName(locale)" />
               </v-avatar>
-              <span class="text-caption font-weight-medium">{{ locale.toUpperCase() }}</span>
               <v-icon size="14" class="ml-1">mdi-chevron-down</v-icon>
             </v-btn>
           </template>
@@ -202,11 +199,10 @@ const toggleTheme = () => themeStore.toggleTheme();
                 :key="lang.code"
                 :active="locale === lang.code"
                 color="primary"
-                rounded="lg"
                 @click="changeLanguage(lang.code)"
             >
               <template #prepend>
-                <v-avatar size="18" class="mr-2">
+                <v-avatar size="18" class="mr-2" tile style="background: transparent">
                   <v-img :src="getFlagPath(lang.code)" :alt="getLangName(lang.code)" />
                 </v-avatar>
               </template>

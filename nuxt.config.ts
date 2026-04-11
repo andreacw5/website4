@@ -7,13 +7,15 @@ const packageJson = JSON.parse(readFileSync(resolve(__dirname, './package.json')
 
 export default defineNuxtConfig({
   ssr: true,
-  compatibilityDate: '2026-04-07',
+  compatibilityDate: '2026-04-10',
   devtools: { enabled: true },
 
   runtimeConfig: {
     public: {
       version: packageJson.version,
       apiBaseUrl: process.env.NUXT_PUBLIC_API_BASE_URL || 'http://localhost:8080',
+      basinUrl: process.env.NUXT_PUBLIC_BASIN_URL || 'https://usebasin.com/f/placeholder',
+      freelanceAvailable: process.env.NUXT_PUBLIC_FREELANCE_AVAILABLE || 'true',
     },
   },
 
@@ -27,6 +29,7 @@ export default defineNuxtConfig({
 
   modules: [
     'vuetify-nuxt-module',
+    '@vueuse/nuxt',
     '@pinia/nuxt',
     '@nuxt/content',
     '@nuxtjs/i18n',
