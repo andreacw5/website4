@@ -29,18 +29,30 @@ export default defineContentConfig({
     }),
     travels: defineCollection({
       type: 'page',
-      source: 'travels/**/*.md',
+      source: 'travels/countries/**/*.md',
       schema: z.object({
-        title: z.string(),
-        short: z.string().optional(),
-        cover: z.string().optional(),
-        category: z.string().optional(),
-        created_at: z.string().optional(),
-        gallery: z.array(z.object({
-          image: z.string(),
-          alt: z.string().optional(),
-          cols: z.number().optional(),
-        })).optional(),
+        name: z.string(),
+        flag: z.string(),
+        year: z.number(),
+        continent: z.string(),
+        visited: z.boolean(),
+        highlight: z.boolean(),
+      }),
+    }),
+    travelsPhotos: defineCollection({
+      type: 'page',
+      source: 'travels/photos/**/*.md',
+      schema: z.object({
+        id: z.string(),
+        location: z.string(),
+        country: z.string().optional(),
+        countrySlug: z.string(),
+        year: z.number(),
+        category: z.string(),
+        aspect: z.string().optional(),
+        src: z.string(),
+        alt: z.string(),
+        featured: z.boolean().optional(),
       }),
     }),
     starships: defineCollection({
@@ -115,4 +127,3 @@ export default defineContentConfig({
     }),
   },
 });
-
