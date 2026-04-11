@@ -3,9 +3,17 @@ import { Icon } from '@iconify/vue';
 import { useI18n } from 'vue-i18n';
 import ProjectCard from "~/components/projects/ProjectCard.vue";
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 const route = useRoute();
 const localePath = useLocalePath();
+
+// Helper per leggere un campo localizzato (stringa o { it, en })
+type LocaleString = string | { it?: string; en?: string } | null | undefined;
+const loc = (field: LocaleString): string => {
+  if (!field) return '';
+  if (typeof field === 'string') return field;
+  return field[locale.value as 'it' | 'en'] ?? field.it ?? field.en ?? '';
+};
 
 // Recupera il progetto dal path della route — il path Nuxt Content include la cartella
 const { data: project } = await useAsyncData(
@@ -20,10 +28,10 @@ if (!project.value) {
 
 // SEO dinamico
 useSeoMeta({
-  title: project.value.title,
-  description: project.value.description ?? t('projects.seo.description'),
-  ogTitle: `${project.value.title} · Andrea Tombolato`,
-  ogDescription: project.value.description ?? t('projects.seo.description'),
+  title: loc(project.value.title as LocaleString),
+  description: loc(project.value.description) || t('projects.seo.description'),
+  ogTitle: `${loc(project.value.title as LocaleString)} · Andrea Tombolato`,
+  ogDescription: loc(project.value.description) || t('projects.seo.description'),
   ogImage: project.value.preview,
   ogType: 'article',
   twitterCard: 'summary_large_image',
@@ -83,13 +91,13 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown));
       <v-img
         v-if="project.preview"
         :src="project.preview"
-        :alt="project.title"
+        :alt="loc(project.title as LocaleString)"
         cover
         class="hero-img"
       >
         <div class="hero-overlay d-flex align-end">
           <v-container max-width="1280" class="px-4 px-md-6 pb-8">
-            <h1 class="text-h3 font-weight-bold text-white hero-title">{{ project.title }}</h1>
+            <h1 class="text-h3 font-weight-bold text-white hero-title">{{ loc(project.title as LocaleString) }}</h1>
           </v-container>
         </div>
       </v-img>
@@ -97,7 +105,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown));
       <!-- Fallback se nessuna preview -->
       <div v-else class="hero-img-fallback d-flex align-end">
         <v-container max-width="1280" class="px-4 px-md-6 pb-8">
-          <h1 class="text-h3 font-weight-bold">{{ project.title }}</h1>
+            <h1 class="text-h3 font-weight-bold">{{ loc(project.title as LocaleString) }}</h1>
           <p v-if="project.startDate" class="text-body-2 text-medium-emphasis mt-1">
             {{ project.startDate }}
           </p>
@@ -133,8 +141,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown));
               {{ t('projects.detail.startDate', { date: project.startDate }) }}
             </p>
             <div class="text-body-1 project-content">
-              <ContentRenderer v-if="project.body" :value="project" />
-              <p v-else class="text-medium-emphasis">{{ project.description }}</p>
+              <p>{{ loc(project.description as LocaleString) }}</p>
             </div>
           </section>
 
@@ -156,8 +163,8 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown));
                       <Icon :icon="feature.icon" width="22" height="22" />
                     </v-avatar>
                     <div>
-                      <div class="text-body-1 font-weight-semibold mb-1">{{ feature.title }}</div>
-                      <p class="text-body-2 text-medium-emphasis">{{ feature.subtitle }}</p>
+                      <div class="text-body-1 font-weight-semibold mb-1">{{ loc(feature.title as LocaleString) }}</div>
+                      <p class="text-body-2 text-medium-emphasis">{{ loc(feature.subtitle as LocaleString) }}</p>
                     </div>
                   </v-card-text>
                 </v-card>
@@ -441,7 +448,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown));
             md="4"
           >
             <ProjectCard
-              :title="p.title"
+              :title="loc(p.title as LocaleString)"
               :preview="p.preview"
               :slug="p.path"
               :client="p.client"

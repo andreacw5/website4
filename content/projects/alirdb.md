@@ -1,6 +1,8 @@
 ---
 title: "ALIRDB"
-description: "Un portale online per la visualizzazione dei propri dati e progressi personali all'interno del gioco Arma 3. Fornisce dati sui veicoli, incarichi, armi, ruoli e conti bancari dei giocatori."
+description:
+  it: "Portale web per la consultazione in tempo reale dei dati di gioco personali su Arma 3: veicoli posseduti, armi, ruoli, incarichi e saldo bancario in-game. Interfaccia JavaScript che legge i dati esposti dall'API del server dedicato della community ALIR."
+  en: "Web portal for browsing real-time personal in-game data on Arma 3: owned vehicles, weapons, roles, jobs and in-game bank balance. A JavaScript frontend consuming data from the ALIR community's dedicated server API."
 startDate: "2017"
 current: false
 github: "https://github.com/andreacw5/ALIRDB"
@@ -23,19 +25,34 @@ technical:
     - icon: "/languages/lineicons--javascript.svg"
       title: "Javascript"
 features:
-  - title: "Visualizzazione Dati Personali"
-    subtitle: "Accedi ai tuoi dati di gioco, inclusi progressi e statistiche personali."
-    icon: "line-md:file-document"
-  - title: "Monitoraggio Veicoli"
-    subtitle: "Consulta i dettagli e lo stato dei veicoli associati al tuo profilo."
-    icon: "line-md:car-light"
-  - title: "Ruoli e Specializzazioni"
-    subtitle: "Esamina i ruoli giocati e le abilità sviluppate nel tempo."
-    icon: "line-md:document-code"
-  - title: "Gestione Conti Bancari"
-    subtitle: "Monitora e gestisci i tuoi conti bancari di gioco con dati aggiornati."
-    icon: "line-md:monitor-arrow-down"
+  - title:
+      it: "Dashboard dati personali"
+      en: "Personal Data Dashboard"
+    subtitle:
+      it: "Accedi ai tuoi dati di gioco, inclusi progressi e statistiche aggiornate in tempo reale."
+      en: "Access your in-game data, including real-time progress and personal statistics."
+    icon: "mdi-view-dashboard"
+  - title:
+      it: "Monitoraggio veicoli"
+      en: "Vehicle Monitoring"
+    subtitle:
+      it: "Consulta i dettagli e lo stato dei veicoli associati al tuo profilo di gioco."
+      en: "Browse the details and status of vehicles linked to your in-game profile."
+    icon: "mdi-car"
+  - title:
+      it: "Ruoli e specializzazioni"
+      en: "Roles & Specializations"
+    subtitle:
+      it: "Esamina i ruoli ricoperti e le abilità sviluppate nel tempo all'interno del server."
+      en: "Review the roles played and skills developed over time on the server."
+    icon: "mdi-account-star"
+  - title:
+      it: "Conti bancari in-game"
+      en: "In-game Banking"
+    subtitle:
+      it: "Monitora il saldo e la cronologia dei conti bancari di gioco con dati aggiornati."
+      en: "Monitor balance and history of your in-game bank accounts with up-to-date data."
+    icon: "mdi-bank"
 ---
 
-Portale online per la visualizzazione di dati e progressi personali all'interno del gioco Arma 3 per la community ALIR.
 

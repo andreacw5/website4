@@ -1,6 +1,8 @@
 ---
 title: "Gym Track"
-description: "Applicazione web per la gestione dei clienti remoti di un personal trainer, che permette di gestire i clienti e le sessioni di fitness. Assegnando anche esercizi da remoto ai clienti."
+description:
+  it: "Applicazione web per la gestione remota dei clienti di un personal trainer, con backend Node.js e frontend HTML/CSS/JS. Include profili cliente, pianificazione sessioni, piani di esercizi personalizzati, monitoraggio progressi e chat integrata."
+  en: "Web application for a personal trainer's remote client management, with a Node.js backend and HTML/CSS/JS frontend. Features client profiles, session scheduling, custom exercise plans, progress tracking and integrated chat."
 startDate: "2018"
 current: false
 preview: "https://file-harbor.com/api/v1/files/dd294ba4654b994e9f921882215726ae"
@@ -23,22 +25,41 @@ technical:
     - icon: "/languages/lineicons--javascript.svg"
       title: "Javascript"
 features:
-  - title: "Gestione Clienti"
-    subtitle: "Crea, modifica e visualizza i profili dei clienti con informazioni dettagliate."
-    icon: "line-md:account"
-  - title: "Pianificazione Sessioni"
-    subtitle: "Organizza e programma sessioni di fitness individuali o di gruppo."
-    icon: "line-md:calendar"
-  - title: "Assegnazione Esercizi"
-    subtitle: "Crea piani di esercizi personalizzati e condividili con i clienti."
-    icon: "line-md:document-code"
-  - title: "Monitoraggio Progressi"
-    subtitle: "Tieni traccia dei risultati e dei progressi dei clienti."
-    icon: "line-md:backup-restore"
-  - title: "Comunicazione Diretta"
-    subtitle: "Chat integrata per mantenere il contatto con i clienti in tempo reale."
-    icon: "line-md:chat"
+  - title:
+      it: "Gestione clienti"
+      en: "Client Management"
+    subtitle:
+      it: "Crea, modifica e visualizza i profili dei clienti con dati anagrafici e storico delle sessioni."
+      en: "Create, edit and view client profiles with personal data and session history."
+    icon: "mdi-account"
+  - title:
+      it: "Pianificazione sessioni"
+      en: "Session Scheduling"
+    subtitle:
+      it: "Organizza e programma sessioni di allenamento individuali o di gruppo con calendario integrato."
+      en: "Schedule individual or group training sessions with an integrated calendar."
+    icon: "mdi-calendar"
+  - title:
+      it: "Assegnazione esercizi"
+      en: "Exercise Assignment"
+    subtitle:
+      it: "Crea piani di esercizi personalizzati e condividili con i clienti in modo remoto."
+      en: "Create custom exercise plans and share them remotely with clients."
+    icon: "mdi-clipboard-list"
+  - title:
+      it: "Monitoraggio progressi"
+      en: "Progress Tracking"
+    subtitle:
+      it: "Traccia e visualizza i risultati e i progressi dei clienti nel tempo."
+      en: "Track and visualize client results and progress over time."
+    icon: "mdi-chart-line"
+  - title:
+      it: "Chat integrata"
+      en: "Integrated Chat"
+    subtitle:
+      it: "Canale di comunicazione diretta tra trainer e cliente, integrato nell'applicazione."
+      en: "Direct communication channel between trainer and client, built into the app."
+    icon: "mdi-chat"
 ---
 
-Applicazione web per la gestione da remoto dei clienti di un personal trainer: sessioni, esercizi personalizzati e monitoraggio progressi.
 

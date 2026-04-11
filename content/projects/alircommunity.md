@@ -1,6 +1,10 @@
 ---
-title: "Sito web per ALIR"
-description: "Sito web e forum per la community di Arma 3. Il sito web è una piattaforma di discussione e di supporto alla community di ALIR, giocante nel server dedicato basato su Altis Life, una modalità di gioco."
+title:
+  it: "Sito web per ALIR"
+  en: "Website for ALIR"
+description:
+  it: "Sito web e forum per la community ALIR di Arma 3, realizzato con HTML, CSS, JavaScript e PHP. Piattaforma di discussione e supporto dedicata al server Altis Life dell'associazione, con gestione degli utenti e dei contenuti."
+  en: "Website and forum for the ALIR Arma 3 community, built with HTML, CSS, JavaScript and PHP. A discussion and support hub for the association's dedicated Altis Life server, with user and content management."
 startDate: "2016"
 current: false
 preview: "https://file-harbor.com/api/v1/files/f265f76e62f263a4a76b57652ea5ed40"
@@ -25,5 +29,4 @@ technical:
       title: "PHP"
 ---
 
-Sito web e forum della community ALIR per Arma 3, piattaforma di discussione e supporto per il server dedicato Altis Life.
 

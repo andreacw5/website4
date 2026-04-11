@@ -1,7 +1,15 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
+
+// Helper per leggere un campo localizzato (stringa o { it, en })
+type LocaleString = string | { it?: string; en?: string } | null | undefined;
+const loc = (field: LocaleString): string => {
+  if (!field) return '';
+  if (typeof field === 'string') return field;
+  return field[locale.value as 'it' | 'en'] ?? field.it ?? field.en ?? '';
+};
 
 // SEO
 useSeoMeta({
@@ -42,23 +50,35 @@ const activeFilter = ref<FilterKey>('all');
 // Progetti filtrati — reattivi al filtro senza toccare il router
 const filteredProjects = computed(() => {
   const projects = allProjects.value ?? [];
-  if (activeFilter.value === 'all') return projects;
 
-  const selected = filters.find(f => f.key === activeFilter.value);
-  if (!selected) return projects;
+  let result: typeof projects;
+  if (activeFilter.value === 'all') {
+    result = projects;
+  } else {
+    const selected = filters.find(f => f.key === activeFilter.value);
+    if (!selected) {
+      result = projects;
+    } else {
+      result = projects.filter(p => {
+        const mainName = (p.technical?.main?.name ?? '').toLowerCase();
 
-  return projects.filter(p => {
-    const mainName = (p.technical?.main?.name ?? '').toLowerCase();
+        if (selected.key === 'other') {
+          const knownMatches = filters
+            .filter(f => f.key !== 'all' && f.key !== 'other')
+            .flatMap(f => f.match);
+          return !knownMatches.some(m => mainName.includes(m));
+        }
 
-    if (selected.key === 'other') {
-      // "Altro" = tutto ciò che non rientra nei filtri espliciti
-      const knownMatches = filters
-        .filter(f => f.key !== 'all' && f.key !== 'other')
-        .flatMap(f => f.match);
-      return !knownMatches.some(m => mainName.includes(m));
+        return selected.match.some(m => mainName.includes(m));
+      });
     }
+  }
 
-    return selected.match.some(m => mainName.includes(m));
+  // Featured sempre in cima
+  return [...result].sort((a, b) => {
+    const af = a.featured ? 1 : 0;
+    const bf = b.featured ? 1 : 0;
+    return bf - af;
   });
 });
 
@@ -196,9 +216,10 @@ watch(activeFilter, () => nextTick(animateGrid));
             data-project-card
           >
             <ProjectsProjectCard
-              :title="project.title"
+              :title="loc(project.title as LocaleString)"
               :preview="project.preview"
               :slug="project.path"
+              :featured="project.featured ?? false"
               :client="project.client"
             />
           </v-col>

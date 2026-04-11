@@ -1,6 +1,10 @@
 ---
-title: "Sito web per la Protezione Civile"
-description: "Sito web per l'associazione di Protezione Civile di Settimo Milanese, una vetrina sulle attività dell'associazione, il personale, la formazione e le attrezzature impiegate."
+title:
+  it: "Sito web per la Protezione Civile"
+  en: "Website for Civil Protection"
+description:
+  it: "Sito web istituzionale per la Protezione Civile di Settimo Milanese, sviluppato con Nuxt.js e Vuetify. Vetrina digitale delle attività, del personale e delle attrezzature dell'associazione, con una sezione aggiornamenti di emergenza in tempo reale tramite integrazione backend NestJS."
+  en: "Institutional website for the Civil Protection of Settimo Milanese, built with Nuxt.js and Vuetify. A digital showcase of the association's activities, staff and equipment, with a real-time emergency updates section powered by a NestJS backend integration."
 startDate: "2019"
 current: false
 github: "https://github.com/prociv-sm/website"
@@ -27,18 +31,34 @@ technical:
     - icon: "/languages/simple-icons--nginx.svg"
       title: "NGINX"
 features:
-  - title: "Monitoraggio delle allerte in tempo reale"
-    subtitle: "Il sito fornisce aggiornamenti tempestivi sulle allerte in corso, permettendo ai cittadini di visualizzare i dettagli delle emergenze attive, gli avvisi di sicurezza e le linee guida da seguire."
-    icon: "line-md:phone-call"
-  - title: "Informazioni sugli eventi e sulle attività del gruppo"
-    subtitle: "La piattaforma offre una panoramica delle iniziative della Protezione Civile, inclusi eventi di sensibilizzazione, corsi di formazione e opportunità di volontariato."
-    icon: "line-md:calendar"
-  - title: "Integrazione con sistemi di allerta e gestione delle emergenze"
-    subtitle: "Grazie al backend sviluppato in NestJS, il sistema può ricevere e processare notifiche da fonti di emergenza e pubblicare aggiornamenti in tempo reale."
-    icon: "line-md:alert"
-  - title: "Interfaccia user-friendly"
-    subtitle: "Il sito, realizzato in Nuxt.js, presenta una struttura chiara e accessibile, ottimizzata per dispositivi mobili, che facilita la navigazione e l'accesso rapido alle informazioni critiche per la sicurezza pubblica."
-    icon: "line-md:computer"
+  - title:
+      it: "Aggiornamenti di emergenza in tempo reale"
+      en: "Real-time Emergency Updates"
+    subtitle:
+      it: "Il sito pubblica aggiornamenti sulle allerte attive, consentendo ai cittadini di accedere rapidamente alle informazioni di sicurezza."
+      en: "The site publishes updates on active alerts, giving citizens fast access to critical safety information."
+    icon: "mdi-phone"
+  - title:
+      it: "Attività ed eventi dell'associazione"
+      en: "Association Activities & Events"
+    subtitle:
+      it: "Panoramica delle iniziative del gruppo: eventi di sensibilizzazione, corsi di formazione e opportunità di volontariato."
+      en: "Overview of group initiatives: awareness events, training courses and volunteering opportunities."
+    icon: "mdi-calendar"
+  - title:
+      it: "Integrazione sistemi di allerta"
+      en: "Alert System Integration"
+    subtitle:
+      it: "Tramite il backend NestJS, il sistema riceve e processa notifiche da fonti di emergenza e le pubblica in tempo reale."
+      en: "Via the NestJS backend, the system receives and processes emergency notifications and publishes them in real time."
+    icon: "mdi-alert"
+  - title:
+      it: "Interfaccia accessibile e mobile-first"
+      en: "Accessible & Mobile-first Interface"
+    subtitle:
+      it: "Sito Nuxt.js ottimizzato per dispositivi mobili, con navigazione semplice e accesso rapido alle informazioni critiche."
+      en: "Mobile-optimized Nuxt.js site with simple navigation and fast access to critical information."
+    icon: "mdi-cellphone"
 images:
   - image: "https://file-harbor.com/api/v1/files/7c461f4d8a1a2f286d5d7af35f98bc9d"
     title: "Homepage"
@@ -52,5 +72,4 @@ images:
     title: "I mezzi del gruppo"
 ---
 
-Sito web per la Protezione Civile di Settimo Milanese, vetrina digitale delle attività, del personale e delle attrezzature dell'associazione.
 

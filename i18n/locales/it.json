@@ -187,6 +187,7 @@
     "card": {
       "inProgress": "In corso",
       "completed": "Completato",
+      "featured": "In evidenza",
       "details": "Dettagli",
       "noDescription": "Nessuna descrizione disponibile.",
       "copyLink": "Copia link",

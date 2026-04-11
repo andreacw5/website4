@@ -1,6 +1,8 @@
 ---
 title: "AlertConnector"
-description: "AlertConnect è un servizio di aggregazione degli alert di emergenza emessi dal dipartimento di Protezione civile Nazionale Italiano, in un servizio REST accessibile a tutti. Il servizio aggrega gli alert e li rende disponibili in un formato standardizzato, per essere utilizzato da altri servizi o applicazioni."
+description:
+  it: "Aggregatore open source di alert di emergenza della Protezione Civile Italiana, costruito con NestJS. Il servizio normalizza i feed ufficiali e li ri-espone tramite una REST API standardizzata, facilitando l'integrazione con applicazioni di terze parti."
+  en: "Open-source emergency alert aggregator for the Italian Civil Protection, built with NestJS. Normalizes official feeds and re-exposes them through a standardized REST API, making integration with third-party services straightforward."
 startDate: "2021"
 current: false
 github: "https://github.com/prociv-sm/management-api"
@@ -21,16 +23,29 @@ technical:
     - icon: "/languages/lineicons--typescript.svg"
       title: "Typescript"
 features:
-  - title: "Aggregazione degli alert"
-    subtitle: "Aggregazione degli alert di emergenza emessi dal dipartimento di Protezione civile Nazionale Italiano."
-    icon: "line-md:cloud-alt-upload"
-  - title: "Servizio REST"
-    subtitle: "Accessibile a tutti, per essere utilizzato da altri servizi o applicazioni."
-    icon: "line-md:account"
-  - title: "Formato standardizzato"
-    subtitle: "Gli alert sono disponibili in un formato standardizzato."
-    icon: "line-md:cloud-alt-braces"
+  - title:
+      it: "Aggregazione degli alert"
+      en: "Alert Aggregation"
+    subtitle:
+      it: "Raccoglie e normalizza gli alert di emergenza emessi dal Dipartimento della Protezione Civile Nazionale Italiana."
+      en: "Collects and normalizes emergency alerts issued by the Italian National Civil Protection Department."
+    icon: "mdi-cloud-upload"
+  - title:
+      it: "Servizio REST pubblico"
+      en: "Public REST Service"
+    subtitle:
+      it: "API accessibile a chiunque, progettata per essere consumata da servizi e applicazioni di terze parti."
+      en: "Publicly accessible API, designed to be consumed by any third-party service or application."
+    icon: "mdi-account"
+  - title:
+      it: "Formato standardizzato"
+      en: "Standardized Format"
+    subtitle:
+      it: "Gli alert vengono esposti in un formato strutturato e coerente per garantire un'integrazione prevedibile."
+      en: "Alerts are exposed in a consistent, structured format to ensure predictable integration."
+    icon: "mdi-code-braces"
 ---
 
-Servizio open source di aggregazione degli alert di emergenza della Protezione Civile Nazionale Italiana, esposti tramite REST API in formato standardizzato.
+
+
 

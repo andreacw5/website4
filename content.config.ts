@@ -1,5 +1,22 @@
 import { defineCollection, defineContentConfig, z } from '@nuxt/content';
 
+// Campo localizzato: stringa semplice oppure oggetto { it, en }
+const localeField = z.union([
+  z.string(),
+  z.object({
+    it: z.string().optional(),
+    en: z.string().optional(),
+  }),
+]).optional();
+
+const localeFieldRequired = z.union([
+  z.string(),
+  z.object({
+    it: z.string().optional(),
+    en: z.string().optional(),
+  }),
+]);
+
 export default defineContentConfig({
   collections: {
     pages: defineCollection({
@@ -7,7 +24,7 @@ export default defineContentConfig({
       source: '*.md',
       schema: z.object({
         title: z.string().optional(),
-        description: z.string().optional(),
+        description: localeField,
       }),
     }),
     travels: defineCollection({
@@ -58,10 +75,11 @@ export default defineContentConfig({
       type: 'page',
       source: 'projects/**/*.md',
       schema: z.object({
-        title: z.string(),
-        description: z.string().optional(),
+        title: localeFieldRequired,
+        description: localeField,
         startDate: z.string().optional(),
         current: z.boolean().optional(),
+        featured: z.boolean().optional(),
         github: z.string().optional(),
         website: z.string().optional(),
         preview: z.string().optional(),
@@ -85,8 +103,8 @@ export default defineContentConfig({
           })).optional(),
         }).optional(),
         features: z.array(z.object({
-          title: z.string(),
-          subtitle: z.string(),
+          title: localeFieldRequired,
+          subtitle: localeFieldRequired,
           icon: z.string(),
         })).optional(),
         images: z.array(z.object({

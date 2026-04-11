@@ -1,6 +1,10 @@
 ---
-title: "Sito web per Puma Arts"
-description: "Sito web per l'artista Emanuele Puma, una vetrina sulle sue opere, i suoi progetti e le sue collaborazioni."
+title:
+  it: "Sito web per Puma Arts"
+  en: "Website for Puma Arts"
+description:
+  it: "Sito web personale per l'artista Emanuele Puma, realizzato con Nuxt.js e Vuetify. Vetrina pulita e performante per opere, progetti e collaborazioni, con galleria immagini ottimizzata e design su misura per l'identità visiva del brand artistico."
+  en: "Personal portfolio website for artist Emanuele Puma, built with Nuxt.js and Vuetify. A clean, performant showcase for artworks, projects and collaborations, with an optimized image gallery and a design tailored to the artistic brand."
 startDate: "2023"
 current: true
 website: "https://studioartepuma.it/"
@@ -33,5 +37,4 @@ images:
     title: "Su di me"
 ---
 
-Sito web personale per l'artista Emanuele Puma, vetrina delle sue opere, progetti e collaborazioni artistiche.
 

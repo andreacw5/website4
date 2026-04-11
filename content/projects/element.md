@@ -1,8 +1,13 @@
 ---
-title: "Sito web per i gamer"
-description: "Ho progettato e sviluppato una piattaforma web per il monitoraggio in tempo reale degli utenti dei vari team di streamer del Network Element Gaming. L'applicazione, integrata con le API di Twitch, consente di visualizzare lo stato live di tutti gli streamer appartenenti al network, mostrando informazioni aggiornate sugli utenti online, sullo streaming attivo, e dettagli sul gioco attualmente in uso."
+title:
+  it: "Sito web per i gamer"
+  en: "Website for Gamers"
+description:
+  it: "Piattaforma web per il network e-sport Element Gaming, sviluppata con Nuxt.js e Vuetify. Integra le API di Twitch per il monitoraggio in tempo reale degli streamer del network, con dashboard per team, eventi, news e un marketplace interno per gli streamer."
+  en: "Web platform for the Element Gaming esports network, built with Nuxt.js and Vuetify. Integrates the Twitch API for real-time streaming status monitoring, with dedicated dashboards for teams, events, news and an internal streamer marketplace."
 startDate: "2019"
 current: false
+featured: true
 website: "https://element-gaming.eu"
 preview: "https://file-harbor.com/api/v1/files/6b319d775a8a9be85142abfbd612054b"
 client:
@@ -29,18 +34,34 @@ technical:
     - icon: "/languages/simple-icons--sass.svg"
       title: "Sass"
 features:
-  - title: "Monitoraggio in tempo reale"
-    subtitle: "Il sistema aggiorna in tempo reale la lista degli streamer attivi, rendendo immediatamente visibile chi è online e in streaming"
-    icon: "line-md:document-report"
-  - title: "Integrazione Twitch API"
-    subtitle: "Grazie all'integrazione diretta con le API di Twitch, l'applicazione recupera e visualizza informazioni precise sugli spettatori attivi, il titolo dello streaming e il gioco in corso"
-    icon: "line-md:document-code"
-  - title: "Dashboard utente intuitiva"
-    subtitle: "La piattaforma è dotata di un'interfaccia user-friendly sviluppata in Nuxt.js, che offre una navigazione semplice e informazioni chiare sull'attività dei membri del team di Element Gaming."
-    icon: "line-md:person"
-  - title: "Backend affidabile"
-    subtitle: "Sviluppato in Node.js per garantire performance elevate e la gestione efficiente dei dati in tempo reale."
-    icon: "line-md:speedometer"
+  - title:
+      it: "Monitoraggio in tempo reale"
+      en: "Real-time Monitoring"
+    subtitle:
+      it: "Aggiornamenti live sugli streamer attivi del network: stato online, titolo dello stream e gioco in corso."
+      en: "Live updates on active network streamers: online status, stream title and current game."
+    icon: "mdi-file-document"
+  - title:
+      it: "Integrazione Twitch API"
+      en: "Twitch API Integration"
+    subtitle:
+      it: "Integrazione diretta con le API di Twitch per recuperare dati precisi su spettatori, titolo e gioco dello stream."
+      en: "Direct Twitch API integration to retrieve precise data on viewers, stream title and current game."
+    icon: "mdi-code-braces"
+  - title:
+      it: "Dashboard team e streamer"
+      en: "Team & Streamer Dashboard"
+    subtitle:
+      it: "Interfaccia Nuxt.js con navigazione chiara per team, eventi, news e attività dei membri del network."
+      en: "Nuxt.js interface with clear navigation for teams, events, news and network member activity."
+    icon: "mdi-account"
+  - title:
+      it: "Backend Node.js performante"
+      en: "Performant Node.js Backend"
+    subtitle:
+      it: "Backend Node.js per la gestione efficiente dei dati in tempo reale e delle chiamate alle API esterne."
+      en: "Node.js backend for efficient real-time data handling and external API consumption."
+    icon: "mdi-speedometer"
 images:
   - image: "https://file-harbor.com/api/v1/files/6b319d775a8a9be85142abfbd612054b"
     title: "Homepage"
@@ -72,5 +93,4 @@ images:
     title: "Marketplace degli streamer"
 ---
 
-Piattaforma web per il monitoraggio in tempo reale degli streamer del Network Element Gaming, con integrazione nativa delle API di Twitch.
 
