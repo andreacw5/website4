@@ -14,9 +14,9 @@ const yearsOfExperience = new Date().getFullYear() - careerStartYear;
 
 // ── Photo stack interaction ───────────────────────────────────
 const photoSrcs = [
-  'https://file-harbor.com/api/v1/files/1f411c33ba295890895214af38afbee9',
-  'https://file-harbor.com/api/v1/files/2f34563f7b7905b32b9d992649a66853',
-  'https://file-harbor.com/api/v1/files/1592da16cae9a30b1b4be0f667300949',
+  'https://fileharbor.heyatom.dev/v2/images/b6e3fce0-4b4a-49c5-a636-c8d5d5954335',
+  'https://fileharbor.heyatom.dev/v2/images/f4a215ed-406d-4532-8f4f-67cc3fa132f6',
+  'https://fileharbor.heyatom.dev/v2/images/07dc987f-631e-49c2-87dd-c7602fc58243',
 ] as const;
 
 // cardOrder[slot] = image index — slot 0=back, 1=mid, 2=front

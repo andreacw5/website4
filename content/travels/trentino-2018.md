@@ -1,7 +1,7 @@
 ---
 title: "Val di Fassa"
 short: "Un'esperienza indimenticabile tra le Dolomiti."
-cover: "https://file-harbor.com/api/v1/files/e9812c767ff6337c534b91530775769e"
+cover: "https://fileharbor.heyatom.dev/v2/images/0056c6b0-0b84-4b19-8af9-4571e4e1e53c"
 category: "travel"
 created_at: "2018-09-03"
 ---

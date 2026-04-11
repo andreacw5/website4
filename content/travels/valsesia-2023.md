@@ -1,7 +1,7 @@
 ---
 title: "Valsesia"
 short: "Alla scoperta delle valli più affascinanti del Piemonte."
-cover: "https://file-harbor.com/api/v1/files/92b83568dac5af1789fe3ff4813baee5"
+cover: "https://fileharbor.heyatom.dev/v2/images/085153e2-9300-4168-ae78-c12ddb247064"
 category: "travel"
 created_at: "2023-06-29"
 ---

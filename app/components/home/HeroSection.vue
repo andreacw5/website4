@@ -106,7 +106,7 @@ const downloadCv = async () => {
         <div class="hero-side-card">
           <div class="hero-photo-wrapper">
             <v-img
-              src="https://file-harbor.com/api/v1/files/59eede5fb0b097a63e0eb276add71e83"
+              src="https://fileharbor.heyatom.dev/v2/images/fba07e88-1415-4463-8ad5-0b5eace18a54"
               :alt="t('home.about.portraitLabel')"
               cover
               class="hero-photo"

@@ -1,7 +1,7 @@
 ---
 title: "Scozia"
 short: "Un'avventura tra castelli e paesaggi mozzafiato."
-cover: "https://file-harbor.com/api/v1/files/1f411c33ba295890895214af38afbee9"
+cover: "https://fileharbor.heyatom.dev/v2/images/f4a215ed-406d-4532-8f4f-67cc3fa132f6"
 category: "travel"
 created_at: "2022-08-25"
 ---
