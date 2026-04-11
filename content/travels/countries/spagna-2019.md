@@ -1,6 +1,6 @@
 ---
 name: Spagna
-flag: "🇪🇸"
+flag: "es"
 year: 2019
 continent: Europa
 visited: true

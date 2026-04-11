@@ -1,6 +1,6 @@
 ---
 name: Portogallo
-flag: "🇵🇹"
+flag: "pt"
 year: 2019
 continent: Europa
 visited: true

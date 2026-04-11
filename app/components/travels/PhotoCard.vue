@@ -1,13 +1,5 @@
 <script setup lang="ts">
-export type TravelPhoto = {
-  id: string;
-  src: string;
-  alt: string;
-  location: string;
-  country: string;
-  year: number;
-  category: string;
-};
+import type { TravelPhoto } from '~~/types/travels';
 
 const props = defineProps<{
   photo: TravelPhoto;
@@ -17,17 +9,14 @@ const emit = defineEmits<{
   open: [photo: TravelPhoto];
 }>();
 
-const categoryAspectMap: Record<string, number[]> = {
-  city: [1.1, 0.75, 1],
-  sea: [0.8, 1.2, 1],
-  mountain: [0.72, 1.05, 0.9],
-  nature: [0.85, 1.15, 0.95],
+const aspectRatioMap: Record<TravelPhoto['aspect'], number> = {
+  tall: 3 / 4,
+  wide: 4 / 3,
+  square: 1,
 };
 
 const aspectRatio = computed(() => {
-  const pool = categoryAspectMap[props.photo.category.toLowerCase()] || [0.8, 1, 1.2];
-  const seed = [...props.photo.id].reduce((acc, char) => acc + char.charCodeAt(0), 0);
-  return pool[seed % pool.length];
+  return aspectRatioMap[props.photo.aspect] ?? aspectRatioMap.wide;
 });
 
 const onOpen = () => {
@@ -56,18 +45,10 @@ const onOpen = () => {
         class="photo-img"
         lazy-src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E"
       >
-        <v-chip
-          size="small"
-          color="primary"
-          variant="tonal"
-          class="category-chip"
-        >
-          {{ photo.category }}
-        </v-chip>
 
         <v-overlay
           contained
-          :model-value="isHovering"
+          :model-value="Boolean(isHovering)"
           scrim="rgba(0, 0, 0, 0.45)"
           class="photo-overlay"
           persistent
@@ -87,30 +68,23 @@ const onOpen = () => {
   position: relative;
   overflow: hidden;
   border: 1px solid rgba(var(--v-theme-on-surface), 0.08);
-  transition: box-shadow 0.22s ease, border-color 0.22s ease;
-}
-
-.photo-card:hover,
-.photo-card:focus-visible {
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.16);
-  border-color: rgba(var(--v-theme-primary), 0.22);
+  transition: border-color 0.3s ease;
 }
 
 .photo-img {
-  transition: transform 0.35s ease;
+  transition: transform 0.3s ease;
 }
 
 .photo-card:hover .photo-img,
 .photo-card:focus-visible .photo-img {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
-.category-chip {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 2;
+.photo-card:hover,
+.photo-card:focus-visible {
+  border-color: rgba(var(--v-theme-primary), 0.3);
 }
+
 
 .photo-overlay {
   align-items: flex-end;
@@ -119,7 +93,8 @@ const onOpen = () => {
 .overlay-content {
   width: 100%;
   color: rgb(var(--v-theme-on-primary));
-  margin-bottom: 12px;
+  margin-bottom: 8px;
+  text-align: left;
 }
 </style>
 

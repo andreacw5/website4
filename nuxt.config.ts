@@ -27,6 +27,7 @@ export default defineNuxtConfig({
 
   modules: [
     'vuetify-nuxt-module',
+    '@vueuse/nuxt',
     '@pinia/nuxt',
     '@nuxt/content',
     '@nuxtjs/i18n',

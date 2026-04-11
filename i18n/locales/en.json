@@ -159,6 +159,20 @@
       "title": "My travels",
       "description": "Places, photos, and routes that feed curiosity, observation, and attention to detail."
     },
+    "stats": {
+      "countries": "Countries visited",
+      "continents": "Continents",
+      "photos": "Photos",
+      "since": "First trip"
+    },
+    "filters": {
+      "all": "All",
+      "natura": "Nature",
+      "citta": "City",
+      "montagna": "Mountain",
+      "mare": "Sea",
+      "empty": "No photos for this category."
+    },
     "empty": {
       "title": "No travels found",
       "description": "No travels have been published yet."

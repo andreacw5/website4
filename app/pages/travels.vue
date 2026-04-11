@@ -1,9 +1,15 @@
 <script setup lang="ts">
+import { useDisplay } from 'vuetify';
 import { useI18n } from 'vue-i18n';
 import TravelsCountryChips from '~/components/travels/CountryChips.vue';
+import TravelsGalleryFilters from '~/components/travels/GalleryFilters.vue';
+import TravelsLightbox from '~/components/travels/PhotoLightbox.vue';
 import TravelsPhotoCard from '~/components/travels/PhotoCard.vue';
+import TravelsStats from '~/components/travels/TravelsStats.vue';
+import type { Country, TravelCategory, TravelPhoto } from '~/types/travels';
 
 const { t } = useI18n();
+const { smAndDown, mdAndDown } = useDisplay();
 
 useSeoMeta({
   title: t('travels.seo.title'),
@@ -14,117 +20,90 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
 });
 
-const { data: travels } = await useAsyncData('travels-countries', () =>
-  queryCollection('travels').order('year', 'DESC').all(),
-);
-
-const { data: travelPhotos } = await useAsyncData('travels-photos', () =>
-  queryCollection('travelsPhotos').order('year', 'DESC').all(),
-);
-
-type GalleryFilter = 'all' | 'citta' | 'mare' | 'montagna' | 'natura';
-
-const quote = '"Viaggiare è l\'unica cosa che compri e che ti rende più ricco." — ogni viaggio lascia qualcosa di irripetibile.';
-
-const visitedCountries = computed(() => {
-  if (!travels.value?.length) return [];
-
-  return travels.value
-    .filter((travel) => travel.visited)
-    .map((travel) => ({
-      flag: travel.flag,
-      name: travel.name,
-      year: travel.year,
-    }))
-    .sort((a, b) => b.year - a.year);
-});
-
-const stats = computed(() => {
-  const countries = travels.value ?? [];
-  const photos = travelPhotos.value ?? [];
-  const firstYear = countries.length
-    ? Math.min(...countries.map((country) => country.year))
-    : new Date().getFullYear();
-  const continentCount = new Set(countries.map((country) => country.continent)).size;
-
-  return [
-    { value: `${visitedCountries.value.length}`, label: 'Paesi visitati', icon: 'mdi-earth' },
-    { value: `${continentCount}`, label: 'Continenti', icon: 'mdi-map-legend' },
-    { value: `${photos.length}`, label: 'Foto in archivio', icon: 'mdi-image-multiple-outline' },
-    { value: `${firstYear}`, label: 'Primo viaggio', icon: 'mdi-calendar-start' },
-  ];
-});
-
-const onCountrySelect = (_country: { flag: string; name: string; year: number }) => {
-  // Placeholder for future gallery/list filtering by country.
-};
-
-const onPhotoOpen = (_photo: {
-  id: string;
-  src: string;
-  alt: string;
-  location: string;
-  country: string;
-  year: number;
-  category: string;
-}) => {
-  // Placeholder for future lightbox/modal opening.
-};
-
-const galleryFilters: Array<{ label: string; value: GalleryFilter }> = [
-  { label: 'Tutti', value: 'all' },
-  { label: 'Citta', value: 'citta' },
-  { label: 'Mare', value: 'mare' },
-  { label: 'Montagna', value: 'montagna' },
-  { label: 'Natura', value: 'natura' },
-];
-
-const galleryTypeLabel: Record<Exclude<GalleryFilter, 'all'>, string> = {
-  citta: 'Citta',
-  mare: 'Mare',
-  montagna: 'Montagna',
-  natura: 'Natura',
-};
-
-const activeGalleryFilter = ref<GalleryFilter>('all');
-
-const normalizeCategory = (category?: string) => category?.toLowerCase().trim();
-
-const toGalleryFilter = (category?: string): Exclude<GalleryFilter, 'all'> => {
-  const normalized = normalizeCategory(category);
-  if (normalized === 'citta' || normalized === 'city') return 'citta';
+const normalizeCategory = (category?: string): TravelCategory => {
+  const normalized = category?.trim().toLowerCase();
+  if (normalized === 'citta' || normalized === 'città' || normalized === 'city') return 'città';
   if (normalized === 'mare' || normalized === 'sea') return 'mare';
   if (normalized === 'montagna' || normalized === 'mountain') return 'montagna';
   return 'natura';
 };
 
-const galleryItems = computed(() => {
-  if (!travelPhotos.value?.length) return [];
+const normalizeAspect = (aspect?: string): TravelPhoto['aspect'] => {
+  if (aspect === 'tall' || aspect === 'wide' || aspect === 'square') return aspect;
+  return 'wide';
+};
 
-  return travelPhotos.value
+const { data: countries, pending: countriesPending } = await useAsyncData<Country[]>('travels-countries', async () => {
+  const items = await queryCollection('travels').order('year', 'DESC').all();
+
+  return items.map((country) => ({
+    name: country.name,
+    flag: country.flag,
+    year: country.year,
+    continent: country.continent,
+    visited: country.visited,
+    highlight: country.highlight,
+    body: country.body,
+  }));
+});
+
+const { data: allPhotos, pending: photosPending } = await useAsyncData<TravelPhoto[]>('travels-photos', async () => {
+  const items = await queryCollection('travelsPhotos').order('year', 'DESC').all();
+
+  return items
     .filter((photo) => !!photo.src)
-    .map((photo) => {
-      const type = toGalleryFilter(photo.category);
-      return {
-        id: photo.id,
-        type,
-        photo: {
-          id: photo.id,
-          src: photo.src,
-          alt: photo.alt,
-          location: photo.location,
-          country: photo.country ?? '',
-          year: photo.year,
-          category: galleryTypeLabel[type],
-        },
-      };
-    });
+    .map((photo) => ({
+      id: photo.id,
+      location: photo.location,
+      country: photo.country ?? '',
+      countrySlug: photo.countrySlug,
+      year: photo.year,
+      category: normalizeCategory(photo.category),
+      aspect: normalizeAspect(photo.aspect),
+      src: photo.src,
+      alt: photo.alt,
+      featured: photo.featured ?? false,
+      body: photo.body,
+    }));
 });
 
-const filteredGalleryItems = computed(() => {
-  if (activeGalleryFilter.value === 'all') return galleryItems.value;
-  return galleryItems.value.filter((item) => item.type === activeGalleryFilter.value);
+type GalleryFilter = 'all' | TravelCategory;
+
+const activeFilter = ref<GalleryFilter>('all');
+const selectedPhoto = ref<TravelPhoto | null>(null);
+
+const visitedCountries = computed(() => {
+  return (countries.value ?? []).filter((country) => country.visited);
 });
+
+const filteredPhotos = computed(() => {
+  if (activeFilter.value === 'all') return allPhotos.value ?? [];
+  return (allPhotos.value ?? []).filter((photo) => photo.category === activeFilter.value);
+});
+
+watch(filteredPhotos, (photos) => {
+  if (!selectedPhoto.value) return;
+  const stillVisible = photos.some((photo) => photo.id === selectedPhoto.value?.id);
+  if (!stillVisible) {
+    selectedPhoto.value = null;
+  }
+});
+
+const isLoading = computed(() => countriesPending.value || photosPending.value);
+
+const masonryColumns = computed(() => {
+  if (smAndDown.value) return 1;
+  if (mdAndDown.value) return 2;
+  return 3;
+});
+
+const onCountrySelect = (_countryName: string | null) => {
+  // Country chip currently provides visual selection only.
+};
+
+const onPhotoOpen = (photo: TravelPhoto) => {
+  selectedPhoto.value = photo;
+};
 </script>
 
 <template>
@@ -139,77 +118,59 @@ const filteredGalleryItems = computed(() => {
         <h1 id="travels-title" class="text-h3 font-weight-bold mb-4">
           {{ t('travels.hero.title') }}
         </h1>
-        <blockquote class="travel-quote text-body-1 mb-0">
-          {{ quote }}
-        </blockquote>
         <p class="text-body-1 text-medium-emphasis mt-4 mb-0">
           {{ t('travels.hero.description') }}
         </p>
       </section>
 
       <section class="mb-10" aria-label="Statistiche viaggio">
-        <v-row>
-          <v-col
-            v-for="item in stats"
-            :key="item.label"
-            cols="12"
-            sm="6"
-            lg="3"
-          >
-            <v-card rounded="xl" elevation="0" class="stat-card pa-5 h-100">
-              <div class="d-flex align-center ga-3 mb-3">
-                <v-icon :icon="item.icon" color="primary" size="20" />
-                <span class="text-caption text-medium-emphasis">{{ item.label }}</span>
-              </div>
-              <div class="text-h4 font-weight-bold">{{ item.value }}</div>
-            </v-card>
-          </v-col>
-        </v-row>
+        <v-skeleton-loader
+          v-if="isLoading"
+          type="article"
+          class="rounded-xl"
+        />
+        <TravelsStats v-else :countries="visitedCountries" :photos="allPhotos ?? []" />
       </section>
 
       <section class="mb-10" aria-label="Paesi visitati">
         <p class="text-overline font-weight-bold text-primary mb-3 brand-mono">Paesi</p>
-        <TravelsCountryChips :countries="visitedCountries" @select="onCountrySelect" />
+        <v-skeleton-loader v-if="isLoading" type="chip" />
+        <TravelsCountryChips v-else :countries="visitedCountries" @select="onCountrySelect" />
       </section>
 
       <section class="mb-10" aria-label="Galleria viaggi">
         <div class="d-flex flex-wrap align-center justify-space-between ga-3 mb-4">
           <p class="text-overline font-weight-bold text-primary mb-0 brand-mono">Galleria</p>
-          <v-chip-group v-model="activeGalleryFilter" selected-class="text-primary" mandatory>
-            <v-chip
-              v-for="filter in galleryFilters"
-              :key="filter.value"
-              :value="filter.value"
-              filter
-              variant="outlined"
-              rounded="pill"
-            >
-              {{ filter.label }}
-            </v-chip>
-          </v-chip-group>
+          <TravelsGalleryFilters v-model="activeFilter" />
         </div>
 
-        <v-row v-if="filteredGalleryItems.length">
-          <v-col
-            v-for="item in filteredGalleryItems"
-            :key="item.id"
-            cols="12"
-            sm="6"
-            md="4"
-          >
-            <TravelsPhotoCard :photo="item.photo" @open="onPhotoOpen" />
-          </v-col>
-        </v-row>
+        <v-skeleton-loader
+          v-if="isLoading"
+          type="image, image, image"
+          class="rounded-xl"
+        />
+
+        <div
+          v-else-if="filteredPhotos.length"
+          class="masonry-grid"
+          :style="{ columns: masonryColumns }"
+        >
+          <div v-for="photo in filteredPhotos" :key="photo.id" class="masonry-item">
+            <TravelsPhotoCard :photo="photo" @open="onPhotoOpen" />
+          </div>
+        </div>
 
         <v-empty-state
           v-else
-          icon="mdi-image-off-outline"
-          title="Nessuna foto trovata"
-          text="Nessun elemento corrisponde al filtro selezionato."
+          icon="mdi-image-off"
+          :title="t('travels.filters.empty')"
+          :text="t('travels.filters.empty')"
           class="empty-state"
         />
 
       </section>
+
+      <TravelsLightbox v-model="selectedPhoto" :photos="filteredPhotos" />
     </v-container>
   </div>
 </template>
@@ -231,11 +192,28 @@ const filteredGalleryItems = computed(() => {
   border-radius: 0 16px 16px 0;
 }
 
-.stat-card {
-  border: 1px solid rgba(var(--v-theme-on-surface), 0.08);
-  background: rgba(var(--v-theme-surface), 1);
+.masonry-grid {
+  columns: 3;
+  column-gap: 12px;
 }
 
+.masonry-item {
+  display: block;
+  break-inside: avoid;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 960px) {
+  .masonry-grid {
+    columns: 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .masonry-grid {
+    columns: 1;
+  }
+}
 
 .empty-state {
   margin: 80px auto;

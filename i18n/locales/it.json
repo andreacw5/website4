@@ -159,6 +159,20 @@
       "title": "I miei viaggi",
       "description": "Luoghi, fotografie e itinerari che alimentano curiosità, osservazione e senso del dettaglio."
     },
+    "stats": {
+      "countries": "Paesi visitati",
+      "continents": "Continenti",
+      "photos": "Foto in archivio",
+      "since": "Primo viaggio"
+    },
+    "filters": {
+      "all": "Tutti",
+      "natura": "Natura",
+      "citta": "Città",
+      "montagna": "Montagna",
+      "mare": "Mare",
+      "empty": "Nessuna foto per questa categoria."
+    },
     "empty": {
       "title": "Nessun viaggio trovato",
       "description": "Non ci sono ancora viaggi pubblicati."

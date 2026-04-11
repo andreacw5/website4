@@ -1,6 +1,6 @@
 ---
-name: Regno Unito
-flag: "🇬🇧"
+name: Inghilterra
+flag: "eng"
 year: 2014
 continent: Europa
 visited: true

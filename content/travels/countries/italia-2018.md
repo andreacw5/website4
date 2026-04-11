@@ -1,6 +1,6 @@
 ---
 name: Italia
-flag: "🇮🇹"
+flag: "it"
 year: 2018
 continent: Europa
 visited: true

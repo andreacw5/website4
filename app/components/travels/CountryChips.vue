@@ -1,42 +1,46 @@
 <script setup lang="ts">
-export type TravelCountry = {
-  flag: string;
-  name: string;
-  year: number;
-};
+import type { Country } from '~~/types/travels';
 
 const props = withDefaults(defineProps<{
-  countries: TravelCountry[];
+  countries: Country[];
 }>(), {
   countries: () => [],
 });
 
 const emit = defineEmits<{
-  select: [country: TravelCountry];
+  select: [countryName: string | null];
 }>();
 
 const selectedCountry = ref<string | null>(null);
 
-const onSelect = (country: TravelCountry) => {
-  selectedCountry.value = `${country.name}-${country.year}`;
-  emit('select', country);
+const onSelect = (countryName: string) => {
+  selectedCountry.value = selectedCountry.value === countryName ? null : countryName;
+  emit('select', selectedCountry.value);
 };
 </script>
 
 <template>
   <div class="country-chips-scroll" aria-label="Paesi visitati">
-    <v-chip-group v-model="selectedCountry" class="country-chip-group" selected-class="text-primary" mobile>
+    <v-chip-group v-model="selectedCountry" class="country-chip-group" mobile>
       <v-chip
         v-for="country in props.countries"
-        :key="`${country.name}-${country.year}`"
-        :value="`${country.name}-${country.year}`"
+        :key="country.name"
+        :value="country.name"
         size="large"
         rounded="pill"
-        variant="tonal"
-        class="country-chip"
-        @click="onSelect(country)"
+        variant="outlined"
+        :class="['country-chip', { 'country-chip--active': selectedCountry === country.name }]"
+        @click="onSelect(country.name)"
       >
-        <span>{{ country.flag }} {{ country.name }}</span>
+        <span class="country-chip__label">
+          <img
+            :src="`/flags/${country.flag}.svg`"
+            :alt="`Bandiera ${country.name}`"
+            class="country-chip__flag"
+            loading="lazy"
+          >
+          <span>{{ country.name }}</span>
+        </span>
         <span class="ms-2 text-medium-emphasis text-caption mt-1">{{ country.year }}</span>
       </v-chip>
     </v-chip-group>
@@ -65,6 +69,24 @@ const onSelect = (country: TravelCountry) => {
 
 .country-chip {
   border: 1px solid rgba(var(--v-theme-on-surface), 0.12);
+}
+
+.country-chip__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.country-chip__flag {
+  width: 20px;
+  height: 14px;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.country-chip--active {
+  border-color: rgb(var(--v-theme-primary));
+  color: rgb(var(--v-theme-primary));
 }
 
 @media (min-width: 600px) {

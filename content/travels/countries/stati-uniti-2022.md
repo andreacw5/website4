@@ -1,6 +1,6 @@
 ---
 name: Stati Uniti
-flag: "🇺🇸"
+flag: "us"
 year: 2022
 continent: America
 visited: true
