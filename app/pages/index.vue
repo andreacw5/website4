@@ -25,6 +25,8 @@ useSeoMeta({
 
       <HomeSkillsSection />
 
+      <HomeVolunteeringTeaser />
+
       <HomePreviewSection />
     </v-container>
   </div>

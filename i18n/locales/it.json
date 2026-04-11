@@ -14,7 +14,8 @@
     "portfolio": "Portfolio",
     "travels": "Viaggi",
     "utilities": "Utilities",
-    "contacts": "Contatti"
+    "contacts": "Contatti",
+    "volunteering": "Volontariato"
   },
   "theme": {
     "light": "Passa al tema chiaro",
@@ -26,7 +27,9 @@
     "socials": {
       "github": "Profilo GitHub di Andrea Tombolato",
       "linkedin": "Profilo LinkedIn di Andrea Tombolato",
-      "website": "Sito heyatom.dev"
+      "website": "Sito heyatom.dev",
+      "steam": "Profilo Steam di Andrea Tombolato",
+      "instagram": "Profilo Instagram di Andrea Tombolato"
     }
   },
   "home": {
@@ -113,11 +116,6 @@
           "company": "Element Gaming",
           "role": "Full Stack Developer & Project Manager",
           "description": "Sviluppo di applicazioni web interattive e dinamiche utilizzando Nuxt.js e Node.js per migliorare\nl’esperienza della community e facilitare l’accesso ai contenuti e alle funzionalità della piattaforma."
-        },
-        "pcsm": {
-          "company": "Protezione Civile di Settimo M.se",
-          "role": "Responsabile Comunicazione",
-          "description": "Volontario attivo: gestione della comunicazione pubblica e coordinamento informativo sul territorio."
         }
       }
     },
@@ -125,6 +123,19 @@
       "eyebrow": "Competenze",
       "title": "Tecnologie e aree di lavoro",
       "description": "Lavoro con tecnologie web basate su Javascript o Java, come Node.js, Grails, Nest.js, Vue.js e Nuxt.js. Sempre alla ricerca di nuove tecnologie da imparare, al fine di migliorare le mie competenze. Inoltre, mi occupo della UX e UI, mettendo l'accento sul design e la qualità del prodotto, con particolare attenzione ai dettagli e alla semplicità d'uso."
+    },
+    "volunteering": {
+      "eyebrow": "Volontariato dal 2015",
+      "title": "Protezione Civile",
+      "p1": "Dal 2015 sono volontario nel gruppo di Protezione Civile di Settimo Milanese. Nel 2021 sono diventato capo squadra, gestendo le turnazioni serali del gruppo. Nel 2022 sono stato eletto consigliere, scegliendo di rinunciare al ruolo operativo per occuparmi delle comunicazioni esterne, un'area che il gruppo aveva bisogno di ridare vita.",
+      "p2": "Ho rilanciato le pagine Facebook e Instagram del gruppo, progettato e sviluppato il sito ufficiale procivsettimomi.it.",
+      "p3": "A febbraio 2026 ho concluso il mio percorso a Settimo Milanese. Sono attualmente in iter di ingresso nel Gruppo Comunale di Protezione Civile di Milano.",
+      "cta_primary": "Scopri di più",
+      "cta_secondary": "Visita il sito",
+      "stat_years": "anni di volontariato",
+      "stat_roles": "ruoli ricoperti",
+      "stat_salary": "compenso. Sempre.",
+      "badge": "Gruppo Comunale Milano · in ingresso 2026"
     },
     "preview": {
       "eyebrow": "Esplora",
@@ -281,6 +292,83 @@
       }
     }
   },
+  "volunteering": {
+    "seo": {
+      "title": "Volontariato · Andrea Tombolato",
+      "description": "Dal 2015 nella Protezione Civile: sito, social e bot per il gruppo di Settimo Milanese. Oggi in ingresso nel Gruppo Comunale di Milano.",
+      "ogTitle": "Volontariato · Andrea Tombolato",
+      "ogDescription": "Dal 2015 nella Protezione Civile: progetti tech per il territorio."
+    },
+    "hero": {
+      "eyebrow": "Protezione Civile · 2015 – oggi",
+      "title": "Da anni a servizio del territorio",
+      "subtitle": "Ho usato le stesse competenze che uso per i miei clienti per risolvere problemi reali in contesti di emergenza.",
+      "badge": "Gruppo Comunale Milano · in ingresso"
+    },
+    "timeline": {
+      "eyebrow": "Percorso",
+      "title": "I ruoli nel tempo",
+      "chips": {
+        "operational": "Operativo",
+        "management": "Gestionale",
+        "communication": "Comunicazione"
+      },
+      "items": {
+        "volunteer": {
+          "title": "Ingresso come volontario",
+          "description": "Inizio del percorso nel gruppo di Protezione Civile di Settimo Milanese. Formazione operativa, turni di guardia e partecipazione alle esercitazioni."
+        },
+        "squadLeader": {
+          "title": "Capo squadra",
+          "description": "Gestione delle turnazioni serali del gruppo e coordinamento delle squadre in servizio."
+        },
+        "councillor": {
+          "title": "Consigliere eletto",
+          "description": "Eletto nel consiglio direttivo del gruppo. Rinuncia volontaria al ruolo operativo per concentrarsi sulla governance e sulle comunicazioni."
+        },
+        "communications": {
+          "title": "Referente comunicazioni",
+          "description": "Rilancio delle pagine Facebook e Instagram, progettazione e sviluppo del sito ufficiale, costruzione del sistema di bot per le allerte in tempo reale."
+        },
+        "milan": {
+          "title": "Gruppo Comunale di Milano",
+          "description": "Concluso il percorso a Settimo Milanese a febbraio 2026. In iter di ingresso nel Gruppo Comunale di Protezione Civile di Milano."
+        }
+      }
+    },
+    "projects": {
+      "eyebrow": "Quello che ho costruito",
+      "title": "Progetti realizzati",
+      "items": {
+        "website": {
+          "description": "Progettazione e sviluppo da zero del sito ufficiale del gruppo di Protezione Civile di Settimo Milanese. Obiettivo: una presenza online istituzionale e informativa per i cittadini del territorio."
+        },
+        "social": {
+          "description": "Pagine inattive riportate in vita dopo anni di silenzio. Content strategy per una comunicazione istituzionale e operativa: mai allarmistica, sempre informativa."
+        },
+        "bot": {
+          "description": "Sistema automatico di notifica per i volontari. Monitoraggio H24 delle allerte meteo e operative sul territorio. Zero passaparola manuale, risposta immediata."
+        }
+      }
+    },
+    "reflection": {
+      "eyebrow": "Quello che ho imparato",
+      "title": "Cosa mi ha insegnato la Protezione Civile",
+      "p1": "Comunicare sotto pressione in modo chiaro. Non basta avere le informazioni giuste: serve saperle trasmettere nel momento giusto, nel formato giusto, alla persona giusta. Questo vale in un'emergenza quanto in una riunione di prodotto.",
+      "p2": "Coordinarsi con istituzioni diverse — Comune, Prefettura, Regione — ognuna con le proprie procedure, i propri ritmi e i propri linguaggi. Ho imparato che adattare il registro comunicativo non è una cortesia: è l'unico modo per fare in modo che le cose accadano davvero.",
+      "p3": "Costruire strumenti che devono funzionare quando conta davvero. Un bot che non notifica alle 3 di notte non è un bug da fixare nella prossima sprint — è un volontario che parte in ritardo. Quella responsabilità cambia il modo in cui scrivi il codice.",
+      "p4": "La differenza tra esserci e lasciare qualcosa. Quando sono entrato, il gruppo non aveva un sito, i social erano fermi e i volontari venivano avvisati per telefono. Quando sono uscito, c'erano strumenti che continuano a funzionare senza di me. Questa è la misura che conta."
+    },
+    "today": {
+      "eyebrow": "Oggi",
+      "title": "Il prossimo capitolo",
+      "text": "A febbraio 2026 ho concluso il mio percorso a Settimo Milanese dopo undici anni. Sono attualmente in iter di ingresso nel Gruppo Comunale di Protezione Civile di Milano: una realtà più grande, con scenari più complessi e la stessa motivazione di sempre."
+    },
+    "cta": {
+      "primary": "Parliamo di un progetto",
+      "secondary": "Visita il sito"
+    }
+  },
   "pages": {
     "comingSoon": "Sezione in arrivo",
     "backHome": "Torna alla home",
@@ -299,6 +387,61 @@
     "contacts": {
       "title": "Contatti",
       "description": "Nello Step 6 arriveranno form contatti, disponibilità freelance e link social completi."
+    }
+  },
+  "contacts": {
+    "seo": {
+      "title": "Contatti · Andrea Tombolato",
+      "description": "Contatta Andrea Tombolato per progetti freelance, collaborazioni o semplicemente per un saluto.",
+      "ogTitle": "Contatti · Andrea Tombolato",
+      "ogDescription": "Hai un progetto in mente? Scrivimi, sono sempre disponibile a parlarne."
+    },
+    "hero": {
+      "eyebrow": "Contatti",
+      "title": "Parliamo",
+      "subtitle": "Hai un progetto in mente, vuoi collaborare o semplicemente entrare in contatto? Compila il form o trovami sui social."
+    },
+    "form": {
+      "eyebrow": "Messaggio",
+      "title": "Invia un messaggio",
+      "name": "Nome",
+      "email": "Email",
+      "message": "Messaggio",
+      "messagePlaceholder": "Raccontami del tuo progetto o scrivi pure un saluto…",
+      "submit": "Invia messaggio",
+      "submitTooltipDisabled": "Compila tutti i campi per inviare",
+      "required": "Campo obbligatorio",
+      "emailInvalid": "Inserisci un'email valida",
+      "minMessage": "Il messaggio deve essere di almeno 10 caratteri",
+      "successMessage": "Messaggio inviato con successo! Ti risponderò il prima possibile.",
+      "errorMessage": "Si è verificato un errore durante l'invio. Riprova più tardi.",
+      "successDialog": {
+        "title": "Messaggio inviato!",
+        "subtitle": "Grazie per avermi scritto. Ho ricevuto il tuo messaggio e ti ricontatterò appena possibile.",
+        "close": "Perfetto, grazie!"
+      }
+    },
+    "socials": {
+      "eyebrow": "Social",
+      "title": "Trovami online"
+    },
+    "availability": {
+      "eyebrow": "Disponibilità",
+      "statusAvailable": "Disponibile",
+      "statusBusy": "Occupato",
+      "available": "Sono disponibile per nuovi progetti freelance",
+      "unavailable": "Attualmente non disponibile, ma contattami comunque",
+      "availableTitle": "Disponibile per nuovi progetti",
+      "availableSubtitle": "Sono aperto a collaborazioni freelance, consulenze e nuove opportunità di lavoro.",
+      "availableHint": "Inviami un messaggio dal form qui accanto",
+      "unavailableTitle": "Al momento sono piuttosto impegnato",
+      "unavailableSubtitle": "Ho già alcuni progetti attivi, ma non significa che non possiamo parlarne. Il momento giusto si trova.",
+      "unavailableHint": "Contattami comunque — potrei avere una finestra presto"
+    },
+    "map": {
+      "eyebrow": "Dove sono",
+      "title": "Milano, Italia",
+      "label": "Mappa interattiva di Milano, Italia"
     }
   }
 }

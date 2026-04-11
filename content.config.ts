@@ -83,6 +83,20 @@ export default defineContentConfig({
         image: z.string().nullable().optional(),
       }),
     }),
+    volunteeringProjects: defineCollection({
+      type: 'page',
+      source: 'volunteering/**/*.md',
+      schema: z.object({
+        title: z.string(),
+        slug: z.string(),
+        tag: z.string(),
+        link: z.string().optional(),
+        facebook: z.string().optional(),
+        instagram: z.string().optional(),
+        github: z.string().optional(),
+        order: z.number().optional(),
+      }),
+    }),
     projects: defineCollection({
       type: 'page',
       source: 'projects/**/*.md',

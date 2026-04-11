@@ -25,8 +25,7 @@ export const useExperienceStore = defineStore('experience', {
     items: [
       { key: 'medas',          from: '2016-06', to: '',        type: 'work' , website: 'https://medas-solutions.it/'     },
       { key: 'elementBoard',   from: '2020-11', to: '',        type: 'work', website: 'https://element-gaming.eu/' },
-      { key: 'elementDev',     from: '2019-02', to: '2020-11', type: 'work', website: 'https://element-gaming.eu/'     },
-      { key: 'pcsm',from: '2022-01', to: '2026-02', type: 'volunteer', website: 'https://procivsettimomi.it/' },
+      { key: 'elementDev',     from: '2019-02', to: '2020-11', type: 'work', website: 'https://element-gaming.eu/'     }
     ] as ExperienceItem[],
   }),
 

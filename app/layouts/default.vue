@@ -2,6 +2,7 @@
 import { useI18n } from 'vue-i18n';
 import SiteHeader from "~/components/layout/SiteHeader.vue";
 const { t } = useI18n();
+const localePath = useLocalePath();
 
 const socialLinks = computed(() => [
   { icon: 'mdi-github', href: 'https://github.com/andreacw5', label: t('footer.socials.github') },
