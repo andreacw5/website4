@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue';
 import { useI18n } from 'vue-i18n';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ProjectCard from "~/components/projects/ProjectCard.vue";
+import ProjectFeaturesSection from "~/components/projects/ProjectFeaturesSection.vue";
+
+if (import.meta.client) {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const { t, locale } = useI18n();
 const route = useRoute();
@@ -79,8 +86,67 @@ const onKeydown = (e: KeyboardEvent) => {
   if (e.key === 'Escape') lightboxOpen.value = false;
 };
 
-onMounted(() => window.addEventListener('keydown', onKeydown));
-onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown));
+onMounted(async () => {
+  window.addEventListener('keydown', onKeydown);
+  await nextTick();
+
+  // ── Hero title entrance ────────────────────────────────────────
+  gsap.from('.hero-title', {
+    y: 44,
+    opacity: 0,
+    duration: 0.9,
+    ease: 'power3.out',
+    delay: 0.05,
+  });
+
+  // ── Page content entrance (staggered timeline) ─────────────────
+  gsap.timeline({ delay: 0.2 })
+    .from('.back-btn', {
+      x: -24, opacity: 0, duration: 0.4, ease: 'power2.out',
+    })
+    .from('.project-detail section[aria-labelledby="detail-overview"]', {
+      y: 20, opacity: 0, duration: 0.45, ease: 'power2.out',
+    }, '-=0.2')
+    .from('.sidebar-card', {
+      x: 24, opacity: 0, duration: 0.45, ease: 'power2.out', stagger: 0.12,
+    }, '-=0.3');
+
+  // ── Scroll-reveal: sections below the fold ─────────────────────
+  gsap.utils.toArray<HTMLElement>('.project-detail section').forEach((el) => {
+    if (el.getAttribute('aria-labelledby') === 'detail-overview') return;
+    if (el.classList.contains('similar-section')) return;
+    gsap.from(el, {
+      scrollTrigger: { trigger: el, start: 'top 86%', once: true },
+      y: 30,
+      opacity: 0,
+      duration: 0.6,
+      ease: 'power2.out',
+    });
+  });
+
+  // ── Scroll-reveal: similar projects ───────────────────────────
+  const simSection = document.querySelector<HTMLElement>('.similar-section');
+  if (simSection) {
+    const header = simSection.querySelector<HTMLElement>(':scope > .d-flex');
+    if (header) {
+      gsap.from(header, {
+        scrollTrigger: { trigger: simSection, start: 'top 82%', once: true },
+        y: 22, opacity: 0, duration: 0.5, ease: 'power2.out',
+      });
+    }
+    simSection.querySelectorAll<HTMLElement>(':scope > .v-row > .v-col').forEach((col, i) => {
+      gsap.from(col, {
+        scrollTrigger: { trigger: col, start: 'top 90%', once: true },
+        y: 28, opacity: 0, duration: 0.5, ease: 'power2.out', delay: i * 0.09,
+      });
+    });
+  }
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('keydown', onKeydown);
+  ScrollTrigger.getAll().forEach(t => t.kill());
+});
 </script>
 
 <template>
@@ -123,7 +189,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown));
         color="primary"
         prepend-icon="mdi-arrow-left"
         size="default"
-        class="mb-8 font-weight-bold"
+        class="mb-8 font-weight-bold back-btn"
       >
         {{ t('projects.detail.back') }}
       </v-btn>
@@ -146,31 +212,12 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown));
           </section>
 
           <!-- Features -->
-          <section v-if="project.features?.length" class="mb-10" aria-labelledby="detail-features">
-            <h2 id="detail-features" class="section-eyebrow text-overline text-primary font-weight-bold mb-5">
-              {{ t('projects.detail.features') }}
-            </h2>
-            <v-row>
-              <v-col
-                v-for="(feature, i) in project.features"
-                :key="i"
-                cols="12"
-                sm="6"
-              >
-                <v-card class="feature-card h-100" rounded="xl" elevation="0">
-                  <v-card-text class="d-flex ga-4">
-                    <v-avatar size="44" color="primary" variant="tonal" rounded="lg" class="flex-shrink-0">
-                      <Icon :icon="feature.icon" width="22" height="22" />
-                    </v-avatar>
-                    <div>
-                      <div class="text-body-1 font-weight-semibold mb-1">{{ loc(feature.title as LocaleString) }}</div>
-                      <p class="text-body-2 text-medium-emphasis">{{ loc(feature.subtitle as LocaleString) }}</p>
-                    </div>
-                  </v-card-text>
-                </v-card>
-              </v-col>
-            </v-row>
-          </section>
+          <ProjectFeaturesSection
+            v-if="project.features?.length"
+            :features="project.features"
+            :title="t('projects.detail.features')"
+            :loc="loc"
+          />
 
           <!-- Galleria immagini -->
           <section v-if="images.length" class="mb-10" aria-labelledby="detail-gallery">
@@ -253,6 +300,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown));
                   variant="tonal"
                   prepend-icon="mdi-github"
                   block
+                  class="link-btn link-btn--github"
                 >
                   {{ t('projects.detail.viewGithub') }}
                 </v-btn>
@@ -265,6 +313,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown));
                   variant="outlined"
                   prepend-icon="mdi-open-in-new"
                   block
+                  class="link-btn link-btn--website"
                 >
                   {{ t('projects.detail.viewWebsite') }}
                 </v-btn>
@@ -283,15 +332,17 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown));
               <p class="text-overline text-primary font-weight-bold mb-3">{{ t('projects.detail.techStack') }}</p>
 
               <!-- Tech principale -->
-              <div v-if="project.technical.main" class="d-flex align-center ga-3 mb-4">
+              <div v-if="project.technical.main" class="stack-item d-flex align-center ga-3 mb-4">
                 <v-avatar
-                  size="40"
+                  size="44"
                   rounded="lg"
                   color="surface-variant"
                   variant="flat"
+                  class="stack-avatar"
                 >
                   <span
                     v-if="project.technical.main.icon?.startsWith('/')"
+                    class="stack-icon"
                     :style="{
                       display: 'inline-block',
                       width: '22px',
@@ -302,10 +353,17 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown));
                     }"
                     :aria-label="project.technical.main.name"
                   />
-                  <Icon v-else :icon="project.technical.main.icon" width="22" height="22" :color="project.technical.main.color" />
+                  <Icon
+                    v-else
+                    :icon="project.technical.main.icon"
+                    width="22"
+                    height="22"
+                    :color="project.technical.main.color"
+                    class="stack-icon"
+                  />
                 </v-avatar>
                 <div>
-                  <div class="text-body-2 font-weight-semibold">{{ project.technical.main.name }}</div>
+                  <div class="text-body-2 font-weight-semibold jetbrain">{{ project.technical.main.name }}</div>
                   <div class="text-caption text-medium-emphasis">Main stack</div>
                 </div>
               </div>
@@ -318,6 +376,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown));
                   color="gray"
                   variant="flat"
                   size="small"
+                  class="jetbrain"
                 >
                   <template #prepend>
                     <span
@@ -352,14 +411,15 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown));
             <v-card-text class="pa-5">
               <p class="text-overline text-primary font-weight-bold mb-3">{{ t('projects.detail.client') }}</p>
 
-              <div class="d-flex align-center ga-3 mb-3">
+              <div class="client-item d-flex align-center ga-3 mb-3">
                 <v-avatar
                   v-if="project.client.logo"
                   size="44"
                   rounded="lg"
                   color="surface-variant"
+                  class="client-avatar"
                 >
-                  <v-img :src="project.client.logo" :alt="project.client.name" />
+                  <v-img :src="project.client.logo" :alt="project.client.name" class="client-icon" />
                 </v-avatar>
                 <v-avatar
                   v-else
@@ -367,8 +427,9 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown));
                   rounded="lg"
                   color="primary"
                   variant="tonal"
+                  class="client-avatar"
                 >
-                  <v-icon>mdi-domain</v-icon>
+                  <v-icon class="client-icon" size="22">mdi-domain</v-icon>
                 </v-avatar>
                 <div class="text-body-2 font-weight-semibold">{{ project.client.name }}</div>
               </div>
@@ -552,16 +613,80 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown));
   background: rgba(var(--v-theme-surface-variant), 1);
 }
 
+/* ─── Back button ───────────────────────────────── */
+.back-btn {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.back-btn:hover {
+  transform: translateX(-4px);
+  box-shadow: 0 4px 16px rgba(0, 168, 107, 0.18);
+}
+
+.back-btn :deep(.v-btn__prepend) {
+  transition: transform 0.22s ease;
+}
+
+.back-btn:hover :deep(.v-btn__prepend) {
+  transform: translateX(-3px);
+}
+
+/* ─── Link buttons ──────────────────────────────── */
+.link-btn {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.link-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.08);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.link-btn:hover {
+  transform: translateY(-2px);
+}
+
+.link-btn--github:hover {
+  box-shadow: 0 6px 20px rgba(0, 168, 107, 0.22);
+}
+
+.link-btn--website:hover {
+  box-shadow: 0 6px 20px rgba(0, 168, 107, 0.15);
+}
+
+.link-btn:hover::after {
+  opacity: 1;
+}
+
+.link-btn :deep(.v-btn__prepend) {
+  transition: transform 0.22s ease;
+}
+
+.link-btn--github:hover :deep(.v-btn__prepend) {
+  transform: rotate(-8deg) scale(1.15);
+}
+
+.link-btn--website:hover :deep(.v-btn__prepend) {
+  transform: translate(2px, -2px) scale(1.1);
+}
+
+.link-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
 /* ─── Sezioni ───────────────────────────────────── */
 .section-eyebrow {
   font-family: 'JetBrains Mono', ui-monospace, monospace;
   letter-spacing: 0.1em;
 }
 
-/* ─── Feature cards ─────────────────────────────── */
-.feature-card {
-  border: 1px solid rgba(var(--v-theme-on-surface), 0.07);
-}
 
 /* ─── Gallery ───────────────────────────────────── */
 .gallery-toggle {
@@ -608,7 +733,15 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown));
 
 /* ─── Sidebar ───────────────────────────────────── */
 .sidebar-card {
-  border: 1px solid rgba(var(--v-theme-on-surface), 0.07);
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    var(--home-card-top, rgba(255, 255, 255, 0.96)),
+    var(--home-card-bottom, rgba(245, 248, 247, 0.88))
+  );
+  border: 1px solid var(--home-brand-soft, rgba(0, 168, 107, 0.12));
+  transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
 }
 
 /* ─── Lightbox ──────────────────────────────────── */
