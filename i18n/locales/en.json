@@ -13,9 +13,9 @@
     "home": "Home",
     "portfolio": "Portfolio",
     "travels": "Travels",
-    "utilities": "Utilities",
     "contacts": "Contacts",
-    "volunteering": "Volunteering"
+    "volunteering": "Volunteering",
+    "uses": "Uses"
   },
   "theme": {
     "light": "Switch to light theme",
@@ -35,7 +35,7 @@
   "home": {
     "seo": {
       "title": "Home",
-      "description": "Personal portfolio of Andrea Tombolato: full-stack development, experience since 2016, freelance work, travels, and utilities.",
+      "description": "Personal portfolio of Andrea Tombolato: full-stack development, experience since 2016, freelance work, and travels.",
       "ogTitle": "Andrea Tombolato · Full-stack Developer",
       "ogDescription": "I build web products with Vue, Nuxt, Node, and Java, with a strong focus on UX, accessibility, and product quality."
     },
@@ -145,7 +145,7 @@
     },
     "preview": {
       "eyebrow": "Explore",
-      "title": "Projects, travels, and utilities",
+      "title": "Projects and travels",
       "description": "This is a preview of the sections that will be added in the next steps. Each one will host a selection of projects, photos, and resources that reflect my work, interests, and personal archives.",
       "cta": "Learn more",
       "cards": {
@@ -157,9 +157,9 @@
           "title": "Travels",
           "description": "Places, photos, and routes that feed curiosity, observation, and attention to detail."
         },
-        "utilities": {
-          "title": "Utilities",
-          "description": "Collections and mini-tools built from personal archives, quick references, and ready-to-use resources."
+        "uses": {
+          "title": "Uses",
+          "description": "Hardware, software and services I use every day: my workstation, development tools, and productivity apps."
         }
       }
     }
@@ -244,58 +244,6 @@
       "similar": "Similar projects",
       "similarSubtitle": "More projects built with {stack}",
       "allProjects": "All projects"
-    }
-  },
-  "utilities": {
-    "seo": {
-      "title": "Utilities",
-      "description": "Personal utilities: modding backups for GTA V, Fallout 4 and The Sims 4, Arma 3 skins for Altis Life, and my Star Citizen hangar.",
-      "ogTitle": "Andrea Tombolato · Utilities",
-      "ogDescription": "Modding backups, Arma 3 skins, and Star Citizen hangar — personal archives by Andrea Tombolato."
-    },
-    "hero": {
-      "eyebrow": "Utilities",
-      "title": "My personal archives",
-      "description": "A collection of personal references, modding backups and game resources I use or have built over the years."
-    },
-    "back": "Back to Utilities",
-    "wip": {
-      "label": "Content coming soon",
-      "description": "This section is being populated. Check back soon!"
-    },
-    "categories": {
-      "moddingBackup": {
-        "title": "Modding Backup",
-        "description": "Backup lists and references for the mods I use across different games.",
-        "eyebrow": "Games & Mods",
-        "sections": {
-          "gtaV": {
-            "title": "GTA V",
-            "description": "My mod list and configuration backup for Grand Theft Auto V.",
-            "icon": "mdi-city-variant-outline"
-          },
-          "fallout4": {
-            "title": "Fallout 4",
-            "description": "Load order, essential mods and configuration backup for Fallout 4.",
-            "icon": "mdi-radioactive"
-          },
-          "sims4": {
-            "title": "The Sims 4",
-            "description": "CC, mods and package backup list for The Sims 4.",
-            "icon": "mdi-home-heart"
-          }
-        }
-      },
-      "arma3": {
-        "title": "Arma 3 – Altis Life Skins",
-        "description": "Custom skins and textures I created for Arma 3 Altis Life servers.",
-        "eyebrow": "Military Sim"
-      },
-      "starCitizen": {
-        "title": "My Star Citizen Hangar",
-        "description": "A list of all the ships in my Star Citizen hangar, with specs and lore.",
-        "eyebrow": "Space Sim"
-      }
     }
   },
   "volunteering": {
@@ -386,10 +334,6 @@
       "title": "Travels",
       "description": "Map, gallery, and visited countries will land here in Step 4."
     },
-    "utilities": {
-      "title": "Utilities",
-      "description": "This area will host archives, mod backups, and practical tools in Step 5."
-    },
     "contacts": {
       "title": "Contacts",
       "description": "Step 6 will add the contact form, freelance availability, and complete social links."
@@ -427,6 +371,9 @@
         "close": "Got it, thanks!"
       }
     },
+    "email": {
+      "eyebrow": "Email"
+    },
     "socials": {
       "eyebrow": "Social",
       "title": "Find me online"
@@ -448,6 +395,26 @@
       "eyebrow": "Where I am",
       "title": "Milan, Italy",
       "label": "Interactive map of Milan, Italy"
+    }
+  },
+  "uses": {
+    "seo": {
+      "title": "Uses",
+      "description": "Hardware, software and services I use every day: my workstation setup, development tools, design and productivity apps.",
+      "ogTitle": "Andrea Tombolato · Uses",
+      "ogDescription": "My setup: MacBook Pro M3, JetBrains, Nuxt, Vercel and all the tools that power my daily work."
+    },
+    "hero": {
+      "eyebrow": "Setup & tools",
+      "title": "What I use every day",
+      "subtitle": "Hardware, software and services that make up my workstation. Updated whenever something relevant changes."
+    },
+    "updated": "Updated April 2026",
+    "sections": {
+      "workstation": "Workstation",
+      "development": "Development",
+      "design": "Design & productivity",
+      "services": "Services & infra"
     }
   }
 }

@@ -1,0 +1,79 @@
+{
+  "icon": "mdi-web",
+  "titleKey": "uses.sections.services",
+  "column": "right",
+  "order": 4,
+  "items": [
+    {
+      "icon": "mdi-triangle-outline",
+      "name": "Vercel",
+      "badge": { "text": "free", "type": "free" },
+      "desc": {
+        "it": "Deploy di tutti i progetti Nuxt e Next. Zero config, preview automatiche per ogni PR.",
+        "en": "Deploy for all Nuxt and Next projects. Zero config, automatic previews for every PR."
+      }
+    },
+    {
+      "icon": "mdi-server-network",
+      "name": "Hostinger VPS",
+      "desc": {
+        "it": "Due server VPS in replica per il deploy dei progetti che richiedono un backend persistente. Affidabile e conveniente.",
+        "en": "Two VPS servers in replica for deploying projects that need a persistent backend. Reliable and cost-effective."
+      }
+    },
+    {
+      "icon": "mdi-shield-check-outline",
+      "name": "Cloudflare",
+      "badge": { "text": "free", "type": "free" },
+      "desc": {
+        "it": "DNS e CDN per tutti i domini. Il piano gratuito copre tutto quello che mi serve.",
+        "en": "DNS and CDN for all domains. The free plan covers everything I need."
+      }
+    },
+    {
+      "icon": "mdi-robot-outline",
+      "name": "Claude",
+      "badge": { "text": "Pro", "type": "pro" },
+      "desc": {
+        "it": "Per debug, code review, bozze di testo e — come in questo caso — costruire il mio sito.",
+        "en": "For debugging, code reviews, text drafts and — as in this case — building my own website."
+      }
+    },
+    {
+      "icon": "mdi-chart-areaspline",
+      "name": "Simple Analytics",
+      "badge": { "text": "paid", "type": "paid" },
+      "desc": {
+        "it": "Analytics conforme al GDPR, senza cookie e senza banner. Traccia solo l'essenziale, rispettando la privacy degli utenti.",
+        "en": "GDPR-compliant analytics, no cookies, no banner. Tracks only the essentials while respecting user privacy."
+      }
+    },
+    {
+      "icon": "mdi-email-fast-outline",
+      "name": "Basin",
+      "badge": { "text": "free", "type": "free" },
+      "desc": {
+        "it": "Gestione dei form di contatto senza backend. Basta un action HTML e le submission arrivano direttamente via email.",
+        "en": "Contact form handling without a backend. Just an HTML action and submissions arrive directly by email."
+      }
+    },
+    {
+      "icon": "mdi-check-decagram-outline",
+      "name": "Instatus",
+      "badge": { "text": "free", "type": "free" },
+      "desc": {
+        "it": "Status page per monitorare lo stato delle mie applicazioni. Semplice da configurare e aggiornare.",
+        "en": "Status page to monitor the state of my applications. Simple to set up and update."
+      }
+    },
+    {
+      "icon": "mdi-github",
+      "name": "GitHub Copilot",
+      "badge": { "text": "Pro", "type": "pro" },
+      "desc": {
+        "it": "Assistente AI integrato nell'editor per completamento del codice, suggerimenti inline e chat contestuale.",
+        "en": "AI assistant integrated in the editor for code completion, inline suggestions and contextual chat."
+      }
+    }
+  ]
+}

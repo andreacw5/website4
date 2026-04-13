@@ -13,9 +13,9 @@
     "home": "Home",
     "portfolio": "Portfolio",
     "travels": "Viaggi",
-    "utilities": "Utilities",
     "contacts": "Contatti",
-    "volunteering": "Volontariato"
+    "volunteering": "Volontariato",
+    "uses": "Uses"
   },
   "theme": {
     "light": "Passa al tema chiaro",
@@ -35,7 +35,7 @@
   "home": {
     "seo": {
       "title": "Home",
-      "description": "Portfolio personale di Andrea Tombolato: sviluppo full-stack, esperienze dal 2016, progetti freelance, viaggi e utilities.",
+      "description": "Portfolio personale di Andrea Tombolato: sviluppo full-stack, esperienze dal 2016, progetti freelance e viaggi.",
       "ogTitle": "Andrea Tombolato · Full-stack Developer",
       "ogDescription": "Sviluppo prodotti web con Vue, Nuxt, Node e Java, con attenzione a UX, accessibilità e qualità del dettaglio."
     },
@@ -146,7 +146,7 @@
     "preview": {
       "eyebrow": "Esplora",
       "title": "I progetti, i viaggi e tanto altro",
-      "description": "Dai progetti di sviluppo alle esperienze di viaggio, passando per utilities e risorse: un mix di contenuti che riflettono le mie passioni e competenze, con un approccio pratico e orientato all'uso reale.",
+      "description": "Dai progetti di sviluppo alle esperienze di viaggio: un mix di contenuti che riflettono le mie passioni e competenze, con un approccio pratico e orientato all'uso reale.",
       "cta": "Scopri di più",
       "cards": {
         "portfolio": {
@@ -157,9 +157,9 @@
           "title": "Viaggi",
           "description": "Luoghi, fotografie e itinerari che alimentano curiosità, osservazione e senso del dettaglio."
         },
-        "utilities": {
-          "title": "Utilities",
-          "description": "Raccolte e mini-tool utili, tra archivi personali, reference veloci e risorse pronte all'uso."
+        "uses": {
+          "title": "Uses",
+          "description": "Hardware, software e servizi che uso ogni giorno: la mia postazione, gli strumenti di sviluppo e produttività."
         }
       }
     }
@@ -244,58 +244,6 @@
       "similar": "Progetti simili",
       "similarSubtitle": "Altri progetti con {stack}",
       "allProjects": "Tutti i progetti"
-    }
-  },
-  "utilities": {
-    "seo": {
-      "title": "Utilities",
-      "description": "Utilities personali: backup mod per GTA V, Fallout 4 e The Sims 4, skin Arma 3 per Altis Life e il mio hangar di Star Citizen.",
-      "ogTitle": "Andrea Tombolato · Utilities",
-      "ogDescription": "Backup mod, skin Arma 3 e hangar Star Citizen — archivi personali di Andrea Tombolato."
-    },
-    "hero": {
-      "eyebrow": "Utilities",
-      "title": "I miei archivi personali",
-      "description": "Una raccolta di riferimenti personali, backup mod e risorse gaming che uso o che ho costruito negli anni."
-    },
-    "back": "Torna alle Utilities",
-    "wip": {
-      "label": "Contenuto in arrivo",
-      "description": "Questa sezione è in fase di completamento. Torna a trovarci presto!"
-    },
-    "categories": {
-      "moddingBackup": {
-        "title": "Modding Backup",
-        "description": "Liste di backup e riferimenti per le mod che uso nei vari giochi.",
-        "eyebrow": "Games & Mod",
-        "sections": {
-          "gtaV": {
-            "title": "GTA V",
-            "description": "Lista mod e backup della configurazione per Grand Theft Auto V.",
-            "icon": "mdi-city-variant-outline"
-          },
-          "fallout4": {
-            "title": "Fallout 4",
-            "description": "Ordine di caricamento, mod essenziali e backup della configurazione per Fallout 4.",
-            "icon": "mdi-radioactive"
-          },
-          "sims4": {
-            "title": "The Sims 4",
-            "description": "Lista backup di CC, mod e package per The Sims 4.",
-            "icon": "mdi-home-heart"
-          }
-        }
-      },
-      "arma3": {
-        "title": "Arma 3 – Skin per Altis Life",
-        "description": "Skin e texture personalizzate che ho creato per i server Arma 3 Altis Life.",
-        "eyebrow": "Military Sim"
-      },
-      "starCitizen": {
-        "title": "Il mio Hangar di Star Citizen",
-        "description": "La lista di tutte le navi nel mio hangar di Star Citizen, con specifiche e lore.",
-        "eyebrow": "Space Sim"
-      }
     }
   },
   "volunteering": {
@@ -386,10 +334,6 @@
       "title": "Viaggi",
       "description": "Qui arriveranno mappa, gallery e paesi visitati nello Step 4."
     },
-    "utilities": {
-      "title": "Utilities",
-      "description": "La sezione utilities ospiterà archivi, mod backup e strumenti pratici nello Step 5."
-    },
     "contacts": {
       "title": "Contatti",
       "description": "Nello Step 6 arriveranno form contatti, disponibilità freelance e link social completi."
@@ -427,6 +371,9 @@
         "close": "Perfetto, grazie!"
       }
     },
+    "email": {
+      "eyebrow": "Email"
+    },
     "socials": {
       "eyebrow": "Social",
       "title": "Trovami online"
@@ -448,6 +395,26 @@
       "eyebrow": "Dove sono",
       "title": "Milano, Italia",
       "label": "Mappa interattiva di Milano, Italia"
+    }
+  },
+  "uses": {
+    "seo": {
+      "title": "Uses",
+      "description": "Hardware, software e servizi che uso ogni giorno: la mia postazione di lavoro, gli strumenti di sviluppo, design e produttività.",
+      "ogTitle": "Andrea Tombolato · Uses",
+      "ogDescription": "Il mio setup: MacBook Pro M3, JetBrains, Nuxt, Vercel e tutti gli strumenti che rendono il mio lavoro quotidiano."
+    },
+    "hero": {
+      "eyebrow": "Setup & strumenti",
+      "title": "Cosa uso ogni giorno",
+      "subtitle": "Hardware, software e servizi che compongono la mia postazione. Aggiornato quando cambio qualcosa di rilevante."
+    },
+    "updated": "Aggiornato aprile 2026",
+    "sections": {
+      "workstation": "Workstation",
+      "development": "Sviluppo",
+      "design": "Design & produttività",
+      "services": "Servizi & infra"
     }
   }
 }
