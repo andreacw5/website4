@@ -43,23 +43,24 @@ const snackbar = ref(false);
 const snackbarText = ref('');
 const snackbarColor = ref<'info' | 'success' | 'error'>('info');
 
-const downloadCv = async () => {
+const downloadCv = () => {
   snackbarText.value = t('home.hero.cvDownloadStarted');
   snackbarColor.value = 'info';
   snackbar.value = true;
 
   try {
-    const response = await fetch('/CV_2024.pdf');
-    if (!response.ok) throw new Error('Network response was not ok');
-    const blob = await response.blob();
-    const url = URL.createObjectURL(blob);
+    // Use a direct same-origin link so the user-gesture context is never
+    // broken by an async `await`.  On Android Chrome the `download`
+    // attribute is only honoured when the click happens synchronously
+    // within the original user-gesture; fetching a blob first loses that
+    // context and silently blocks the download.
     const a = document.createElement('a');
-    a.href = url;
+    a.style.display = 'none';
+    a.href = '/CV_2024.pdf';
     a.download = 'CV_2024.pdf';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    URL.revokeObjectURL(url);
 
     snackbarText.value = t('home.hero.cvDownloadDone');
     snackbarColor.value = 'success';
