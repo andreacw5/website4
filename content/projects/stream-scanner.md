@@ -3,7 +3,7 @@ title: "Stream Scanner"
 description:
   it: "Microservizio NestJS per il monitoraggio in tempo reale dei canali Twitch. Rileva eventi live, cambio gioco e nuove clip, invia notifiche Discord via Webhook con embed personalizzati e persiste i dati su PostgreSQL via Prisma. REST API protetta da API Key e documentata con Swagger."
   en: "NestJS microservice for real-time Twitch channel monitoring. Detects live events, game changes and new clips, dispatches Discord Webhook notifications with custom embeds, and persists data to PostgreSQL via Prisma. REST API secured with API key auth and documented via Swagger."
-startDate: "2026"
+startDate: "2025"
 current: true
 preview: "https://fileharbor.heyatom.dev/v2/images/58845231-8147-4594-9fb3-52c76f38f9e9"
 client:

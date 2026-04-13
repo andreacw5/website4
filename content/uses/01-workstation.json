@@ -1,0 +1,72 @@
+{
+  "icon": "mdi-monitor",
+  "titleKey": "uses.sections.workstation",
+  "column": "left",
+  "order": 1,
+  "items": [
+    {
+      "icon": "mdi-desktop-tower",
+      "name": "Mac Mini M1 (2020)",
+      "badge": {
+        "text": { "it": "principale", "en": "main" },
+        "type": "primary"
+      },
+      "desc": {
+        "it": "16GB RAM. Desktop fisso principale, silenzioso e potente per lo sviluppo quotidiano.",
+        "en": "16GB RAM. Primary desktop, silent and powerful for daily development."
+      }
+    },
+    {
+      "icon": "mdi-laptop",
+      "name": "MacBook Air 13\" M3 (2024)",
+      "badge": {
+        "text": { "it": "portatile", "en": "laptop" },
+        "type": "secondary"
+      },
+      "desc": {
+        "it": "16GB RAM, 512GB SSD. Display Liquid Retina 13,6\", videocamera FaceTime HD 1080p, Touch ID. Colorazione Mezzanotte.",
+        "en": "16GB RAM, 512GB SSD. 13.6\" Liquid Retina display, FaceTime HD 1080p camera, Touch ID. Midnight color."
+      }
+    },
+    {
+      "icon": "mdi-monitor",
+      "name": "ASUS ROG SWIFT PG279QE 27",
+      "badge": {
+        "text": { "it": "monitor primario", "en": "primary monitor" },
+        "type": "primary"
+      },
+      "desc": {
+        "it": "WQHD 2560×1440, pannello IPS, G-Sync. Ottimo equilibrio tra risoluzione e fluidità per lavoro e gaming.",
+        "en": "WQHD 2560×1440, IPS panel, G-Sync. Great balance between resolution and smoothness for work and gaming."
+      }
+    },
+    {
+      "icon": "mdi-monitor-multiple",
+      "name": "Acer Predator XB271HK 27",
+      "badge": {
+        "text": { "it": "monitor secondario", "en": "secondary monitor" },
+        "type": "secondary"
+      },
+      "desc": {
+        "it": "4K Ultra HD, IPS, G-Sync, 60Hz, 4ms, HDMI/DP/USB 3.0. Usato per documentazione e finestre di supporto.",
+        "en": "4K Ultra HD, IPS, G-Sync, 60Hz, 4ms, HDMI/DP/USB 3.0. Used for documentation and secondary windows."
+      }
+    },
+    {
+      "icon": "mdi-keyboard",
+      "name": "Logitech MX Mechanical",
+      "desc": {
+        "it": "Tastiera meccanica wireless con retroilluminazione smart. Perfetta per lunghe sessioni di scrittura e codice.",
+        "en": "Wireless mechanical keyboard with smart backlighting. Perfect for long writing and coding sessions."
+      }
+    },
+    {
+      "icon": "mdi-gesture-swipe",
+      "name": "Apple Magic Trackpad",
+      "desc": {
+        "it": "Colorazione grigio siderale. Gestures precise e integrazione nativa perfetta con macOS.",
+        "en": "Space Gray finish. Precise gestures and seamless native integration with macOS."
+      }
+    }
+  ]
+}

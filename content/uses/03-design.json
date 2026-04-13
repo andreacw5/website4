@@ -1,0 +1,34 @@
+{
+  "icon": "mdi-layers-outline",
+  "titleKey": "uses.sections.design",
+  "column": "right",
+  "order": 3,
+  "items": [
+    {
+      "icon": "mdi-vector-square",
+      "name": "Figma",
+      "badge": { "text": "free", "type": "free" },
+      "desc": {
+        "it": "Wireframe, mockup e handoff.",
+        "en": "Wireframes, mockups and handoff."
+      }
+    },
+    {
+      "icon": "mdi-note-text-outline",
+      "name": "Notion",
+      "badge": { "text": "free", "type": "free" },
+      "desc": {
+        "it": "Note personali, appunti di progetto, idee.",
+        "en": "Personal notes, project notes, ideas."
+      }
+    },
+    {
+      "icon": "mdi-email-outline",
+      "name": "Spark",
+      "desc": {
+        "it": "Client email per macOS. Molto più veloce dell'interfaccia web.",
+        "en": "Email client for macOS. Much faster than the web interface."
+      }
+    }
+  ]
+}

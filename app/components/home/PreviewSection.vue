@@ -14,14 +14,14 @@ const previewCards = computed(() => [
     to: localePath('/projects'),
   },
   {
+    key: 'uses',
+    icon: 'mdi-laptop',
+    to: localePath('/uses'),
+  },
+  {
     key: 'travels',
     icon: 'mdi-map-marker-path',
     to: localePath('/travels'),
-  },
-  {
-    key: 'utilities',
-    icon: 'mdi-tools',
-    to: localePath('/utilities'),
   },
 ]);
 

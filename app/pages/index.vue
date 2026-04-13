@@ -26,9 +26,9 @@ useSeo(() => ({
 
       <HomeVolunteeringTeaser />
 
-      <HomePreviewSection />
-
       <HomeCtaSection />
+
+      <HomePreviewSection />
     </v-container>
   </div>
 </template>

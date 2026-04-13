@@ -1,0 +1,52 @@
+{
+  "icon": "mdi-code-tags",
+  "titleKey": "uses.sections.development",
+  "column": "left",
+  "order": 2,
+  "items": [
+    {
+      "icon": "mdi-code-braces-box",
+      "name": "JetBrains Suite",
+      "badge": { "text": "paid", "type": "paid" },
+      "desc": {
+        "it": "WebStorm per il web (Vue/Nuxt/TS), IntelliJ IDEA per Java e Grails, DataGrip per la gestione dei database.",
+        "en": "WebStorm for web (Vue/Nuxt/TS), IntelliJ IDEA for Java and Grails, DataGrip for database management."
+      }
+    },
+    {
+      "icon": "mdi-console-line",
+      "name": "Warp + Oh My Zsh",
+      "badge": { "text": "free", "type": "free" },
+      "desc": {
+        "it": "Warp come terminale principale per la sua UI moderna e il completamento AI. Oh My Zsh con alias personalizzati per git e npm.",
+        "en": "Warp as my main terminal for its modern UI and AI completion. Oh My Zsh with custom aliases for git and npm."
+      }
+    },
+    {
+      "icon": "mdi-source-branch",
+      "name": "GitHub + GitKraken",
+      "desc": {
+        "it": "GitHub per hosting e CI/CD. GitKraken come client visuale per gestire branch, PR e diff in modo chiaro.",
+        "en": "GitHub for hosting and CI/CD. GitKraken as a visual client to manage branches, PRs and diffs clearly."
+      }
+    },
+    {
+      "icon": "mdi-docker",
+      "name": "Docker Desktop",
+      "badge": { "text": "free", "type": "free" },
+      "desc": {
+        "it": "Indispensabile per ambienti locali consistenti, specialmente con Grails e Java.",
+        "en": "Indispensable for consistent local environments, especially with Grails and Java."
+      }
+    },
+    {
+      "icon": "mdi-api",
+      "name": "Postman",
+      "badge": { "text": "free", "type": "free" },
+      "desc": {
+        "it": "Per testare e documentare le API. Ottimo per organizzare collection e ambienti condivisi.",
+        "en": "For API testing and documentation. Great for organizing collections and shared environments."
+      }
+    }
+  ]
+}
