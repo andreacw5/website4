@@ -239,6 +239,25 @@ const submitForm = async () => {
               </div>
             </div>
 
+            <!-- Email -->
+            <div>
+              <p class="text-overline text-primary font-weight-bold mb-3 brand-mono d-flex align-center ga-1">
+                <v-icon size="14" color="primary">mdi-email-outline</v-icon>
+                {{ t('contacts.email.eyebrow') }}
+              </p>
+              <v-btn
+                href="mailto:hey@heyatom.dev"
+                variant="tonal"
+                color="primary"
+                size="large"
+                block
+                class="social-btn"
+              >
+                <v-icon start>mdi-email-outline</v-icon>
+                hey@heyatom.dev
+              </v-btn>
+            </div>
+
             <!-- Social links -->
             <div>
               <p class="text-overline text-primary font-weight-bold mb-3 brand-mono d-flex align-center ga-1">
@@ -399,6 +418,27 @@ const submitForm = async () => {
 .social-btn {
   justify-content: flex-start !important;
   text-transform: none !important;
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+.social-btn:hover  { transform: translateY(-3px); }
+.social-btn:active { transform: translateY(-1px); }
+
+/* Icon slides right on hover */
+.social-btn :deep(.v-icon) {
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.social-btn:hover :deep(.v-icon) {
+  transform: translateX(3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .social-btn,
+  .social-btn :deep(.v-icon) { transition: none !important; }
+  .social-btn:hover,
+  .social-btn:active          { transform: none; }
+  .social-btn:hover :deep(.v-icon) { transform: none; }
 }
 
 /* ── Availability banner ───────────────────────────────── */
