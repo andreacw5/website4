@@ -13,6 +13,7 @@ if (import.meta.client) {
 const { t, locale } = useI18n();
 const route = useRoute();
 const localePath = useLocalePath();
+const themeStore = useThemeStore();
 
 // Helper per leggere un campo localizzato (stringa o { it, en })
 type LocaleString = string | { it?: string; en?: string } | null | undefined;
@@ -151,7 +152,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div v-if="project" class="project-detail">
+  <div v-if="project" class="project-detail" :class="{ 'project-detail--dark': themeStore.isDark }">
 
     <!-- ─── Hero fullwidth ───────────────────────────────────────── -->
     <div class="hero-img-wrapper">
@@ -382,19 +383,18 @@ onBeforeUnmount(() => {
                   <template #prepend>
                     <span
                       v-if="tech.icon?.startsWith('/')"
-                      class="mr-1"
+                      class="mr-1 tech-icon-mask"
                       :style="{
                         display: 'inline-block',
                         width: '13px',
                         height: '13px',
-                        backgroundColor: 'white',
                         WebkitMask: `url(${tech.icon}) no-repeat center / contain`,
                         mask: `url(${tech.icon}) no-repeat center / contain`,
                         flexShrink: '0',
                       }"
                       :aria-label="tech.title"
                     />
-                    <Icon v-else :icon="tech.icon" width="13" height="13" class="mr-1" color="white" />
+                    <Icon v-else :icon="tech.icon" width="13" height="13" class="mr-1" />
                   </template>
                   {{ tech.title }}
                 </v-chip>
@@ -586,6 +586,19 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped>
+/* ─── Theme tokens ──────────────────────────────── */
+.project-detail {
+  --home-card-top:    rgba(255, 255, 255, 0.96);
+  --home-card-bottom: rgba(245, 248, 247, 0.88);
+  --home-brand-soft:  rgba(0, 168, 107, 0.12);
+}
+
+.project-detail--dark {
+  --home-card-top:    rgba(22, 27, 26, 0.96);
+  --home-card-bottom: rgba(15, 20, 19, 0.88);
+  --home-brand-soft:  rgba(0, 168, 107, 0.22);
+}
+
 /* ─── Hero ─────────────────────────────────────── */
 .hero-img-wrapper {
   width: 100%;
@@ -790,6 +803,11 @@ onBeforeUnmount(() => {
   padding: 6px 14px;
   border-radius: 20px;
   white-space: nowrap;
+}
+
+/* ─── Tech chip icons ───────────────────────────── */
+.tech-icon-mask {
+  background-color: currentColor;
 }
 
 /* ─── Similar projects ──────────────────────────── */
