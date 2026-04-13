@@ -26,8 +26,7 @@ watch(
 const navItems = computed(() => [
   { title: t('nav.home'), to: localePath('/') },
   { title: t('nav.portfolio'), to: localePath('/projects') },
-  { title: t('nav.travels'), to: localePath('/travels') },
-  { title: t('nav.utilities'), to: localePath('/utilities') },
+  { title: t('nav.contacts'), to: localePath('/contacts') },
 ]);
 
 const normalizePath = (path: string) => (path === '/' ? '/' : path.replace(/\/+$/, ''));
