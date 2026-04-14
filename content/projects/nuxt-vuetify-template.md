@@ -14,15 +14,15 @@ client:
   logo: "https://fileharbor.heyatom.dev/v2/images/826652cd-8642-42a5-be39-af16717e83bc"
 technical:
   main:
-    icon: "/languages/lineicons--nuxt.svg"
+    icon: "/assets/icons/languages/lineicons--nuxt.svg"
     name: "Nuxt.js"
     color: "#00A86B"
   technologies:
-    - icon: "/languages/lineicons--nuxt.svg"
+    - icon: "/assets/icons/languages/lineicons--nuxt.svg"
       title: "Nuxt.js"
-    - icon: "/languages/devicon-plain--vuetify.svg"
+    - icon: "/assets/icons/languages/devicon-plain--vuetify.svg"
       title: "Vuetify"
-    - icon: "/languages/lineicons--typescript.svg"
+    - icon: "/assets/icons/languages/lineicons--typescript.svg"
       title: "TypeScript"
 features:
   - title:

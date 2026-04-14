@@ -14,21 +14,21 @@ client:
   instagram: "https://www.instagram.com/kaish_1979"
 technical:
   main:
-    icon: "/languages/bxl--nest-js.svg"
+    icon: "/assets/icons/languages/bxl--nest-js.svg"
     name: "Nest.js"
     color: "#e0234e"
   technologies:
-    - icon: "/languages/bxl--nest-js.svg"
+    - icon: "/assets/icons/languages/bxl--nest-js.svg"
       title: "Nest.js"
-    - icon: "/languages/simple-icons--prisma.svg"
+    - icon: "/assets/icons/languages/simple-icons--prisma.svg"
       title: "Prisma ORM"
-    - icon: "/languages/lineicons--typescript.svg"
+    - icon: "/assets/icons/languages/lineicons--typescript.svg"
       title: "Typescript"
-    - icon: "/languages/simple-icons--postgresql.svg"
+    - icon: "/assets/icons/languages/simple-icons--postgresql.svg"
       title: "PostgreSQL"
-    - icon: "/languages/mdi--twitch.svg"
+    - icon: "/assets/icons/languages/mdi--twitch.svg"
       title: "Twitch API"
-    - icon: "/languages/devicon-plain--swagger.svg"
+    - icon: "/assets/icons/languages/devicon-plain--swagger.svg"
       title: "Swagger"
 features:
   - title:

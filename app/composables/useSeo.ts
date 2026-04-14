@@ -33,7 +33,7 @@ export interface SeoMeta {
 const seoConfig = {
   siteName: 'Andrea Tombolato',
   siteUrl: 'https://heyatom.dev',
-  defaultImage: '/social_embedding.jpg',
+  defaultImage: '/assets/seo/social-card.v1.jpg',
   defaultImageWidth: 1200,
   defaultImageHeight: 630,
   titleTemplate: '%s | Andrea Tombolato',

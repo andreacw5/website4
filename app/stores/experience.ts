@@ -15,9 +15,9 @@ const iconMap: Record<string, string> = {
 };
 
 const svgIconMap: Record<string, string> = {
-  medas: '/company/medas.svg',
-  elementBoard: '/company/element.svg',
-  elementDev: '/company/element.svg',
+  medas: '/assets/logos/company/medas.svg',
+  elementBoard: '/assets/logos/company/element.svg',
+  elementDev: '/assets/logos/company/element.svg',
 };
 
 export const useExperienceStore = defineStore('experience', {

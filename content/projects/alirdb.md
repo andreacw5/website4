@@ -14,15 +14,15 @@ client:
   instagram: "https://www.instagram.com/alircommunity"
 technical:
   main:
-    icon: "/languages/lineicons--javascript.svg"
+    icon: "/assets/icons/languages/lineicons--javascript.svg"
     name: "Javascript"
     color: "#f0db4f"
   technologies:
-    - icon: "/languages/flowbite--html-solid.svg"
+    - icon: "/assets/icons/languages/flowbite--html-solid.svg"
       title: "HTML5"
-    - icon: "/languages/flowbite--css-solid.svg"
+    - icon: "/assets/icons/languages/flowbite--css-solid.svg"
       title: "CSS3"
-    - icon: "/languages/lineicons--javascript.svg"
+    - icon: "/assets/icons/languages/lineicons--javascript.svg"
       title: "Javascript"
 features:
   - title:

@@ -17,17 +17,17 @@ client:
   instagram: "https://www.instagram.com/puma_art_lab"
 technical:
   main:
-    icon: "/languages/lineicons--nuxt.svg"
+    icon: "/assets/icons/languages/lineicons--nuxt.svg"
     name: "Nuxt.js"
     color: "#00A86B"
   technologies:
-    - icon: "/languages/lineicons--nuxt.svg"
+    - icon: "/assets/icons/languages/lineicons--nuxt.svg"
       title: "Nuxt.js"
-    - icon: "/languages/lineicons--nodejs.svg"
+    - icon: "/assets/icons/languages/lineicons--nodejs.svg"
       title: "Node.js"
-    - icon: "/languages/devicon-plain--vuetify.svg"
+    - icon: "/assets/icons/languages/devicon-plain--vuetify.svg"
       title: "Vuetify"
-    - icon: "/languages/simple-icons--nginx.svg"
+    - icon: "/assets/icons/languages/simple-icons--nginx.svg"
       title: "NGINX"
 images:
   - image: "https://fileharbor.heyatom.dev/v2/images/2f51a644-d100-477e-bed0-8bdb0b1e7d77"

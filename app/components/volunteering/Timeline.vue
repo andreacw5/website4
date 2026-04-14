@@ -191,7 +191,7 @@ onBeforeUnmount(() => {
   right: -40px;
   width: 220px;
   height: 220px;
-  background-image: url('/HT_Pattern_1.svg');
+  background-image: url('/assets/images/ui/ht-pattern-1.svg');
   background-size: 130%;
   background-position: center;
   opacity: 0.08;

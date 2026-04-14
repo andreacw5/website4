@@ -14,17 +14,17 @@ client:
   logo: "https://fileharbor.heyatom.dev/v2/images/826652cd-8642-42a5-be39-af16717e83bc"
 technical:
   main:
-    icon: "/languages/bxl--nest-js.svg"
+    icon: "/assets/icons/languages/bxl--nest-js.svg"
     name: "Nest.js"
     color: "#e0234e"
   technologies:
-    - icon: "/languages/bxl--nest-js.svg"
+    - icon: "/assets/icons/languages/bxl--nest-js.svg"
       title: "Nest.js"
-    - icon: "/languages/lineicons--typescript.svg"
+    - icon: "/assets/icons/languages/lineicons--typescript.svg"
       title: "Typescript"
-    - icon: "/languages/simple-icons--prisma.svg"
+    - icon: "/assets/icons/languages/simple-icons--prisma.svg"
       title: "Prisma ORM"
-    - icon: "/languages/simple-icons--postgresql.svg"
+    - icon: "/assets/icons/languages/simple-icons--postgresql.svg"
       title: "PostgreSQL"
 features:
   - title:

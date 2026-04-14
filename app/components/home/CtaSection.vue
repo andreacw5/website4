@@ -160,7 +160,7 @@ function handleMouseLeave() {
   inset: -8%;
   width: 116%;
   height: 116%;
-  background-image: url('/HT_Pattern_1.svg');
+  background-image: url('/assets/images/ui/ht-pattern-1.svg');
   background-size: cover;
   background-position: center;
   opacity: 0.08;

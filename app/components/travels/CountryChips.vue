@@ -34,7 +34,7 @@ const onSelect = (countryName: string) => {
       >
         <span class="country-chip__label">
           <img
-            :src="`/flags/${country.flag}.svg`"
+            :src="`/assets/icons/flags/${country.flag}.svg`"
             :alt="`Bandiera ${country.name}`"
             class="country-chip__flag"
             loading="lazy"

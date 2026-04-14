@@ -18,17 +18,17 @@ client:
   instagram: "https://www.instagram.com/procivsettimomi"
 technical:
   main:
-    icon: "/languages/lineicons--nuxt.svg"
+    icon: "/assets/icons/languages/lineicons--nuxt.svg"
     name: "Nuxt.js"
     color: "#00A86B"
   technologies:
-    - icon: "/languages/lineicons--nuxt.svg"
+    - icon: "/assets/icons/languages/lineicons--nuxt.svg"
       title: "Nuxt.js"
-    - icon: "/languages/lineicons--nodejs.svg"
+    - icon: "/assets/icons/languages/lineicons--nodejs.svg"
       title: "Node.js"
-    - icon: "/languages/devicon-plain--vuetify.svg"
+    - icon: "/assets/icons/languages/devicon-plain--vuetify.svg"
       title: "Vuetify"
-    - icon: "/languages/simple-icons--nginx.svg"
+    - icon: "/assets/icons/languages/simple-icons--nginx.svg"
       title: "NGINX"
 features:
   - title:

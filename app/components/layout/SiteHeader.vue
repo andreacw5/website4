@@ -45,7 +45,7 @@ const changeLanguage = async (lang: string) => {
 };
 
 const getFlagPath = (lang: string) =>
-    ({ en: '/flags/gb.svg', it: '/flags/it.svg' })[lang] ?? '';
+    ({ en: '/assets/icons/flags/gb.svg', it: '/assets/icons/flags/it.svg' })[lang] ?? '';
 
 const getLangName = (lang: string) =>
     ({ en: 'English', it: 'Italiano' })[lang] ?? lang.toUpperCase();
@@ -143,7 +143,7 @@ const toggleTheme = () => themeStore.toggleTheme();
       >
         <div class="d-flex align-center ga-3">
           <v-avatar size="36" color="primary" variant="tonal" rounded="lg" class="logo-avatar">
-            <img src="/HT_Favicon_BaseFlat_v01.svg" alt="HeyAtom logo" class="logo-avatar-img" />
+            <img src="/assets/logos/brand/ht-favicon-base-flat-v01.svg" alt="HeyAtom logo" class="logo-avatar-img" />
           </v-avatar>
           <div class="d-flex flex-column align-start text-left">
             <span class="logo-name">{{ t('app.name') }}</span>

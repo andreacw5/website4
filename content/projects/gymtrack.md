@@ -12,17 +12,17 @@ client:
   logo: "https://fileharbor.heyatom.dev/v2/images/826652cd-8642-42a5-be39-af16717e83bc"
 technical:
   main:
-    icon: "/languages/lineicons--nodejs.svg"
+    icon: "/assets/icons/languages/lineicons--nodejs.svg"
     name: "Node.js"
     color: "#68a063"
   technologies:
-    - icon: "/languages/lineicons--nodejs.svg"
+    - icon: "/assets/icons/languages/lineicons--nodejs.svg"
       title: "Node.js"
-    - icon: "/languages/flowbite--html-solid.svg"
+    - icon: "/assets/icons/languages/flowbite--html-solid.svg"
       title: "HTML5"
-    - icon: "/languages/flowbite--css-solid.svg"
+    - icon: "/assets/icons/languages/flowbite--css-solid.svg"
       title: "CSS3"
-    - icon: "/languages/lineicons--javascript.svg"
+    - icon: "/assets/icons/languages/lineicons--javascript.svg"
       title: "Javascript"
 features:
   - title:
