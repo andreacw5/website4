@@ -103,9 +103,20 @@ i18n/
     ├── it.json             # Italiano (default)
     └── en.json             # English
 public/
-├── CV_2024.pdf
-├── flags/                  # SVG flag icons (gb, it, …)
-└── languages/              # SVG technology icons
+├── assets/
+│   ├── docs/               # cv-2024.pdf
+│   ├── icons/
+│   │   ├── flags/          # SVG flag icons
+│   │   ├── languages/      # SVG technology icons
+│   │   └── social/
+│   ├── images/
+│   │   └── ui/             # ht-pattern-1.svg
+│   ├── logos/
+│   │   ├── brand/
+│   │   ├── company/
+│   │   └── partners/
+│   └── seo/                # social-card.v1.jpg
+└── favicon/
 ```
 
 ---

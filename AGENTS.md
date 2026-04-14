@@ -107,8 +107,12 @@ useSeo(() => ({
 
 ## External Assets & Icons
 
-- Technology/language SVG icons: `public/languages/` (referenced as `/languages/xxx.svg`).  
-- Flag SVGs: `public/flags/`.  
+- Canonical static assets path: `public/assets/`. Use URL paths starting with `/assets/...`.  
+- Technology/language SVG icons: `public/assets/icons/languages/` (referenced as `/assets/icons/languages/xxx.svg`).  
+- Flag SVGs: `public/assets/icons/flags/` (referenced as `/assets/icons/flags/xx.svg`).  
+- Company logos: `public/assets/logos/company/` (referenced as `/assets/logos/company/xxx.svg`).  
+- Brand logos: `public/assets/logos/brand/` (referenced as `/assets/logos/brand/xxx.svg`).  
+- SEO/social image: `public/assets/seo/social-card.v1.jpg`; CV: `public/assets/docs/cv-2024.pdf`; UI pattern: `public/assets/images/ui/ht-pattern-1.svg`.
 - Project preview images and logos are hosted externally on **`fileharbor.heyatom.dev`**.
 - MDI icons used via `vuetify` (e.g., `mdi-briefcase-outline`); Iconify icons via `@iconify/vue`.
 

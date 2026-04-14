@@ -182,4 +182,14 @@ export default defineNuxtConfig({
   build: {
     transpile: ['vuetify'],
   },
+
+  vite: {
+    optimizeDeps: {
+      include: [
+        'gsap',
+        'gsap/ScrollTrigger',
+        'simple-analytics-vue',
+      ]
+    }
+  }
 });
