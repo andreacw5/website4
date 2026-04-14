@@ -49,8 +49,8 @@ const items = computed(() =>
   store.items.map(item => ({
     key: item.key,
     type: item.type,
-    icon: store.getIcon(item.key),
-    svgIcon: store.getSvgIcon(item.key),
+    icon: item.icon ?? 'mdi-briefcase-outline',
+    svgIcon: item.svgIcon ?? null,
     isOngoing: !item.to,
     website: item.website,
     role: t(`home.timeline.items.${item.key}.role`),
