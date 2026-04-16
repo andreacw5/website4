@@ -75,7 +75,7 @@ export default defineNuxtConfig({
   googleFonts: {
     subsets: ['latin'],
     families: {
-      Inter: [400, 700],
+      Manrope: [400, 500, 600, 700],
       'JetBrains Mono': [400, 600],
     },
     display: 'swap',
