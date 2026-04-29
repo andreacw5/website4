@@ -1,0 +1,22 @@
+{
+  "key": "medas",
+  "order": 1,
+  "from": "2016-06",
+  "to": "",
+  "type": "work",
+  "website": "https://medas-solutions.it/",
+  "svgIcon": "/assets/logos/company/medas.svg",
+  "role": {
+    "it": "Full-stack Developer",
+    "en": "Full-stack Developer"
+  },
+  "company": {
+    "it": "Medas Solutions",
+    "en": "Medas Solutions"
+  },
+  "description": {
+    "it": "Sviluppo di applicazioni web in Java e Vue.js per migliorare l'accesso dei pazienti ai referti medici e alla documentazione clinica tramite dossier online.",
+    "en": "Software development in the healthcare domain using Java, Node.js, and Grails. Focus on code quality, performance, and operational continuity."
+  }
+}
+

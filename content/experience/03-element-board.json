@@ -1,0 +1,22 @@
+{
+  "key": "elementBoard",
+  "order": 3,
+  "from": "2020-11",
+  "to": "",
+  "type": "community",
+  "website": "https://element-gaming.eu/",
+  "svgIcon": "/assets/logos/company/element.svg",
+  "role": {
+    "it": "Membro del Consiglio Direttivo",
+    "en": "Board Member"
+  },
+  "company": {
+    "it": "Element Gaming",
+    "en": "Element Gaming"
+  },
+  "description": {
+    "it": "Gestione strategica della community gaming no-profit: coordinamento del team, decisioni organizzative e sviluppo delle iniziative.",
+    "en": "Strategic management of a non-profit gaming community: team coordination, organizational decisions, and initiative development."
+  }
+}
+

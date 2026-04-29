@@ -1,10 +1,34 @@
 <script setup lang="ts">
 import { computed, ref, onMounted, onBeforeUnmount, nextTick } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { useExperienceStore } from '~/stores/experience';
 
 const { t, locale } = useI18n();
-const store = useExperienceStore();
+
+type LocaleString = string | { it?: string; en?: string };
+type ExperienceType = 'work' | 'community' | 'volunteer';
+
+interface ExperienceContentItem {
+  key: string;
+  order: number;
+  from: string;
+  to?: string;
+  type: ExperienceType;
+  website: string;
+  icon?: string;
+  svgIcon?: string;
+  role: LocaleString;
+  company: LocaleString;
+  description: LocaleString;
+}
+
+const { data: experienceItems } = await useAsyncData('home-experience', () =>
+  queryCollection('experience').order('order', 'ASC').all(),
+);
+
+const loc = (field: LocaleString): string => {
+  if (typeof field === 'string') return field;
+  return field[locale.value as 'it' | 'en'] ?? field.it ?? field.en ?? '';
+};
 
 /** Format 'YYYY-MM' → locale-aware short date (e.g. "giu 2016" / "Jun 2016") */
 const formatDate = (iso: string): string => {
@@ -46,19 +70,19 @@ const typeChipColor: Record<string, string> = {
 
 /** Reactive combined item list — re-evaluates on locale change */
 const items = computed(() =>
-  store.items.map(item => ({
+  ((experienceItems.value ?? []) as ExperienceContentItem[]).map(item => ({
     key: item.key,
     type: item.type,
     icon: item.icon ?? 'mdi-briefcase-outline',
     svgIcon: item.svgIcon ?? null,
     isOngoing: !item.to,
     website: item.website,
-    role: t(`home.timeline.items.${item.key}.role`),
-    company: t(`home.timeline.items.${item.key}.company`),
-    description: t(`home.timeline.items.${item.key}.description`),
+    role: loc(item.role),
+    company: loc(item.company),
+    description: loc(item.description),
     formattedFrom: formatDate(item.from),
     formattedTo: item.to ? formatDate(item.to) : '',
-    duration: formatDuration(item.from, item.to),
+    duration: formatDuration(item.from, item.to ?? ''),
   })),
 );
 

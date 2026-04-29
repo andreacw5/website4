@@ -100,23 +100,6 @@
         "month": "month",
         "months": "months",
         "lessThanMonth": "< 1 month"
-      },
-      "items": {
-        "medas": {
-          "company": "Medas Solutions",
-          "role": "Full-stack Developer",
-          "description": "Software development in the healthcare domain using Java, Node.js, and Grails. Focus on code quality, performance, and operational continuity."
-        },
-        "elementBoard": {
-          "company": "Element Gaming",
-          "role": "Board Member",
-          "description": "Strategic management of a non-profit gaming community: team coordination, organizational decisions, and initiative development."
-        },
-        "elementDev": {
-          "company": "Element Gaming",
-          "role": "Full Stack Developer & Project Manager",
-          "description": "Development and management of technical community projects, from the website to internal tools."
-        }
       }
     },
     "skills": {
