@@ -100,23 +100,6 @@
         "month": "mese",
         "months": "mesi",
         "lessThanMonth": "< 1 mese"
-      },
-      "items": {
-        "medas": {
-          "company": "Medas Solutions",
-          "role": "Full-stack Developer",
-          "description": "Sviluppo di applicazioni web in Java e Vue.js per migliorare l'accesso dei pazienti ai referti medici e\nalla documentazione clinica tramite dossier online."
-        },
-        "elementBoard": {
-          "company": "Element Gaming",
-          "role": "Membro del Consiglio Direttivo",
-          "description": "Gestione strategica della community gaming no-profit: coordinamento del team, decisioni organizzative e sviluppo delle iniziative."
-        },
-        "elementDev": {
-          "company": "Element Gaming",
-          "role": "Full Stack Developer & Project Manager",
-          "description": "Sviluppo di applicazioni web interattive e dinamiche utilizzando Nuxt.js e Node.js per migliorare\nl’esperienza della community e facilitare l’accesso ai contenuti e alle funzionalità della piattaforma."
-        }
       }
     },
     "skills": {

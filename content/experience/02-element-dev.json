@@ -1,0 +1,22 @@
+{
+  "key": "elementDev",
+  "order": 2,
+  "from": "2019-02",
+  "to": "2020-11",
+  "type": "work",
+  "website": "https://element-gaming.eu/",
+  "svgIcon": "/assets/logos/company/element.svg",
+  "role": {
+    "it": "Full Stack Developer & Project Manager",
+    "en": "Full Stack Developer & Project Manager"
+  },
+  "company": {
+    "it": "Element Gaming",
+    "en": "Element Gaming"
+  },
+  "description": {
+    "it": "Sviluppo di applicazioni web interattive e dinamiche utilizzando Nuxt.js e Node.js per migliorare l'esperienza della community e facilitare l'accesso ai contenuti e alle funzionalita della piattaforma.",
+    "en": "Development and management of technical community projects, from the website to internal tools."
+  }
+}
+

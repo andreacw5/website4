@@ -18,21 +18,21 @@ client:
   instagram: "https://www.instagram.com/kaish_1979"
 technical:
   main:
-    icon: "/languages/lineicons--nuxt.svg"
+    icon: "/assets/icons/languages/lineicons--nuxt.svg"
     name: "Nuxt.js"
     color: "#00A86B"
   technologies:
-    - icon: "/languages/lineicons--nuxt.svg"
+    - icon: "/assets/icons/languages/lineicons--nuxt.svg"
       title: "Nuxt.js"
-    - icon: "/languages/devicon-plain--vuetify.svg"
+    - icon: "/assets/icons/languages/devicon-plain--vuetify.svg"
       title: "Vuetify"
-    - icon: "/languages/bxl--nest-js.svg"
+    - icon: "/assets/icons/languages/bxl--nest-js.svg"
       title: "Nest.js"
-    - icon: "/languages/simple-icons--prisma.svg"
+    - icon: "/assets/icons/languages/simple-icons--prisma.svg"
       title: "Prisma ORM"
-    - icon: "/languages/lineicons--typescript.svg"
+    - icon: "/assets/icons/languages/lineicons--typescript.svg"
       title: "Typescript"
-    - icon: "/languages/simple-icons--postgresql.svg"
+    - icon: "/assets/icons/languages/simple-icons--postgresql.svg"
       title: "PostgreSQL"
 features:
   - title:

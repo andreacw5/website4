@@ -56,8 +56,8 @@ const downloadCv = () => {
     // context and silently blocks the download.
     const a = document.createElement('a');
     a.style.display = 'none';
-    a.href = '/CV_2024.pdf';
-    a.download = 'CV_2024.pdf';
+    a.href = '/assets/docs/cv-2024.pdf';
+    a.download = 'cv-2024.pdf';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -167,7 +167,7 @@ const downloadCv = () => {
   width: 100vw;
   height: 100%;
   transform: translateX(-50%);
-  background-image: url('/HT_Pattern_1.svg');
+  background-image: url('/assets/images/ui/ht-pattern-1.svg');
   background-repeat: no-repeat;
   background-size: cover;
   opacity: 0.09;

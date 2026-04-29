@@ -16,19 +16,19 @@ client:
   linkedin: "https://www.linkedin.com/company/elementgaming"
 technical:
   main:
-    icon: "/languages/lineicons--nuxt.svg"
+    icon: "/assets/icons/languages/lineicons--nuxt.svg"
     name: "Nuxt.js"
     color: "#00A86B"
   technologies:
-    - icon: "/languages/lineicons--nuxt.svg"
+    - icon: "/assets/icons/languages/lineicons--nuxt.svg"
       title: "Nuxt.js"
-    - icon: "/languages/lineicons--nodejs.svg"
+    - icon: "/assets/icons/languages/lineicons--nodejs.svg"
       title: "Node.js"
-    - icon: "/languages/devicon-plain--vuetify.svg"
+    - icon: "/assets/icons/languages/devicon-plain--vuetify.svg"
       title: "Vuetify"
-    - icon: "/languages/simple-icons--nginx.svg"
+    - icon: "/assets/icons/languages/simple-icons--nginx.svg"
       title: "NGINX"
-    - icon: "/languages/simple-icons--sass.svg"
+    - icon: "/assets/icons/languages/simple-icons--sass.svg"
       title: "Sass"
 features:
   - title:

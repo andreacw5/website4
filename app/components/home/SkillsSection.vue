@@ -95,7 +95,7 @@ const skillsStore = useSkillsStore();
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('/HT_Pattern_1.svg');
+  background-image: url('/assets/images/ui/ht-pattern-1.svg');
   background-size: 180%;
   background-position: center;
   opacity: 0;

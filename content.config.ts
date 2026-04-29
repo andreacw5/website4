@@ -89,6 +89,23 @@ export default defineContentConfig({
         })),
       }),
     }),
+    experience: defineCollection({
+      type: 'data',
+      source: 'experience/**/*.json',
+      schema: z.object({
+        key: z.string(),
+        order: z.number(),
+        from: z.string(),
+        to: z.string().optional(),
+        type: z.enum(['work', 'community', 'volunteer']),
+        website: z.string(),
+        icon: z.string().optional(),
+        svgIcon: z.string().optional(),
+        role: localeFieldRequired,
+        company: localeFieldRequired,
+        description: localeFieldRequired,
+      }),
+    }),
     projects: defineCollection({
       type: 'page',
       source: 'projects/**/*.md',
