@@ -53,6 +53,15 @@ features:
       it: "Monitora il saldo e la cronologia dei conti bancari di gioco con dati aggiornati."
       en: "Monitor balance and history of your in-game bank accounts with up-to-date data."
     icon: "mdi-bank"
+images:
+  - image: "https://fileharbor.heyatom.dev/v2/images/ba35ea74-37ea-4183-93c3-22fc2fc1e901"
+    title: "Homepage"  
+  - image: "https://fileharbor.heyatom.dev/v2/images/d461d7e8-4620-44ce-8bb6-c84346af8f96"
+    title: "User information tab" 
+  - image: "https://fileharbor.heyatom.dev/v2/images/04f8e603-874e-4951-b0ce-0942c9578652"
+    title: "User vehicle tab"  
+  - image: "https://fileharbor.heyatom.dev/v2/images/46397a26-b684-4e5e-9b2b-ac9899937e03"
+    title: "Faction player list"
 ---
 
 

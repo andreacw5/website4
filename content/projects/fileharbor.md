@@ -6,6 +6,7 @@ description:
 startDate: "2024"
 current: true
 featured: true
+website: "https://fileharbor.heyatom.dev/"
 github: "https://github.com/andreacw5/fileharbor"
 preview: "https://fileharbor.heyatom.dev/v2/images/f2c695d8-7d1a-4131-b1b5-0cc2376d38d9"
 client:
