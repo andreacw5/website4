@@ -35,16 +35,29 @@ if (!project.value) {
 }
 
 // SEO dinamico
-useSeo(() => ({
-  title: loc(project.value?.title as LocaleString),
-  description: loc(project.value?.description) || t('projects.seo.description'),
-  ogTitle: `${loc(project.value?.title as LocaleString)} · Andrea Tombolato`,
-  ogDescription: loc(project.value?.description) || t('projects.seo.description'),
-  ogImage: project.value?.preview || undefined,
-  pageType: 'article',
-  canonical: `/projects/${String(route.params.slug)}`,
-  breadcrumb: [{ name: t('projects.seo.title'), url: '/projects' }],
-}));
+useSeo(() => {
+  const techKeywords = [
+    project.value?.technical?.main?.name,
+    ...(project.value?.technical?.technologies?.map((tech: { title: string }) => tech.title) ?? []),
+  ].filter(Boolean).join(', ');
+
+  const projectTitle = loc(project.value?.title as LocaleString);
+
+  return {
+    title: projectTitle,
+    description: loc(project.value?.description as LocaleString) || t('projects.seo.description'),
+    keywords: `${projectTitle}, ${techKeywords}, Andrea Tombolato, portfolio, web development, heyatom`,
+    ogTitle: `${projectTitle} · Andrea Tombolato`,
+    ogDescription: loc(project.value?.description as LocaleString) || t('projects.seo.description'),
+    ogImage: project.value?.preview || undefined,
+    ogImageAlt: `${projectTitle} – preview`,
+    pageType: 'project',
+    articlePublishedTime: project.value?.startDate,
+    articleAuthor: 'Andrea Tombolato',
+    canonical: `/projects/${String(route.params.slug)}`,
+    breadcrumb: [{ name: t('projects.seo.title'), url: '/projects' }],
+  };
+});
 
 // Galleria collassabile
 const galleryOpen = ref(false);

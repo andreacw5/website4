@@ -12,12 +12,25 @@ const brandSoft = computed(() => isDark.value ? 'rgba(0,168,107,0.30)' : 'rgba(0
 const careerStartYear = 2016;
 const yearsOfExperience = new Date().getFullYear() - careerStartYear;
 
-// ── Photo stack interaction ───────────────────────────────────
-const photoSrcs = [
-  'https://fileharbor.heyatom.dev/v2/images/b6e3fce0-4b4a-49c5-a636-c8d5d5954335',
-  'https://fileharbor.heyatom.dev/v2/images/f4a215ed-406d-4532-8f4f-67cc3fa132f6',
-  'https://fileharbor.heyatom.dev/v2/images/07dc987f-631e-49c2-87dd-c7602fc58243',
-] as const;
+// ── Travel photos from content ────────────────────────────────
+const { data: travelPhotosData } = await useAsyncData('about-travel-photos', () =>
+  queryCollection('travelsPhotos').where('featured', '=', true).all(),
+);
+
+function pickRandom<T>(arr: T[], n: number): T[] {
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j]!, copy[i]!];
+  }
+  return copy.slice(0, n);
+}
+
+const photos = computed(() => {
+  const all = travelPhotosData.value ?? [];
+  const pool = all.length >= 3 ? all : [...all, ...all, ...all];
+  return pickRandom(pool, 3).map((p) => ({ src: p.src, location: p.location }));
+});
 
 // cardOrder[slot] = image index — slot 0=back, 1=mid, 2=front
 const cardOrder = ref([0, 1, 2]);
@@ -129,13 +142,16 @@ onBeforeUnmount(() => {
       <v-col cols="12" md="5" order="2" class="d-flex justify-center justify-md-end">
         <div data-about-animate class="photo-stack" aria-hidden="true">
           <div
-            v-for="(src, i) in photoSrcs"
+            v-for="(photo, i) in photos"
             :key="i"
             class="photo-card"
             :class="`photo-card--slot-${getSlot(i)}`"
             @click="bringToFront(i)"
           >
-            <v-img :src="src" cover class="fill-height" />
+            <v-img :src="photo.src" cover class="fill-height" />
+            <div class="photo-location">
+              <v-icon size="11" class="mr-1" style="opacity:.75">mdi-map-marker-outline</v-icon>{{ photo.location }}
+            </div>
           </div>
         </div>
       </v-col>
@@ -237,6 +253,28 @@ onBeforeUnmount(() => {
 .photo-card--slot-0:active,
 .photo-card--slot-1:active {
   filter: brightness(1.08);
+}
+
+/* ── Location label ─────────────────────────────────────────── */
+.photo-location {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 6px 10px 7px;
+  background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.38) 60%, transparent 100%);
+  color: rgba(255,255,255,0.72);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media (max-width: 959px) {

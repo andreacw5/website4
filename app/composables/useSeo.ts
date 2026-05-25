@@ -1,4 +1,4 @@
-export type PageType = 'website' | 'article' | 'profile'
+export type PageType = 'website' | 'article' | 'profile' | 'project'
 
 export interface SeoMeta {
   title?: string
@@ -14,19 +14,19 @@ export interface SeoMeta {
   ogImageHeight?: number
   twitterTitle?: string
   twitterDescription?: string
-  /** Path relativo (es. '/builds'). Se omesso viene rilevato automaticamente da useRoute(). */
+  /** Path relativo (es. '/projects'). Se omesso viene rilevato automaticamente da useRoute(). */
   canonical?: string
   pageType?: PageType
-  /** ISO 8601, usato quando pageType === 'article' */
+  /** ISO 8601, usato quando pageType === 'article' o 'project' */
   articlePublishedTime?: string
-  /** ISO 8601, usato quando pageType === 'article' */
+  /** ISO 8601, usato quando pageType === 'article' o 'project' */
   articleModifiedTime?: string
   articleAuthor?: string
   /** Disabilita i tag hreflang (utile per pagine noindex) */
   noHreflang?: boolean
   /** Disabilita l'iniezione di JSON-LD */
   noSchema?: boolean
-  /** BreadcrumbList per JSON-LD strutturato. Es. [{ name: 'Build', url: '/builds' }] */
+  /** BreadcrumbList per JSON-LD strutturato. Es. [{ name: 'Projects', url: '/projects' }] */
   breadcrumb?: Array<{ name: string; url: string }>
 }
 
@@ -37,9 +37,12 @@ const seoConfig = {
   defaultImageWidth: 1200,
   defaultImageHeight: 630,
   titleTemplate: '%s | Andrea Tombolato',
-  defaultKeywords: 'web developer, portfolio, projects, blog, Andrea Tombolato, heyatom.dev, HeyAtom',
+  defaultKeywords: 'Andrea Tombolato, heyatom, full-stack developer, web developer, portfolio, Vue.js, Nuxt.js, Node.js, Java, freelance developer, Milano',
   defaultRobots: 'index, follow',
   twitterHandle: '@andreacw96',
+  githubUrl: 'https://github.com/andreacw5',
+  linkedinUrl: 'https://www.linkedin.com/in/andreatom/',
+  jobTitle: 'Full-stack Developer',
 } as const
 
 /** Converte un path relativo in URL assoluto */
@@ -48,17 +51,17 @@ const toAbsoluteUrl = (path: string): string => {
   return `${seoConfig.siteUrl}${path.startsWith('/') ? path : `/${path}`}`
 }
 
-/** Rimuove il prefisso di locale dal path (es. /en/builds → /builds) */
+/** Rimuove il prefisso di locale dal path (es. /en/projects → /projects) */
 const stripLocalePrefix = (path: string): string =>
   path.replace(/^\/(en|it)(?=\/|$)/, '') || '/'
 
 /**
  * Composable SEO.
  * Accetta sia un oggetto statico `SeoMeta` che una factory function `() => SeoMeta`
- * per supportare pagine dinamiche con dati reattivi (es. builds/[slug].vue).
+ * per supportare pagine dinamiche con dati reattivi (es. projects/[slug].vue).
  */
 export const useSeo = (metaOrFactory: SeoMeta | (() => SeoMeta) = {}) => {
-  const { t, locale } = useI18n()
+  const { locale } = useI18n()
   const route = useRoute()
 
   // Normalizza a computed: se è una funzione viene ri-eseguita reattivamente
@@ -68,10 +71,10 @@ export const useSeo = (metaOrFactory: SeoMeta | (() => SeoMeta) = {}) => {
 
   // ── Computed values (reattivi a locale) ──────────────────────────
   const title = computed(() =>
-    meta.value.title || t('common.defaultTitle', 'Kaish-DbD')
+    meta.value.title || seoConfig.siteName
   )
   const description = computed(() =>
-    meta.value.description || t('common.defaultDescription', 'The ultimate Dead by Daylight community for builds, perks, and strategies.')
+    meta.value.description || ''
   )
   const imageAbsoluteUrl = computed(() =>
     toAbsoluteUrl(meta.value.ogImage || seoConfig.defaultImage)
@@ -102,20 +105,55 @@ export const useSeo = (metaOrFactory: SeoMeta | (() => SeoMeta) = {}) => {
   const schemaScripts = computed(() => {
     if (meta.value.noSchema) return []
 
+    // Identity node: Person – incluso in ogni pagina
+    const personNode = {
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      '@id': `${seoConfig.siteUrl}/#person`,
+      name: seoConfig.siteName,
+      url: seoConfig.siteUrl,
+      jobTitle: seoConfig.jobTitle,
+      image: toAbsoluteUrl(seoConfig.defaultImage),
+      sameAs: [
+        seoConfig.githubUrl,
+        seoConfig.linkedinUrl,
+        `https://twitter.com/${seoConfig.twitterHandle.replace('@', '')}`,
+      ],
+    }
+
     const schemas: object[] = [
       {
         '@context': 'https://schema.org',
         '@type': 'WebSite',
+        '@id': `${seoConfig.siteUrl}/#website`,
         name: seoConfig.siteName,
         url: seoConfig.siteUrl,
+        description: 'Portfolio di Andrea Tombolato – sviluppatore full-stack freelance.',
+        author: { '@id': `${seoConfig.siteUrl}/#person` },
         potentialAction: {
           '@type': 'SearchAction',
-          target: { '@type': 'EntryPoint', urlTemplate: `${seoConfig.siteUrl}/builds?q={search_term_string}` },
+          target: { '@type': 'EntryPoint', urlTemplate: `${seoConfig.siteUrl}/projects?q={search_term_string}` },
           'query-input': 'required name=search_term_string',
         },
       },
+      personNode,
     ]
 
+    // ProfilePage – homepage del portfolio
+    if (meta.value.pageType === 'profile') {
+      schemas.push({
+        '@context': 'https://schema.org',
+        '@type': 'ProfilePage',
+        '@id': `${seoConfig.siteUrl}/#profile`,
+        name: title.value,
+        description: description.value,
+        url: canonicalUrl.value,
+        dateCreated: '2024-01-01',
+        mainEntity: { '@id': `${seoConfig.siteUrl}/#person` },
+      })
+    }
+
+    // Article – contenuti editoriali (blog post futuri)
     if (meta.value.pageType === 'article') {
       schemas.push({
         '@context': 'https://schema.org',
@@ -124,10 +162,27 @@ export const useSeo = (metaOrFactory: SeoMeta | (() => SeoMeta) = {}) => {
         description: description.value,
         image: imageAbsoluteUrl.value,
         url: canonicalUrl.value,
+        author: { '@type': 'Person', '@id': `${seoConfig.siteUrl}/#person`, name: seoConfig.siteName },
+        publisher: { '@type': 'Person', '@id': `${seoConfig.siteUrl}/#person` },
         ...(meta.value.articlePublishedTime && { datePublished: meta.value.articlePublishedTime }),
         ...(meta.value.articleModifiedTime && { dateModified: meta.value.articleModifiedTime }),
-        ...(meta.value.articleAuthor && { author: { '@type': 'Person', name: meta.value.articleAuthor } }),
-        publisher: { '@type': 'Organization', name: seoConfig.siteName, url: seoConfig.siteUrl },
+      })
+    }
+
+    // SoftwareApplication – pagine di progetto
+    if (meta.value.pageType === 'project') {
+      schemas.push({
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareApplication',
+        name: title.value,
+        description: description.value,
+        image: imageAbsoluteUrl.value,
+        url: canonicalUrl.value,
+        applicationCategory: 'WebApplication',
+        operatingSystem: 'Web',
+        author: { '@type': 'Person', '@id': `${seoConfig.siteUrl}/#person`, name: seoConfig.siteName },
+        ...(meta.value.articlePublishedTime && { datePublished: meta.value.articlePublishedTime }),
+        ...(meta.value.articleModifiedTime && { dateModified: meta.value.articleModifiedTime }),
       })
     }
 
@@ -166,7 +221,7 @@ export const useSeo = (metaOrFactory: SeoMeta | (() => SeoMeta) = {}) => {
       { key: 'robots', name: 'robots', content: robots.value },
 
       // Open Graph
-      { key: 'og:type', property: 'og:type', content: meta.value.pageType || 'website' },
+      { key: 'og:type', property: 'og:type', content: meta.value.pageType === 'project' ? 'article' : (meta.value.pageType || 'website') },
       { key: 'og:site_name', property: 'og:site_name', content: seoConfig.siteName },
       { key: 'og:title', property: 'og:title', content: meta.value.ogTitle || title.value },
       { key: 'og:description', property: 'og:description', content: meta.value.ogDescription || description.value },
@@ -179,20 +234,21 @@ export const useSeo = (metaOrFactory: SeoMeta | (() => SeoMeta) = {}) => {
       { key: 'og:locale', property: 'og:locale', content: ogLocale.value },
       { key: 'og:locale:alternate', property: 'og:locale:alternate', content: ogLocaleAlternate.value },
 
-      // Article-specific (ignorati se pageType !== 'article')
-      ...(meta.value.pageType === 'article' && meta.value.articlePublishedTime
+      // Article-specific (ignorati se pageType non è article/project)
+      ...((['article', 'project'] as PageType[]).includes(meta.value.pageType as PageType) && meta.value.articlePublishedTime
         ? [{ key: 'article:published_time', property: 'article:published_time', content: meta.value.articlePublishedTime }]
         : []),
-      ...(meta.value.pageType === 'article' && meta.value.articleModifiedTime
+      ...((['article', 'project'] as PageType[]).includes(meta.value.pageType as PageType) && meta.value.articleModifiedTime
         ? [{ key: 'article:modified_time', property: 'article:modified_time', content: meta.value.articleModifiedTime }]
         : []),
-      ...(meta.value.pageType === 'article' && meta.value.articleAuthor
+      ...((['article', 'project'] as PageType[]).includes(meta.value.pageType as PageType) && meta.value.articleAuthor
         ? [{ key: 'article:author', property: 'article:author', content: meta.value.articleAuthor }]
         : []),
 
       // Twitter Card
       { key: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
       { key: 'twitter:site', name: 'twitter:site', content: seoConfig.twitterHandle },
+      { key: 'twitter:creator', name: 'twitter:creator', content: seoConfig.twitterHandle },
       { key: 'twitter:title', name: 'twitter:title', content: meta.value.twitterTitle || title.value },
       { key: 'twitter:description', name: 'twitter:description', content: meta.value.twitterDescription || description.value },
       { key: 'twitter:image', name: 'twitter:image', content: imageAbsoluteUrl.value },

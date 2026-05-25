@@ -34,8 +34,9 @@
   },
   "home": {
     "seo": {
-      "title": "Home",
-      "description": "Portfolio personale di Andrea Tombolato: sviluppo full-stack, esperienze dal 2016, progetti freelance e viaggi.",
+      "title": "Full-stack Developer",
+      "description": "Portfolio di Andrea Tombolato, sviluppatore full-stack dal 2016. Vue.js, Nuxt.js, Node.js, Java, freelance e volontario Protezione Civile a Milano.",
+      "keywords": "Andrea Tombolato, full-stack developer, web developer, Vue.js, Nuxt.js, Node.js, Java, Nest.js, portfolio, freelance, Milano, heyatom, sviluppatore web",
       "ogTitle": "Andrea Tombolato · Full-stack Developer",
       "ogDescription": "Sviluppo prodotti web con Vue, Nuxt, Node e Java, con attenzione a UX, accessibilità e qualità del dettaglio."
     },
@@ -105,7 +106,7 @@
     "skills": {
       "eyebrow": "Competenze",
       "title": "Tecnologie e aree di lavoro",
-      "description": "Lavoro con tecnologie web basate su Javascript o Java, come Node.js, Grails, Nest.js, Vue.js e Nuxt.js. Sempre alla ricerca di nuove tecnologie da imparare, al fine di migliorare le mie competenze. Inoltre, mi occupo della UX e UI, mettendo l'accento sul design e la qualità del prodotto, con particolare attenzione ai dettagli e alla semplicità d'uso."
+      "description": "Stack principale: Vue.js e Nuxt.js sul frontend, Node.js e Nest.js sul backend, Java e Grails per sistemi enterprise. Lavoro su architetture SSR, API REST e microservizi, con attenzione costante a performance, accessibilità e qualità del codice. Seguo l'intero ciclo di sviluppo: dalla progettazione dell'interfaccia al deploy in produzione."
     },
     "volunteering": {
       "eyebrow": "Volontariato dal 2015",
@@ -123,13 +124,13 @@
     "cta": {
       "eyebrow": "Contatti",
       "title": "Hai un progetto in mente?",
-      "subtitle": "Sono sempre aperto a nuove collaborazioni, consulenze freelance e opportunità interessanti. Scrivimi e parliamone.",
+      "subtitle": "Che si tratti di una web app da costruire, un'architettura da rivedere o un prototipo da far decollare — scrivimi. Rispondo a tutti i messaggi.",
       "button": "Contattami"
     },
     "preview": {
       "eyebrow": "Esplora",
       "title": "I progetti, i viaggi e tanto altro",
-      "description": "Dai progetti di sviluppo alle esperienze di viaggio: un mix di contenuti che riflettono le mie passioni e competenze, con un approccio pratico e orientato all'uso reale.",
+      "description": "Dal portfolio con stack e case study, alle fotografie di viaggio, fino agli strumenti che uso ogni giorno: tutto quello che c'è dietro al lavoro e alla persona.",
       "cta": "Scopri di più",
       "cards": {
         "portfolio": {
@@ -181,7 +182,8 @@
   "projects": {
     "seo": {
       "title": "Progetti",
-      "description": "I miei progetti: web app, API, piattaforme community e sperimentazioni personali. Stack, case study e link a GitHub.",
+      "description": "I miei progetti: web app, API, piattaforme community e sperimentazioni personali con Vue.js, Nuxt.js, Node.js e Java. Stack, case study e link a GitHub.",
+      "keywords": "Andrea Tombolato, progetti web, portfolio, Vue.js, Nuxt.js, Node.js, Nest.js, Java, web app, API, freelance, sviluppo web, case study, GitHub",
       "ogTitle": "Andrea Tombolato · Progetti",
       "ogDescription": "Esplora i progetti realizzati da Andrea Tombolato: Vue/Nuxt, Node/Nest, Java, UI/UX e molto altro."
     },

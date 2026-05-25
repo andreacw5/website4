@@ -15,6 +15,7 @@ const loc = (field: LocaleString): string => {
 useSeo(() => ({
   title: t('projects.seo.title'),
   description: t('projects.seo.description'),
+  keywords: t('projects.seo.keywords'),
   ogTitle: t('projects.seo.ogTitle'),
   ogDescription: t('projects.seo.ogDescription'),
   pageType: 'website',

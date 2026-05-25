@@ -8,7 +8,7 @@ const packageJson = JSON.parse(readFileSync(resolve(__dirname, './package.json')
 export default defineNuxtConfig({
   ssr: true,
   compatibilityDate: '2026-04-10',
-  devtools: { enabled: true },
+  devtools: { enabled: process.env.NODE_ENV !== 'production' },
 
   runtimeConfig: {
     public: {
@@ -21,7 +21,7 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      titleTemplate: '%s - Andrea Tombolato',
+      titleTemplate: '%s | Andrea Tombolato',
       meta: [{ name: 'robots', content: 'index, follow' }],
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     },
@@ -177,6 +177,13 @@ export default defineNuxtConfig({
 
   nitro: {
     compressPublicAssets: true,
+    minify: true,
+    routeRules: {
+      // Font e asset scaricati da Google Fonts — cache aggressiva
+      '/assets/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+      // Pagine SSR — breve cache condivisa per ridurre il carico
+      '/**': { headers: { 'cache-control': 'public, s-maxage=60, stale-while-revalidate=300' } },
+    },
   },
 
   build: {

@@ -30,6 +30,7 @@ Thumbs.db
 # Git
 .git
 .gitignore
+.gitattributes
 
 # Docker
 Dockerfile
@@ -43,8 +44,11 @@ logs
 coverage
 .nyc_output
 
-# Misc
+# Docs / meta (non servono nel build context)
 README.md
+AGENTS.md
+LICENSE.md
+unlighthouse.config.js
 .editorconfig
 .eslintrc
 .prettierrc

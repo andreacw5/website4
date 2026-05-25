@@ -6,9 +6,10 @@ const { t } = useI18n();
 useSeo(() => ({
   title: t('home.seo.title'),
   description: t('home.seo.description'),
+  keywords: t('home.seo.keywords'),
   ogTitle: t('home.seo.ogTitle'),
   ogDescription: t('home.seo.ogDescription'),
-  pageType: 'website',
+  pageType: 'profile',
 }));
 </script>
 
