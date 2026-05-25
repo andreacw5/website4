@@ -6,7 +6,7 @@ description:
 startDate: "2026"
 current: true
 github: "https://github.com/heyatomdev/articuno"
-preview: "https://fileharbor.heyatom.dev/v2/images/cfeaf6cb-878b-4ecb-97ef-51ed07a9a681"
+preview: "https://fileharbor.heyatom.dev/v2/images/4086d478-8aa9-42b8-8fab-d53de57e825f"
 client:
   name: "Open Source"
   bio: "Progetto open source"
@@ -26,6 +26,23 @@ technical:
       title: "Prisma ORM"
     - icon: "/assets/icons/languages/simple-icons--postgresql.svg"
       title: "PostgreSQL"
+images:
+  - image: "https://fileharbor.heyatom.dev/v2/images/336db078-c00b-4135-85b0-dc93d6f06adb"
+    title: "Homepage"
+  - image: "https://fileharbor.heyatom.dev/v2/images/d2daf068-6309-4a4e-84b2-12cdad857da3"
+    title: "Article list page"
+  - image: "https://fileharbor.heyatom.dev/v2/images/ca6ac13d-7010-4b7b-9c77-707aa970b594"
+    title: "Article detail page"
+  - image: "https://fileharbor.heyatom.dev/v2/images/3f3fa0c5-e3b6-4e13-840b-9082fb67d845"
+    title: "Translation page for article content with editor"  
+  - image: "https://fileharbor.heyatom.dev/v2/images/885f8de8-77d6-4d3a-b760-0aba96deffc8"
+    title: "Categories list page"  
+  - image: "https://fileharbor.heyatom.dev/v2/images/2c38c3af-61f0-4b07-a8d0-00e154527249"
+    title: "Categories show page"  
+  - image: "https://fileharbor.heyatom.dev/v2/images/b5dc8945-209d-4288-a8c8-9544bab92e2b"
+    title: "Tags list page"  
+  - image: "https://fileharbor.heyatom.dev/v2/images/b7f0806f-de8b-4809-804b-da0b594a95da"
+    title: "Banned words list page"
 features:
   - title:
       it: "Isolamento Multi-Tenant"
@@ -38,8 +55,8 @@ features:
       it: "Moderazione Automatica"
       en: "Automatic Moderation"
     subtitle:
-      it: "ModerationPolicyService centralizza tutta la logica di moderazione: scansione di parole vietate per tenant, shadow ban automatico e transizioni di stato basate sulla macchina a stati dei contenuti."
-      en: "ModerationPolicyService centralises all moderation logic: per-tenant banned word scanning, automatic shadow banning, and content status transitions enforced by a finite state machine."
+      it: "ModerationPolicy centralizza tutta la logica di moderazione: scansione di parole vietate per tenant, shadow ban automatico e transizioni di stato basate sulla macchina a stati dei contenuti."
+      en: "ModerationPolicy centralises all moderation logic: per-tenant banned word scanning, automatic shadow banning, and content status transitions enforced by a finite state machine."
     icon: "mdi-shield-check"
   - title:
       it: "Gestione Segnalazioni"
