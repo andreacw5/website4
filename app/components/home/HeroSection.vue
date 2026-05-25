@@ -56,8 +56,8 @@ const downloadCv = () => {
     // context and silently blocks the download.
     const a = document.createElement('a');
     a.style.display = 'none';
-    a.href = '/assets/docs/cv-2024.pdf';
-    a.download = 'cv-2024.pdf';
+    a.href = '/assets/docs/cv-tombolato.pdf';
+    a.download = 'cv-tombolato.pdf';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);

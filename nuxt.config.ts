@@ -21,7 +21,7 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      titleTemplate: '%s - Andrea Tombolato',
+      titleTemplate: '%s | Andrea Tombolato',
       meta: [{ name: 'robots', content: 'index, follow' }],
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     },
