@@ -56,7 +56,8 @@
       "cvDownloadStarted": "Download del CV avviato…",
       "cvDownloadDone": "CV scaricato con successo!",
       "cvDownloadError": "Errore durante il download del CV.",
-      "scrollLabel": "Scorri verso la sezione about"
+      "scrollLabel": "Scorri verso la sezione about",
+      "imageUnavailable": "Immagine non disponibile"
     },
     "about": {
       "eyebrow": "Chi sono",

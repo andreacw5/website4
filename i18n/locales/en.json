@@ -56,7 +56,8 @@
       "cvDownloadStarted": "CV download started…",
       "cvDownloadDone": "CV downloaded successfully!",
       "cvDownloadError": "An error occurred while downloading the CV.",
-      "scrollLabel": "Scroll to the about section"
+      "scrollLabel": "Scroll to the about section",
+      "imageUnavailable": "Image unavailable"
     },
     "about": {
       "eyebrow": "About",

@@ -19,8 +19,25 @@ useHead({
   ],
 });
 
-const careerStartYear = 2016;
-const yearsOfExperience = new Date().getFullYear() - careerStartYear;
+// ── Image retry logic ───────────────────────────────────────────────────────
+const MAX_RETRIES = 3;
+const retryCount = ref(0);
+const imgSrc = ref(LCP_IMAGE_URL);
+const imgFailed = ref(false);
+
+function onImageError() {
+  if (retryCount.value < MAX_RETRIES) {
+    retryCount.value++;
+    // Exponential back-off: 1 s, 2 s, 4 s
+    const delay = 1000 * Math.pow(2, retryCount.value - 1);
+    setTimeout(() => {
+      // Force v-img to re-fetch by appending/updating a cache-bust param
+      imgSrc.value = `${LCP_IMAGE_URL}?retry=${retryCount.value}`;
+    }, delay);
+  } else {
+    imgFailed.value = true;
+  }
+}
 
 const typedLines = computed<string[]>(() => {
   const raw = (tm as (key: string) => unknown)('home.hero.typed');
@@ -122,13 +139,30 @@ const downloadCv = () => {
         <div class="hero-side-card">
           <div class="hero-photo-wrapper">
             <v-img
-              :src="LCP_IMAGE_URL"
+              :src="imgSrc"
+              :lazy-src="LCP_IMAGE_URL + '?thumb=true'"
               :alt="t('home.about.portraitLabel')"
               cover
               eager
               :img-props="{ fetchpriority: 'high' }"
               class="hero-photo"
-            />
+              @error="onImageError"
+            >
+              <!-- Shimmer while loading -->
+              <template #placeholder>
+                <div class="hero-photo-placeholder">
+                  <div class="hero-photo-shimmer" aria-hidden="true" />
+                </div>
+              </template>
+
+              <!-- Fallback after all retries exhausted -->
+              <template v-if="imgFailed" #error>
+                <div class="hero-photo-fallback d-flex flex-column align-center justify-center ga-3">
+                  <v-icon size="48" color="primary" opacity="0.6">mdi-image-broken-variant</v-icon>
+                  <span class="text-caption text-medium-emphasis">{{ t('home.hero.imageUnavailable') }}</span>
+                </div>
+              </template>
+            </v-img>
           </div>
         </div>
       </v-col>
@@ -220,6 +254,41 @@ const downloadCv = () => {
   margin-left: 0.15rem;
   color: rgb(var(--v-theme-primary));
   animation: blink 1s steps(1) infinite;
+}
+
+/* Shimmer placeholder */
+.hero-photo-placeholder {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background-color: rgba(var(--v-theme-surface-variant), 0.6);
+}
+
+.hero-photo-shimmer {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(var(--v-theme-surface-variant), 0.0) 0%,
+    rgba(var(--v-theme-primary), 0.08) 40%,
+    rgba(var(--v-theme-primary), 0.14) 50%,
+    rgba(var(--v-theme-primary), 0.08) 60%,
+    rgba(var(--v-theme-surface-variant), 0.0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.8s ease-in-out infinite;
+}
+
+/* Fallback box */
+.hero-photo-fallback {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(var(--v-theme-surface-variant), 0.4);
+}
+
+@keyframes shimmer {
+  0%   { background-position: -100% 0; }
+  100% { background-position:  200% 0; }
 }
 
 /* Photo card */
