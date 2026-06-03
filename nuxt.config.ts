@@ -7,7 +7,12 @@ const packageJson = JSON.parse(readFileSync(resolve(__dirname, './package.json')
 
 export default defineNuxtConfig({
   ssr: true,
-  compatibilityDate: '2026-04-10',
+  compatibilityDate: '2026-06-03',
+
+  site: {
+    url: 'https://heyatom.dev',
+    name: 'Andrea Tombolato — HeyAtom',
+  },
   devtools: { enabled: process.env.NODE_ENV !== 'production' },
 
   runtimeConfig: {
